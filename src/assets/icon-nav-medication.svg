@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_187994" data-name="Rectangle 187994" width="30" height="30" transform="translate(-6175 6985)"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_374" data-name="Mask Group 374" transform="translate(6175 -6985)" clip-path="url(#clip-path)">
+    <g id="Artwork_538" data-name="Artwork 538" transform="translate(-6162.354 6997.773)">
+      <g id="Group_768222" data-name="Group 768222" transform="translate(-12.647 -11.965)">
+        <g id="Group_768218" data-name="Group 768218" transform="translate(14.252 12.635)">
+          <g id="Group_768216" data-name="Group 768216" transform="translate(0 0)">
+            <path id="Path_8276370" data-name="Path 8276370" d="M86.243,85.292a7.965,7.965,0,0,1-7.792-6.376.327.327,0,0,1,.641-.129,7.3,7.3,0,1,0,8.6-8.6.327.327,0,0,1,.129-.641,7.949,7.949,0,0,1-1.573,15.742Z" transform="translate(-78.445 -69.544)"/>
+          </g>
+          <g id="Group_768217" data-name="Group 768217" transform="translate(2.14 7.471)">
+            <path id="Path_8276371" data-name="Path 8276371" d="M101.214,111.321H90.552a.327.327,0,1,1,0-.654h10.662a.327.327,0,0,1,0,.654Z" transform="translate(-90.225 -110.667)"/>
+          </g>
+        </g>
+        <g id="Group_768221" data-name="Group 768221">
+          <g id="Group_768219" data-name="Group 768219">
+            <path id="Path_8276372" data-name="Path 8276372" d="M6.729,24.606a6.708,6.708,0,0,1-4.758-1.967h0a6.729,6.729,0,0,1,0-9.516L13.127,1.967a6.729,6.729,0,1,1,9.516,9.516L11.487,22.639A6.709,6.709,0,0,1,6.729,24.606Zm-4.3-2.43a6.082,6.082,0,0,0,8.591,0L22.18,11.021A6.075,6.075,0,0,0,13.589,2.43L2.433,13.586a6.075,6.075,0,0,0,0,8.591Z" transform="translate(0 0)"/>
+          </g>
+          <g id="Group_768220" data-name="Group 768220" transform="translate(7.452 7.449)">
+            <path id="Path_8276373" data-name="Path 8276373" d="M48.78,49.09a.325.325,0,0,1-.231-.1L41.115,41.56a.327.327,0,0,1,.463-.463l7.434,7.434a.327.327,0,0,1-.231.558Z" transform="translate(-41.019 -41.002)"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

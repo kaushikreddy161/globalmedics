@@ -1,0 +1,9 @@
+{
+    "FIRST_NAME" : "మొదటి పేరు",
+    "LAST_NAME" : "చివరి పేరు",
+    "EMAIL": "ఇమెయిల్",
+    "PHONE": "ఫోను నంబరు",
+    "PASSWORD": "పాస్వర్డ్",
+    "ACCOUNT_DETAILS": "ఖాతా వివరాలు",
+    "ACCOUNT_DESC": ""
+}

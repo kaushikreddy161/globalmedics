@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_182552" data-name="Rectangle 182552" width="30" height="30" transform="translate(-17545 -22242)"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_429" data-name="Mask Group 429" transform="translate(17544.999 22242)" clip-path="url(#clip-path)">
+    <g id="Group_754461" data-name="Group 754461" transform="translate(981.379 735.961)">
+      <g id="Artwork_295" data-name="Artwork 295" transform="translate(-18516.869 -22977.961)">
+        <g id="Group_754460" data-name="Group 754460" transform="translate(0 0)">
+          <g id="Group_754443" data-name="Group 754443" transform="translate(2.695)">
+            <g id="Group_754440" data-name="Group 754440">
+              <g id="Group_754439" data-name="Group 754439">
+                <path id="Path_8157826" data-name="Path 8157826" d="M9.517,14.772c-3.386,0-7.547-4.491-7.547-8.144V2.242l.572.008c.038,0,4.364.036,6.577-1.9L9.517,0l.4.349c2.327,2.037,6.521,1.9,6.561,1.9l.588-.022v4.4C17.065,10.282,12.9,14.772,9.517,14.772ZM3.1,3.225v3.4c0,3.076,3.662,7.156,6.421,7.156s6.422-4.08,6.422-7.156V3.236A11.959,11.959,0,0,1,9.515,1.367C7.443,2.886,4.366,3.173,3.1,3.225Z" transform="translate(-1.97)"/>
+              </g>
+            </g>
+            <g id="Group_754442" data-name="Group 754442" transform="translate(3.293 2.587)">
+              <g id="Group_754441" data-name="Group 754441">
+                <path id="Path_8157827" data-name="Path 8157827" d="M7.943,11.432c-1.908,0-4.254-2.865-4.254-5.2V3.345l.5.007A5.485,5.485,0,0,0,7.6,2.238l.348-.349.349.349a5.168,5.168,0,0,0,3.391,1.115L12.2,3.33v2.9C12.2,8.567,9.852,11.432,7.943,11.432ZM4.676,4.321V6.235c0,1.912,2.006,4.21,3.266,4.21s3.268-2.3,3.268-4.21V4.33A6.031,6.031,0,0,1,7.942,3.244,6.37,6.37,0,0,1,4.676,4.321Z" transform="translate(-3.689 -1.889)"/>
+              </g>
+            </g>
+          </g>
+          <g id="Group_754459" data-name="Group 754459" transform="translate(0 14.294)">
+            <g id="Group_754458" data-name="Group 754458">
+              <g id="Group_754445" data-name="Group 754445">
+                <g id="Group_754444" data-name="Group 754444">
+                  <path id="Path_8157828" data-name="Path 8157828" d="M20.491,24.137H0V8.43H5.961a.492.492,0,1,1,0,.979H1.078V23.157H19.413V9.409H14.471a.492.492,0,1,1,0-.979h6.02Z" transform="translate(0 -8.43)"/>
+                </g>
+              </g>
+              <g id="Group_754447" data-name="Group 754447" transform="translate(8.501 4.173)">
+                <g id="Group_754446" data-name="Group 754446">
+                  <path id="Path_8157829" data-name="Path 8157829" d="M9.162,15.123H5.515V11.477H9.162Zm-2.668-.979H8.183V12.456H6.494Z" transform="translate(-5.515 -11.477)"/>
+                </g>
+              </g>
+              <g id="Group_754449" data-name="Group 754449" transform="translate(14.448 4.173)">
+                <g id="Group_754448" data-name="Group 754448">
+                  <path id="Path_8157830" data-name="Path 8157830" d="M12.826,15.123H9.179V11.477h3.647Zm-2.667-.979h1.687V12.456H10.16Z" transform="translate(-9.179 -11.477)"/>
+                </g>
+              </g>
+              <g id="Group_754451" data-name="Group 754451" transform="translate(8.501 9.517)">
+                <g id="Group_754450" data-name="Group 754450">
+                  <path id="Path_8157831" data-name="Path 8157831" d="M9.162,19.026H5.515V15.379H9.162Zm-2.668-.979H8.183V16.358H6.494Z" transform="translate(-5.515 -15.379)"/>
+                </g>
+              </g>
+              <g id="Group_754453" data-name="Group 754453" transform="translate(2.394 4.173)">
+                <g id="Group_754452" data-name="Group 754452">
+                  <path id="Path_8157832" data-name="Path 8157832" d="M5.4,15.123H1.748V11.477H5.4Zm-2.669-.979H4.416V12.456H2.727Z" transform="translate(-1.748 -11.477)"/>
+                </g>
+              </g>
+              <g id="Group_754455" data-name="Group 754455" transform="translate(2.394 9.517)">
+                <g id="Group_754454" data-name="Group 754454">
+                  <path id="Path_8157833" data-name="Path 8157833" d="M5.4,19.026H1.748V15.379H5.4Zm-2.669-.979H4.416V16.358H2.727Z" transform="translate(-1.748 -15.379)"/>
+                </g>
+              </g>
+              <g id="Group_754457" data-name="Group 754457" transform="translate(14.448 9.517)">
+                <g id="Group_754456" data-name="Group 754456">
+                  <path id="Path_8157834" data-name="Path 8157834" d="M12.826,19.026H9.179V15.379h3.647Zm-2.667-.979h1.687V16.358H10.16Z" transform="translate(-9.179 -15.379)"/>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

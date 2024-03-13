@@ -1,0 +1,9 @@
+{
+    "FIRST_NAME": "First Name",
+    "LAST_NAME": "Last Name",
+    "EMAIL": "Email",
+    "PHONE": "Phone Number",
+    "PASSWORD": "Password",
+    "ACCOUNT_DETAILS": "Account Details",
+    "ACCOUNT_DESC": "Please validate / update your account details to secure your account."
+}

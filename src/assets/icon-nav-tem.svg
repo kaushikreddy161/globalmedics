@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_175871" data-name="Rectangle 175871" width="30" height="30" transform="translate(473 14583)" fill="#fff"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_393" data-name="Mask Group 393" transform="translate(-473 -14583)" clip-path="url(#clip-path)">
+    <g id="Artwork_52" data-name="Artwork 52" transform="translate(491.687 14601.607)">
+      <g id="Group_106426" data-name="Group 106426" transform="translate(-18.107 -18.107)">
+        <g id="Group_106425" data-name="Group 106425" transform="translate(0 0)">
+          <path id="Path_259901" data-name="Path 259901" d="M29.434,4.3,26.7,1.566a1.932,1.932,0,0,0-2.733,0L8.6,16.937C7.451,18.084,6.207,20.695,6.548,22.4L1.424,27.526a1.449,1.449,0,1,0,2.049,2.049L8.6,24.452c1.708.342,4.319-.9,5.465-2.049L29.434,7.032A1.932,1.932,0,0,0,29.434,4.3Z" transform="translate(-1 -1)" fill="none" stroke="#76706b" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.771"/>
+          <line id="Line_1847" data-name="Line 1847" x2="2.049" y2="2.049" transform="translate(4.182 22.768)" fill="none" stroke="#76706b" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.771"/>
+          <line id="Line_1848" data-name="Line 1848" x1="18.445" y2="18.445" transform="translate(5.207 5.348)" fill="none" stroke="#099143" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.771"/>
+          <path id="Path_259902" data-name="Path 259902" d="M78.4,14.638a.966.966,0,1,1,0-1.366A.966.966,0,0,1,78.4,14.638Z" transform="translate(-53.379 -9.29)" fill="none" stroke="#099143" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.771"/>
+          <line id="Line_1849" data-name="Line 1849" x2="1.309" y2="1.309" transform="translate(8.392 17.99)" fill="none" stroke="#099143" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.771"/>
+          <line id="Line_1850" data-name="Line 1850" x2="1.309" y2="1.309" transform="translate(10.573 15.809)" fill="none" stroke="#099143" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.771"/>
+          <line id="Line_1851" data-name="Line 1851" x2="1.309" y2="1.309" transform="translate(12.755 13.627)" fill="none" stroke="#209f85" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.771"/>
+          <line id="Line_1852" data-name="Line 1852" x2="1.309" y2="1.309" transform="translate(14.936 11.446)" fill="none" stroke="#099143" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.771"/>
+          <line id="Line_1853" data-name="Line 1853" x2="1.309" y2="1.309" transform="translate(17.118 9.264)" fill="none" stroke="#099143" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.771"/>
+          <line id="Line_1854" data-name="Line 1854" x2="1.309" y2="1.309" transform="translate(19.299 7.083)" fill="none" stroke="#099143" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.771"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

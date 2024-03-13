@@ -1,0 +1,146 @@
+/* title */
+@media screen and (min-width: 1024px) {
+    .title{
+        font-size: 1.6rem;
+    }
+  }
+@media screen and (min-device-width: 768px) and (max-device-width: 1023px) {
+    .title{
+        font-size: 1.5rem;
+    }
+  }
+  @media screen and (min-device-width: 640px) and (max-device-width: 767px) {
+    .title{
+        font-size: 1.3rem;        
+    }
+  }
+  @media screen and (min-device-width: 425px) and (max-device-width: 639px) {
+    .title{
+        font-size: 1.2rem;        
+    }
+  }
+  @media screen and (min-device-width: 375px) and (max-device-width: 424px) {
+    .title{
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+  }
+  @media screen and (min-device-width: 320px) and (max-device-width: 374px) {
+    .title{
+        font-size: 1rem;
+        font-weight: 500;
+    }
+  }
+
+  /* title2 */
+@media screen and (min-width: 1024px) {
+    .title2 {
+        font-size: 1rem;
+    }
+  }
+@media screen and (min-device-width: 768px) and (max-device-width: 1023px) {
+    .title2 {
+        font-size: 1rem;
+    }
+  }
+  @media screen and (min-device-width: 640px) and (max-device-width: 767px) {
+    .title2 {
+        font-size: 1rem;
+    }
+  }
+  @media screen and (min-device-width: 425px) and (max-device-width: 639px) {
+    .title2 {
+        font-size: 0.9rem;
+    }
+  }
+  @media screen and (min-device-width: 375px) and (max-device-width: 424px) {
+    .title2 {
+        font-size: 0.9rem;
+    }
+  }
+  @media screen and (min-device-width: 320px) and (max-device-width: 374px) {
+    .title2 {
+        font-size: 0.9rem;
+    }
+  }
+
+    /* title3 */
+@media screen and (min-width: 1024px) {
+    .title2 {
+        font-size: 1rem;
+    }
+  }
+@media screen and (min-device-width: 768px) and (max-device-width: 1023px) {
+    .title3 {
+        font-size: 1rem;
+    }
+  }
+  @media screen and (min-device-width: 640px) and (max-device-width: 767px) {
+    .title3 {
+        font-size: 1rem;
+    }
+  }
+  @media screen and (min-device-width: 425px) and (max-device-width: 639px) {
+    .title3 {
+        font-size: 0.9rem;
+    }
+  }
+  @media screen and (min-device-width: 375px) and (max-device-width: 424px) {
+    .title3 {
+        font-size: 0.9rem;
+    }
+  }
+  @media screen and (min-device-width: 320px) and (max-device-width: 374px) {
+    .title3 {
+        font-size: 0.9rem;
+    }
+  }
+
+  /* bottom space for mobile version */
+  
+  @media screen and (min-device-width: 375px) and (max-device-width: 425px) {
+    .mbottom{
+        margin-top: 5rem;
+    }
+  }
+
+  
+    /* Patient info icon and name center */
+   
+    @media screen and (min-width: 1024px) {
+      .pnt-icon {
+        margin-top: 0rem;
+        margin-bottom: 0rem;
+    }
+    }
+  @media screen and (min-device-width: 768px) and (max-device-width: 1023px) {
+    .pnt-icon {
+      margin-top: 0rem;
+      margin-bottom: 0rem;
+  }
+    }
+    @media screen and (min-device-width: 640px) and (max-device-width: 767px) {
+      .pnt-icon {
+        margin-top: 0rem;
+        margin-bottom: 0rem;
+    }
+    }
+   
+@media screen and (min-device-width: 425px) and (max-device-width: 639px) {
+  .pnt-icon {
+      margin-top: 0rem;
+      margin-bottom: 0rem;
+  }
+}
+@media screen and (min-device-width: 375px) and (max-device-width: 424px) {
+  .pnt-icon {
+    margin-top: 0.5rem;
+    margin-bottom: 0rem;
+}
+}
+@media screen and (min-device-width: 320px) and (max-device-width: 374px) {
+  .pnt-icon {
+    margin-top: 0.5rem;
+    margin-bottom: 0rem;
+}
+}

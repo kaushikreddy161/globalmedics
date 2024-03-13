@@ -1,0 +1,801 @@
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: grey;
+  border-radius: 30px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #209F85;
+  width: 8px;
+  border-radius: 30px;
+}
+
+.patient-image {
+  border-radius: '50px';
+
+}
+.main-screen1{
+  width: 88%; 
+  position: fixed;
+  height: 100vh;
+  background-color: #f2f8f1;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-shadow: 0 0 10px #000000;
+  margin-left:12.5px;
+}
+
+
+.Team-images {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  margin: -8px;
+}
+
+.main-screen {
+  background-color: '#f2f8f1';
+  width: 100%;
+  height: 100%;
+}
+
+.patientDetails {
+  color: #209F85;
+}
+
+table {
+  border-collapse: collapse;
+  width: 95%;
+
+}
+
+table th,
+tbody td {
+
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ade0d6;
+
+}
+
+table th tr {
+  color: #209F85;
+}
+
+table tbody tr td {
+  font-size: 15px;
+}
+
+.mainCard1 {
+  width: 44% !important;
+  height: 13vh;
+  border-radius: 15px !important;
+  background: white;
+  padding: 1px;
+  margin-top: 1% !important;
+  margin-left: 3%;
+}
+
+.innerMainCard1Body1{
+  display: flex !important;
+  font-size: 14px !important;
+  margin: -10px !important;
+  margin-left: -25px !important;
+  align-items: center !important;
+  height: 100px;
+}
+@media only screen and (min-width: 1024px) and (max-width: 1440px)  {
+  .innerMainCard1Body1{
+    display: flex !important;
+  font-size: 12px !important;
+  margin: -16px !important;
+  margin-left: -35px !important;
+  align-items: center !important;
+  height: 100px;
+    
+  }
+}
+@media only screen and (min-width: 900px) and (max-width: 1024px)  {
+  .innerMainCard1Body1{
+    display: flex !important;
+  font-size: 12px !important;
+  margin: -10px !important;
+  margin-left: -18px !important;
+  align-items: center !important;
+  height: 100px;
+    
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 900px)  {
+  .innerMainCard1Body1{
+    display: flex !important;
+  font-size: 10px !important;
+  margin: -6px !important;
+  margin-left: -5% !important;
+  width: 0% !important ;
+  align-items: center !important;
+  height: 100px !important ;
+  width: 100% !important;
+    
+  }
+}
+@media only screen and (min-width: 500px) and (max-width: 768px)  {
+  .innerMainCard1Body1{
+    display: flex !important;
+  font-size: 10px !important;
+  margin: -6px !important;
+  margin-left: -5% !important;
+  width: 0% !important ;
+  align-items: center !important;
+  height: 100px !important ;
+  width: 100% !important;
+    
+  }
+}
+.imageDiv {
+  width: 19%;
+  margin-top: -3vh;
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1440px)  {
+  .imageDiv{
+    width: 23%;
+    margin-top: -3vh;
+    
+  }
+}
+@media only screen and (min-width: 900px) and (max-width: 1024px)  {
+  .imageDiv{
+    width: 21%;
+    margin-top: -3vh;
+    
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 900px)  {
+  .imageDiv{
+    width: 31%;
+    margin-top: -3vh;
+    
+  }
+}
+@media only screen and (min-width: 500px) and (max-width: 768px)  {
+  .imageDiv{
+    width: 31% !important;
+    margin-top: -3vh !important;
+    
+  }
+}
+
+
+
+.nameDiv-1 {
+  width: 40%;
+  margin-top: -1vh
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1440px)  {
+  .nameDiv-1{
+    width: 40%;
+    margin-top: -1vh
+    
+  }
+}
+@media only screen and (min-width: 900px) and (max-width: 1024px)  {
+  .nameDiv-1{
+    width: 40%;
+    margin-top: -1vh
+    
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 900px)  {
+  .nameDiv-1{
+    width: 60%;
+    margin-top: -1vh
+    
+  }
+}
+@media only screen and (min-width: 500px) and (max-width: 768px)  {
+  .nameDiv-1{
+    width: 61%;
+    margin-top: 3vh
+    
+  }
+}
+.nameDiv-2{
+  width: 42%;
+   margin-top: -1vh
+}
+@media only screen and (min-width: 1024px) and (max-width: 1440px)  {
+  .nameDiv-2{
+    width: 40%;
+    margin-top: -1vh
+    
+  }
+}
+@media only screen and (min-width: 900px) and (max-width: 1024px)  {
+  .nameDiv-2{
+    width: 45%;
+    margin-top: -1vh
+    
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 900px)  {
+  .nameDiv-2{
+    width: 46%;
+    margin-top: -1vh
+    
+  }
+}
+@media only screen and (min-width: 500px) and (max-width: 768px)  {
+  .nameDiv-2{
+    width: 40%;
+    margin-top: 3vh
+    
+  }
+}
+
+.timeDiv {
+  font-size: 14px;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+.recoveryButton {
+  background-color: #ff0984;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  border-radius: 10px;
+  font-size: 10px;
+  color: #FFFFFF;
+}
+
+.mainCard33 {
+  width: 43% !important;
+  height: 78.2vh !important;
+  border-radius: 15px !important;
+  background: white;
+  padding: 6px !important;
+  margin-top: 2% !important;
+  margin-left: 3% !important;
+}
+
+.mainCard3Body,
+.mainCard4Body {
+  margin: 15px;
+}
+
+.patientdetails,
+/* .multiDiciplinaryText, */
+.clinicalTeamMem {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+@media only screen and (min-width: 1440px) and (max-width: 1024px)  {
+  .patientdetails,
+/* .multiDiciplinaryText, */
+.clinicalTeamMem{
+  font-weight: bold;
+  font-size: 14px;
+  }
+}
+
+
+
+.mainCard3Body22 {
+  font-size: 14px;
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1440px)  {
+  .mainCard3Body22 {
+    font-size: 13px;
+    width: 360px
+  }
+}
+@media only screen and (min-width: 900px) and (max-width: 1024px)  {
+  .mainCard3Body22 {
+    font-size: 13px;
+    width: 330px
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 900px)  {
+  .mainCard3Body22 {
+    font-size: 12px;
+    width: 290px
+  }
+}
+@media only screen and (min-width: 500px) and (max-width: 768px)  {
+  .mainCard3Body22 {
+    font-size: 11px;
+    width: 201px
+  }
+}
+
+.mainCard2 {
+  width: 42% !important;
+  height: 13vh !important;
+  border-radius: 15px !important;
+  background: white;
+  padding: 1px !important;
+  margin-top: 1% !important;
+  margin-left: 3% !important;
+}
+
+.mainCard4 {
+  width: 42% !important;
+  height: 78vh !important;
+  border-radius: 15px !important;
+  background: white;
+  padding: 10px !important;
+  margin-top: 2% !important;
+  margin-left: 3% !important;
+}
+
+/* .mainCard4Body1 {
+  display: flex;
+  font-size: 14px;
+  justify-content: space-between;
+  width: 316px
+} */
+
+/* @media only screen and (min-width: 1024px) and (max-width: 1440px)  {
+  .mainCard4Body1{
+    display: flex;
+    font-size: 14px;
+    justify-content: space-between;
+    width: 340px;
+  }
+} */
+
+.doctorsName {
+  margin-left: 49px;
+  font-size: 14px;
+  font-weight: bolder
+}
+
+.doctorsRole {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.genderAge1 {
+  display: flex;
+  justify-content: space-between;
+  width: 140px;
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
+  .genderAge1{
+    display: flex;
+  justify-content: space-between;
+  width: 140px;
+  }
+}
+@media screen and (min-width: 900px) and (max-width: 1024px) {
+  .genderAge1{
+    display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  width: 130px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 900px) {
+  .genderAge1{
+    display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  width: 100px;
+  }
+}
+
+
+.hgtWgtBmi1 {
+  display: flex;
+  justify-content: space-between;
+  width: 155px;
+}
+
+
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
+  .hgtWgtBmi1 {
+    display: flex;
+    justify-content: space-between;
+    width: 150px;
+    font-size: 13px;
+  }
+}
+@media screen and (min-width: 900px) and (max-width: 1024px) {
+  .hgtWgtBmi1 {
+    display: flex;
+    justify-content: space-between;
+    width: 145px;
+    font-size: 12px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 900px) {
+  .hgtWgtBmi1 {
+    display: flex;
+    justify-content: space-between;
+    width: 114px;
+    font-size: 12px;
+  }
+}
+.bgPNEmail1 {
+  display: flex;
+  justify-content: space-between;
+  width: 70px;
+  
+}
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
+.bgPNEmail1{
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  width: 70px;
+}
+}
+@media screen and (min-width: 900px) and (max-width: 1024px) {
+.bgPNEmail1{
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  width: 70px;
+}
+}
+@media screen and (min-width: 768px) and (max-width: 900px) {
+.bgPNEmail1{
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  width: 39px;
+}
+}
+
+.bmi1 {
+  margin-left: 75px;
+}
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
+  .bmi1 {
+    margin-left: 70px;
+    font-size: 12px;
+  }
+}
+@media screen and (min-width: 900px) and (max-width: 1024px) {
+  .bmi1 {
+    margin-left: 70px;
+    font-size: 12px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 900px) {
+  .bmi1 {
+    margin-left: 50px;
+    font-size: 12px;
+  }
+}
+
+.PhoneNo1 {
+  margin-left: 38px;
+  font-size: 12px;
+}
+
+.emailId1 {
+  margin-left: 68px;
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
+  .emailId1 {
+    margin-left: 14px;
+    
+    justify-content: space-between;
+  }
+}
+@media screen and (min-width: 900px) and (max-width: 1024px) {
+  .emailId1 {
+    margin-left: 14px;
+    font-size: 12px;
+
+    justify-content: space-between;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 900px) {
+  .emailId1 {
+    margin-left: 6px;
+    font-size: 12px;
+
+    justify-content: space-between;
+  }
+}
+
+
+
+.nextOf {
+  display: flex;
+  justify-content: space-between;
+  
+}
+.patientImage {
+  height:60px;
+  width:60px;
+  border-radius: 50px;
+}
+@media screen and (min-width: 900px) and (max-width: 1024px) 
+ {
+  .patientImage{
+    width: 50px;
+  height: 50px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 900px) 
+ {
+  .patientImage{
+    width: 45px;
+  height: 45px;
+  }
+}
+@media screen and (min-width: 500px) and (max-width: 768px) 
+ {
+  .patientImage{
+    width: 40px;
+  height: 40px;
+  margin-left: -2px;
+  margin-bottom: -15px;
+
+  }
+}
+
+@media (max-width: 1024px) {
+  ::-webkit-scrollbar {
+    width: 3px;
+    background-color: grey;
+    border-radius: 50px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #209F85;
+    width: 3px;
+    border-radius: 50px;
+  }
+
+  .mainCard1 {
+    width: 45% !important;
+  }
+
+  .mainCard1Body {
+    margin-top: 10px;
+    padding: 0px !important;
+  }
+
+  /* .innerMainCard1Body {
+    margin-top: 3px;
+    margin-left: -15px;
+    font-size: 12px !important;
+  } */
+
+
+  /* .nameDiv {
+    width: 40%;
+  } */
+
+  /* .imageDiv {
+    width: 20%;
+  } */
+
+  .timeDiv {
+    font-size: 12px;
+  }
+
+  .mainCard3 {
+    width: 45% !important;
+  }
+
+  .mainCard3Body,
+  .mainCard4Body {
+    margin: 5px;
+
+  }
+
+  .patientdetails,
+  /* .multiDiciplinaryText, */
+  .clinicalTeamMem {
+    font-size: 12px;
+  }
+
+  /* .mainCard3Body1 {
+    font-size: 12px;
+    height: 190px;
+    padding-bottom: 20px;
+  } */
+
+  
+  .doctorsName,
+  .doctorsRole,
+  table th tr {
+    font-size: 12px;
+  }
+
+  .mainCard2 {
+    width: 45% !important;
+
+  }
+
+  .mainCard4 {
+    width: 45% !important;
+
+  }
+
+  /* .mainCard4Body1 {
+    font-size: 12px;
+    width: 360px
+  } */
+
+
+}
+
+
+
+@media (max-width: 768px) {
+
+  .mainCard1Body {
+    margin-top: 1px;
+    padding: 0px !important;
+  }
+
+  /* .innerMainCard1Body {
+    margin-top: 15px;
+    margin-left: -18px;
+    margin-right: -14px;
+    font-size: 11px !important;
+  } */
+
+  .nameDiv {
+    width: 40%;
+  }
+
+  /* .imageDiv {
+    width: 20%;
+  } */
+
+  
+
+  .recoveryButton {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    font-size: 5px;
+  }
+
+  .genderAge {
+    width: 95px;
+  }
+
+  .bmi {
+    margin-left: 50px;
+  }
+
+  .PhoneNo {
+    margin-left: 38px;
+  }
+
+  /* .emailId {
+    margin-left: 45px;
+  } */
+
+  /* .hgtWgtBmi {
+    width: 110px;
+  } */
+
+
+  .timeDiv {
+    font-size: 11px;
+  }
+
+  .patientdetails,
+  .timeDiv,
+  /* .multiDiciplinaryText, */
+  .clinicalTeamMem,
+  /* .mainCard3Body1, */
+  .doctorsName,
+  .doctorsRole,
+  table th tr {
+    font-size: 11px;
+  }
+
+  /* .mainCard3Body1 {
+    height: 198px;
+  } */
+
+  /* .mainCard4Body1 {
+    font-size: 11px;
+    width: 290px
+  } */
+}
+
+
+
+
+.charts {
+  width: auto;
+  height: auto;
+}
+
+.subcard-div {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  color: #209F85;
+  padding-left: 5px;
+  border: 1px solid #209F85;
+  border-radius: 1.9em;
+}
+
+.mainCard4Body11 {
+  display: flex !important;
+  font-size: 14px !important;
+  justify-content: space-between !important;
+  width: 459px !important
+}
+
+@media screen and (min-device-width: 1024px) and (max-device-width: 1440px) 
+ {
+  .mainCard4Body11{
+    display: flex !important;
+    font-size: 14px !important;
+    justify-content: space-between !important; 
+    width: 350px !important;
+  }
+}
+
+@media screen and (min-width: 900px) and (max-width: 1024px) 
+ {
+  .mainCard4Body11{
+    display: flex;
+    font-size: 14px !important;
+    justify-content: space-between !important;
+    width: 350px !important;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 900px)  {
+  .mainCard4Body11 {
+    display: flex;
+    font-size: 14px !important;
+    justify-content: space-between !important;
+    width: 300px !important;
+    
+  }
+}
+@media only screen and (min-width: 500px) and (max-width: 768px)  {
+  .mainCard4Body11 {
+    display: flex;
+    font-size: 12px !important;
+    justify-content: space-between !important;
+    width: 193px !important;
+    
+  }
+}
+
+.media-query{
+  overflow: auto !important;
+}
+
+@media screen and (min-device-width: 900px) and (max-device-width: 1023px) 
+ {
+  .media-query{
+    overflow: auto !important;
+  }
+}
+.mainCard3Body11 {
+  font-size: 14px !important;
+  height: 225px !important;
+  padding-bottom: 45px !important;
+}
+@media only screen and (min-width: 1024px) and (max-width: 1440px)  {
+  .mainCard3Body11 {
+    font-size: 14px !important;
+    height: 225px !important;
+    padding-bottom: 45px !important;
+  }
+}
+

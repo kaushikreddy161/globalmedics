@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" viewBox="0 0 30 30">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_182565" data-name="Rectangle 182565" width="30" height="30" transform="translate(-5491 -3290)" fill="#fff"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_442" data-name="Mask Group 442" transform="translate(5491 3290)" clip-path="url(#clip-path)">
+    <g id="Artwork_107" data-name="Artwork 107" transform="translate(-5471.29 -3274.393)">
+      <g id="Group_754526" data-name="Group 754526" transform="translate(-19.31 -11.835)">
+        <g id="Group_754520" data-name="Group 754520" transform="translate(10.746 8.495)">
+          <ellipse id="Ellipse_48486" data-name="Ellipse 48486" cx="2.433" cy="2.433" rx="2.433" ry="2.433" transform="translate(1.436)" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="0.65"/>
+          <g id="Group_754519" data-name="Group 754519" transform="translate(0 6.328)">
+            <path id="Path_8157970" data-name="Path 8157970" d="M4.3,13.485V8.665A2.822,2.822,0,0,1,7.116,5.851H9.227a2.822,2.822,0,0,1,2.811,2.814v4.82" transform="translate(-4.302 -5.851)" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="0.65"/>
+            <line id="Line_7306" data-name="Line 7306" x2="7.738" transform="translate(0 7.633)" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="0.65"/>
+          </g>
+          <path id="Path_8157971" data-name="Path 8157971" d="M6.379,10.54,5.667,9.151l.267-1.937L5.4,6.53l.529-.678h.9l.529.678-.534.684.267,1.937L6.379,10.54" transform="translate(-2.51 0.477)" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="0.65"/>
+        </g>
+        <g id="Group_754525" data-name="Group 754525">
+          <g id="Group_754522" data-name="Group 754522">
+            <path id="Path_8157972" data-name="Path 8157972" d="M6.8,3.179A2.96,2.96,0,1,1,3.845.22,2.959,2.959,0,0,1,6.8,3.179Z" transform="translate(0.865 -0.22)" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="0.65"/>
+            <g id="Group_754521" data-name="Group 754521" transform="translate(0 7.702)">
+              <path id="Path_8157973" data-name="Path 8157973" d="M.22,12.436V6.571A3.433,3.433,0,0,1,3.645,3.146H6.211A3.436,3.436,0,0,1,9.639,6.571v5.865" transform="translate(-0.219 -3.146)" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="0.65"/>
+              <line id="Line_7307" data-name="Line 7307" x2="9.418" transform="translate(0 9.289)" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="0.65"/>
+            </g>
+            <path id="Path_8157974" data-name="Path 8157974" d="M2.747,8.853,1.881,7.162,2.206,4.8l-.65-.833L2.2,3.146H3.295l.644.826-.65.833.325,2.358L2.747,8.853" transform="translate(1.962 4.556)" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="0.65"/>
+          </g>
+          <g id="Group_754524" data-name="Group 754524" transform="translate(19.811)">
+            <path id="Path_8157975" data-name="Path 8157975" d="M14.333,3.179A2.961,2.961,0,1,1,11.371.22,2.961,2.961,0,0,1,14.333,3.179Z" transform="translate(-6.661 -0.22)" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="0.65"/>
+            <g id="Group_754523" data-name="Group 754523" transform="translate(0 7.702)">
+              <path id="Path_8157976" data-name="Path 8157976" d="M7.746,12.436V6.571a3.433,3.433,0,0,1,3.425-3.425H13.74a3.435,3.435,0,0,1,3.425,3.425v5.865" transform="translate(-7.745 -3.146)" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="0.65"/>
+              <line id="Line_7308" data-name="Line 7308" x2="9.418" transform="translate(0 9.289)" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="0.65"/>
+            </g>
+            <path id="Path_8157977" data-name="Path 8157977" d="M10.274,8.853,9.407,7.162,9.732,4.8l-.65-.833.644-.826h1.095l.644.826-.65.833.325,2.358-.867,1.691" transform="translate(-5.564 4.556)" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="0.65"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

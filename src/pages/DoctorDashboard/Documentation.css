@@ -1,0 +1,94 @@
+.card {
+  box-shadow: 5px 5px 10px -3px rgba(0, 0, 0, 0.5);
+  border: none !important;
+  border-radius: 10pt !important;
+}
+
+.card .card-title {
+  color: #209F85;
+  padding-bottom: 3pt;
+  font-size: 12pt;
+  font-weight: 400;
+  border-bottom: 1px solid #209F85;
+}
+
+.card .card-subtitle {
+  margin-top: 1rem;
+  margin-bottom: 0rem;
+  font-size: 12pt;
+  font-weight: 400;
+}
+
+.card .card-subtitle1 {
+  margin-top: 0rem;
+  margin-bottom: 0rem;
+  font-size: 12pt;
+  font-weight: 400;
+}
+
+.card .marginLeft {
+  margin-left: 1rem;
+}
+
+.card .form-check {
+  font-size: 10pt;
+  margin-top: -0.1rem;
+  margin-bottom: 0rem;
+}
+
+.custom-btn-width {
+  width: 150px !important;
+  font-size: 10pt !important;
+}
+
+.ml-mr {
+  margin-left: 2rem !important;
+  /* margin-right: 1rem !important; */
+}
+
+.card-height {
+  height: 810px !important;
+  overflow-y: auto;
+}
+
+.btn-blue {
+  background-color: #3B5998 !important;
+}
+
+.right {
+  text-align: right;
+  margin-right: 0rem !important;
+}
+
+.select-dropdown {
+  min-width: 100%;
+  color: #707070;
+  border-radius: 5px;
+  border: 1px solid #707070 !important;
+  height: 28pt;
+}
+.css-t3ipsp-control{
+  min-height: 30px !important;
+  height: 30px !important;
+  border-radius: 20px !important;
+}
+
+.css-13cymwt-control{
+  min-height: 30px !important;
+  height: 30px !important;
+  border-radius: 20px !important;
+}
+.css-1fdsijx-ValueContainer{
+  padding: 0px 14px 6px !important;
+  font-size: 10pt !important;
+}
+
+.css-1u9des2-indicatorSeparator {
+  margin-bottom: 14px !important;
+}
+.css-tj5bde-Svg {
+  padding-bottom: 3pt !important;
+}
+.form-check-input[type=radio] {
+  margin-top: 4pt !important;
+}

@@ -516,7 +516,7 @@ export const SidebarData = [
   //   path: "/termsofService",
   //   icon: IconAcn,
   // },
- 
+
   // {
   //   title: "Coming Soon",
   //   path: "/comingsoon",
@@ -861,7 +861,7 @@ export const SidebarData = [
         icon: IconProfessionals,
       }
     ]
-    },
+  },
   {
     title: "Set Up",
     path: "/userJourneySelf",
@@ -876,37 +876,37 @@ export const SidebarData = [
         icon: IconEmergency,
       }
     ]
-    },
-    {
-      title: "Partners (Coming Soon)",
-      path: "/eCommerce",
-      icon: IconComingSoon,
-      iconClosed: <RiIcons.RiArrowDownSFill />,
-      iconOpened: <RiIcons.RiArrowUpSFill />,
-  
-      subNav: [
-        {
-          title: "Hire Professionals",
-          path: "/comingsoon",
-          icon: IconProfessionals,
-        },
-        {
-          title: "Buy Products",
-          path: "/productList",
-          icon: IconDeviceInte,
-        },
-        // {
-        //   title: "Buy Supplies",
-        //   path: "/comingsoon",
-        //   icon: IconDeviceInte,
-        // },
-        // {
-        //   title: "Subscribe",
-        //   path: "/comingsoon",
-        //   icon: IconCheckIn,
-        // }
-      ],
-    },
+  },
+  {
+    title: "Partners (Coming Soon)",
+    path: "/eCommerce",
+    icon: IconComingSoon,
+    iconClosed: <RiIcons.RiArrowDownSFill />,
+    iconOpened: <RiIcons.RiArrowUpSFill />,
+
+    subNav: [
+      {
+        title: "Hire Professionals",
+        path: "/comingsoon",
+        icon: IconProfessionals,
+      },
+      {
+        title: "Buy Products",
+        path: "/productList",
+        icon: IconDeviceInte,
+      },
+      // {
+      //   title: "Buy Supplies",
+      //   path: "/comingsoon",
+      //   icon: IconDeviceInte,
+      // },
+      // {
+      //   title: "Subscribe",
+      //   path: "/comingsoon",
+      //   icon: IconCheckIn,
+      // }
+    ],
+  },
   // {
   //   title: "Hydration",
   //   path: "/hydration",
@@ -953,7 +953,7 @@ export const SidebarData = [
   //   path: "/inviteReceived",
   //   icon: IconPPDel,
   // },
-    {
+  {
     title: "Care Concierge",
     path: "/careConcierge",
     icon: IconPPDel,
@@ -967,6 +967,13 @@ export const SidebarData = [
     title: 'Test Data',
     path: '/testData',
     icon: IconPPDel,
+  },
+
+  {
+    title: 'Doctor Dashboard',
+    path: '/consultation',
+    icon: IconPPDel,
   }
+
 
 ];

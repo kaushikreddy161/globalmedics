@@ -1,5 +1,5 @@
 import { Routes, Route, Switch, Link } from "react-router-dom";
-import { useEffect,useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MsalProvider, useMsal } from '@azure/msal-react';
 import { EventType } from '@azure/msal-browser';
 import { UserProvider } from "./contexts/user.context";
@@ -246,6 +246,8 @@ import CareConcierge from "./DoctorDashboard/pages/CarePlan/CareConcierge";
 
 import ChatDashboard from "./Chat/ChatDashboard.js";
 
+import Index from "./pages/DoctorDashboard/index.jsx";
+
 const Pages = () => {
     /**
      * useMsal is hook that returns the PublicClientApplication instance,
@@ -254,19 +256,19 @@ const Pages = () => {
      * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-react/docs/hooks.md
      */
     const { instance } = useMsal();
-    const [adbpayload,setADBPayload] = useState("");
+    const [adbpayload, setADBPayload] = useState("");
     const [time, setTime] = useState(new Date());
     const [imgBorderColor, setImgBorderColor] = useState("4px solid yellow");
     const [patientDetails, setPatientDetails] = useState('');
 
-  //  const navigate = useNavigate();
+    //  const navigate = useNavigate();
 
     // const paramsidp = new URLSearchParams(window.location.search);
     // const dpl = paramsidp.get('dpl');
     // const typ = paramsidp.get('typ');
-//    const gcode = paramsidp.get('code');
+    //    const gcode = paramsidp.get('code');
 
-   // console.log("params line 175:", paramsidp);
+    // console.log("params line 175:", paramsidp);
     // if (paramsidp.get('code'))
     // {
     //    // const lid = React.createContext(gcode);
@@ -278,7 +280,7 @@ const Pages = () => {
         setPatientDetails(patientDet)
         setImgBorderColor(clr)
         // console.log('patientDetails', patientDetails)
-      }
+    }
 
     useEffect(() => {
         const callbackId = instance.addEventCallback((event) => {
@@ -352,21 +354,21 @@ const Pages = () => {
 
     return (
         <Routes>
-          <Route path="/" element={<ModuleSummary prop={adbpayload}/>} />
-          <Route path="/termsofService" element={<TermsofService />} />
-          <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
-          <Route path="/confirmEmail" element={<ConfirmEmail />} />
-          <Route path="/careManagerDetails" element={<CareManagerDetailsForm />} />
-          <Route exact path="/healthReports" element={<HealthReports />} />
-          <Route exact path="/patientPersonalDetailsForm_1" element={<PatientPersonalDetailsForm_1 />} />
-          <Route exact path="/patientPersonalDetailsForm_2" element={<PatientPersonalDetailsForm_2 />} />
-          <Route exact path="/patientPersonalDetailsForm_3" element={<PatientPersonalDetailsForm_3 />} />
-          <Route exact path="/patientPersonalDetailsForm" element={<PatientPersonalDetailsForm />} />
-          <Route exact path="/consentForm" element={<ConsentForm />} />
-          <Route exact path="/symptoms" element={<Symptoms />} />
-          <Route exact path="/uploadReports" element={<UploadReports />} />
-          <Route exact path="/moduleSummary" element={<ModuleSummary  prop={adbpayload}/>} />
-          <Route exact path="/comingSoon" element={<ComingSoon />} />
+            <Route path="/" element={<ModuleSummary prop={adbpayload} />} />
+            <Route path="/termsofService" element={<TermsofService />} />
+            <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
+            <Route path="/confirmEmail" element={<ConfirmEmail />} />
+            <Route path="/careManagerDetails" element={<CareManagerDetailsForm />} />
+            <Route exact path="/healthReports" element={<HealthReports />} />
+            <Route exact path="/patientPersonalDetailsForm_1" element={<PatientPersonalDetailsForm_1 />} />
+            <Route exact path="/patientPersonalDetailsForm_2" element={<PatientPersonalDetailsForm_2 />} />
+            <Route exact path="/patientPersonalDetailsForm_3" element={<PatientPersonalDetailsForm_3 />} />
+            <Route exact path="/patientPersonalDetailsForm" element={<PatientPersonalDetailsForm />} />
+            <Route exact path="/consentForm" element={<ConsentForm />} />
+            <Route exact path="/symptoms" element={<Symptoms />} />
+            <Route exact path="/uploadReports" element={<UploadReports />} />
+            <Route exact path="/moduleSummary" element={<ModuleSummary prop={adbpayload} />} />
+            <Route exact path="/comingSoon" element={<ComingSoon />} />
             <Route exact path="/fileUpload" element={<FileUpload />} />
             <Route exact path="/addLovedOnes" element={<AddLovedOnes />} />
             <Route exact path="/role" element={<Role />} />
@@ -396,51 +398,51 @@ const Pages = () => {
             <Route exact path="/patientsList" element={<PatientsList />} />
             <Route exact path="/selectServices" element={<SelectServices />} />
             <Route exact path="/headache" element={<Headache />} />
-          <Route exact path="/throat" element={<Throat />} />
-          <Route exact path="/eyeIssues" element={<EyeIssues />} />
-          <Route exact path="/fever" element={<Fever />} />
-          <Route exact path="/hydration" element={<Hydration />} />
-          <Route exact path="/medications" element={<Medications />} />
-          <Route exact path="/nutrition" element={<Nutrition />} />
-          <Route exact path="/ecommerce" element={<Ecommerce />} />
-          <Route exact path="/productList" element={<ProductList />} />
-          <Route exact path="/incDecCounter" element={<IncDecCounter />} />
-          <Route exact path="/buyProduct" element={<BuyProduct />} />
-          <Route exact path="/deviceConsent" element={<DeviceConsent />} />
-          <Route exact path="/deviceWelcomeScreen" element={<DeviceWelcomeScreen />} />
-          <Route exact path="/deviceRegistration" element={<DeviceRegistration />} />
-          <Route exact path="/googleFit" element={<GoogleFit />} />
-          <Route exact path="/withingsCall" element={<WithingsCall />} />
-          <Route exact path="/localCareGiverAccess" element={<LocalCareGiverAccess />} />
-          <Route exact path="/familyMemberAccess" element={<FamilyMemberAccess />} />
-          <Route exact path="/localCareGiverCustomiseAccess" element={<LocalCareGiverCustomiseAccess />} />
-          <Route exact path="/careRings" element={<CareRings />} />
-          <Route exact path="/information" element={<Information />} />
-          <Route exact path="/InviteSent" element={<InviteSent />} />
-          <Route exact path="/InviteReceived" element={<InviteReceived />} />
-          <Route exact path="/adminRequest" element={<AdminRequest />} />
-          <Route exact path="/congratulations" element={<Congratulations />} />
-          <Route exact path="/thankYou" element={<ThankYou />} />
-          <Route exact path="/welcome" element={<Welcome />} />
-          <Route exact path="/inviteCommunity" element={<InviteCommunity />} />
-          <Route exact path="/karmaKlub" element={<KarmaKlub />} />
-          <Route exact path="/autoVitalsSummary" element={<AutoVitalsSummary />} />
-          <Route exact path="/subscriptions" element={<Subscriptions />} />
-          <Route exact path="/institutionConnect" element={<InstitutionConnect />} />
-          <Route exact path="/Help" element={<Help />} />
-          <Route exact path="/dailyCheckOut" element={<DailyCheckOut />} />
-          <Route exact path="/jobCategories" element={<JobCategories />} />
-          <Route exact path="/bowelDiarrhoea" element={<BowelDiarrhoea />} />
-          <Route exact path="/personaliseECard" element={<PersonaliseECard />} />
-          <Route exact path="/LovedOnesECard" element={<LovedOnesECard />} />
-          <Route exact path="/personaliseECardCustomise" element={<PersonaliseECardCustomise />} />
-          <Route exact path="/chronicConditions" element={<ChronicConditions />} />
-          <Route exact path="/recordSymptoms" element={<RecordSymptoms />} />
-          <Route exact path="/recordSymptomsMore" element={<RecordSymptomsMore />} />
-          <Route exact path="/recordVitals" element={<RecordVitals />} />
-          <Route exact path="/recordVitalsMore" element={<RecordVitalsMore />} />
-          <Route exact path="/bowelConstipation" element={<BowelConstipation />} />
-    	    <Route exact path="/moduleSummaryOne" element={<ModuleSummaryOne />} />
+            <Route exact path="/throat" element={<Throat />} />
+            <Route exact path="/eyeIssues" element={<EyeIssues />} />
+            <Route exact path="/fever" element={<Fever />} />
+            <Route exact path="/hydration" element={<Hydration />} />
+            <Route exact path="/medications" element={<Medications />} />
+            <Route exact path="/nutrition" element={<Nutrition />} />
+            <Route exact path="/ecommerce" element={<Ecommerce />} />
+            <Route exact path="/productList" element={<ProductList />} />
+            <Route exact path="/incDecCounter" element={<IncDecCounter />} />
+            <Route exact path="/buyProduct" element={<BuyProduct />} />
+            <Route exact path="/deviceConsent" element={<DeviceConsent />} />
+            <Route exact path="/deviceWelcomeScreen" element={<DeviceWelcomeScreen />} />
+            <Route exact path="/deviceRegistration" element={<DeviceRegistration />} />
+            <Route exact path="/googleFit" element={<GoogleFit />} />
+            <Route exact path="/withingsCall" element={<WithingsCall />} />
+            <Route exact path="/localCareGiverAccess" element={<LocalCareGiverAccess />} />
+            <Route exact path="/familyMemberAccess" element={<FamilyMemberAccess />} />
+            <Route exact path="/localCareGiverCustomiseAccess" element={<LocalCareGiverCustomiseAccess />} />
+            <Route exact path="/careRings" element={<CareRings />} />
+            <Route exact path="/information" element={<Information />} />
+            <Route exact path="/InviteSent" element={<InviteSent />} />
+            <Route exact path="/InviteReceived" element={<InviteReceived />} />
+            <Route exact path="/adminRequest" element={<AdminRequest />} />
+            <Route exact path="/congratulations" element={<Congratulations />} />
+            <Route exact path="/thankYou" element={<ThankYou />} />
+            <Route exact path="/welcome" element={<Welcome />} />
+            <Route exact path="/inviteCommunity" element={<InviteCommunity />} />
+            <Route exact path="/karmaKlub" element={<KarmaKlub />} />
+            <Route exact path="/autoVitalsSummary" element={<AutoVitalsSummary />} />
+            <Route exact path="/subscriptions" element={<Subscriptions />} />
+            <Route exact path="/institutionConnect" element={<InstitutionConnect />} />
+            <Route exact path="/Help" element={<Help />} />
+            <Route exact path="/dailyCheckOut" element={<DailyCheckOut />} />
+            <Route exact path="/jobCategories" element={<JobCategories />} />
+            <Route exact path="/bowelDiarrhoea" element={<BowelDiarrhoea />} />
+            <Route exact path="/personaliseECard" element={<PersonaliseECard />} />
+            <Route exact path="/LovedOnesECard" element={<LovedOnesECard />} />
+            <Route exact path="/personaliseECardCustomise" element={<PersonaliseECardCustomise />} />
+            <Route exact path="/chronicConditions" element={<ChronicConditions />} />
+            <Route exact path="/recordSymptoms" element={<RecordSymptoms />} />
+            <Route exact path="/recordSymptomsMore" element={<RecordSymptomsMore />} />
+            <Route exact path="/recordVitals" element={<RecordVitals />} />
+            <Route exact path="/recordVitalsMore" element={<RecordVitalsMore />} />
+            <Route exact path="/bowelConstipation" element={<BowelConstipation />} />
+            <Route exact path="/moduleSummaryOne" element={<ModuleSummaryOne />} />
             <Route exact path="/moduleSummaryTwo" element={<ModuleSummaryTwo />} />
             <Route exact path="/moduleSummaryThree" element={<ModuleSummaryThree />} />
             <Route exact path="/patientModuleSummary" element={<PatientModuleSummary />} />
@@ -453,144 +455,149 @@ const Pages = () => {
             <Route exact path="/localCareGiversConsent" element={<LocalCareGiversConsent />} />
             <Route exact path="/addLocalCarerInfo" element={<AddLocalCarerInfo />} />
             <Route exact path="/familyMembersConsent" element={<FamilyMembersConsent />} />
-            <Route exact path="/addFamilyMemberInfo" element={<AddFamilyMemberInfo />} />          
+            <Route exact path="/addFamilyMemberInfo" element={<AddFamilyMemberInfo />} />
             <Route exact path="/careRingManagement" element={<CareRingManagement />} />
 
             <Route exact path="/heartMedications_1" element={<HeartMedications_1 />} />
-          <Route exact path="/heartMedications_2" element={<HeartMedications_2 />} />
-          <Route exact path="/heartMedications_3" element={<HeartMedications_3 />} />
+            <Route exact path="/heartMedications_2" element={<HeartMedications_2 />} />
+            <Route exact path="/heartMedications_3" element={<HeartMedications_3 />} />
 
-          <Route exact path="/diabetesMedications_1" element={<DiabetesMedications_1 />} />
-          <Route exact path="/diabetesMedications_2" element={<DiabetesMedications_2 />} />
-          <Route exact path="/diabetesMedications_3" element={<DiabetesMedications_3 />} />
+            <Route exact path="/diabetesMedications_1" element={<DiabetesMedications_1 />} />
+            <Route exact path="/diabetesMedications_2" element={<DiabetesMedications_2 />} />
+            <Route exact path="/diabetesMedications_3" element={<DiabetesMedications_3 />} />
 
-          <Route exact path="/bloodPressureMedications_1" element={<BloodPressureMedications_1 />} />
-          <Route exact path="/bloodPressureMedications_2" element={<BloodPressureMedications_2 />} />
-          <Route exact path="/bloodPressureMedications_3" element={<BloodPressureMedications_3 />} />
+            <Route exact path="/bloodPressureMedications_1" element={<BloodPressureMedications_1 />} />
+            <Route exact path="/bloodPressureMedications_2" element={<BloodPressureMedications_2 />} />
+            <Route exact path="/bloodPressureMedications_3" element={<BloodPressureMedications_3 />} />
 
-          <Route exact path="/arthritisMedications_1" element={<ArthritisMedications_1 />} />
-          <Route exact path="/arthritisMedications_2" element={<ArthritisMedications_2 />} />
-          <Route exact path="/arthritisMedications_3" element={<ArthritisMedications_3 />} />
+            <Route exact path="/arthritisMedications_1" element={<ArthritisMedications_1 />} />
+            <Route exact path="/arthritisMedications_2" element={<ArthritisMedications_2 />} />
+            <Route exact path="/arthritisMedications_3" element={<ArthritisMedications_3 />} />
 
-          <Route exact path="/lungMedications_1" element={<LungMedications_1 />} />
-          <Route exact path="/lungMedications_2" element={<LungMedications_2 />} />
-          <Route exact path="/lungMedications_3" element={<LungMedications_3 />} />
+            <Route exact path="/lungMedications_1" element={<LungMedications_1 />} />
+            <Route exact path="/lungMedications_2" element={<LungMedications_2 />} />
+            <Route exact path="/lungMedications_3" element={<LungMedications_3 />} />
 
-          <Route exact path="/alzheimerMedications_1" element={<AlzheimerMedications_1 />} />
-          <Route exact path="/alzheimerMedications_2" element={<AlzheimerMedications_2 />} />
-          <Route exact path="/alzheimerMedications_3" element={<AlzheimerMedications_3 />} />
+            <Route exact path="/alzheimerMedications_1" element={<AlzheimerMedications_1 />} />
+            <Route exact path="/alzheimerMedications_2" element={<AlzheimerMedications_2 />} />
+            <Route exact path="/alzheimerMedications_3" element={<AlzheimerMedications_3 />} />
 
-          <Route exact path="/parkinsonMedications_1" element={<ParkinsonMedications_1 />} />
-          <Route exact path="/parkinsonMedications_2" element={<ParkinsonMedications_2 />} />
-          <Route exact path="/parkinsonMedications_3" element={<ParkinsonMedications_3 />} />
+            <Route exact path="/parkinsonMedications_1" element={<ParkinsonMedications_1 />} />
+            <Route exact path="/parkinsonMedications_2" element={<ParkinsonMedications_2 />} />
+            <Route exact path="/parkinsonMedications_3" element={<ParkinsonMedications_3 />} />
 
-          <Route exact path="/kidneyMedications_1" element={<KidneyMedications_1 />} />
-          <Route exact path="/kidneyMedications_2" element={<KidneyMedications_2 />} />
-          <Route exact path="/kidneyMedications_3" element={<KidneyMedications_3 />} />
+            <Route exact path="/kidneyMedications_1" element={<KidneyMedications_1 />} />
+            <Route exact path="/kidneyMedications_2" element={<KidneyMedications_2 />} />
+            <Route exact path="/kidneyMedications_3" element={<KidneyMedications_3 />} />
 
-          <Route exact path="/cancerMedications_1" element={<CancerMedications_1 />} />
-          <Route exact path="/cancerMedications_2" element={<CancerMedications_2 />} />
-          <Route exact path="/cancerMedications_3" element={<CancerMedications_3 />} />
+            <Route exact path="/cancerMedications_1" element={<CancerMedications_1 />} />
+            <Route exact path="/cancerMedications_2" element={<CancerMedications_2 />} />
+            <Route exact path="/cancerMedications_3" element={<CancerMedications_3 />} />
 
-          <Route exact path="/otherMedications_1" element={<OtherMedications_1 />} />
-          <Route exact path="/otherMedications_2" element={<OtherMedications_2 />} />
-          <Route exact path="/otherMedications_3" element={<OtherMedications_3 />} />
+            <Route exact path="/otherMedications_1" element={<OtherMedications_1 />} />
+            <Route exact path="/otherMedications_2" element={<OtherMedications_2 />} />
+            <Route exact path="/otherMedications_3" element={<OtherMedications_3 />} />
 
-          <Route exact path="/setMedications" element={<SetMedications />} />
-          <Route exact path="/healthInsurance" element={<HealthInsurance />} />
-        
-          <Route exact path="/dashboardsWelcome" element={<DashboardsWelcome />} />
-          <Route exact path="/careManagerWelcome" element={<CareManagerWelcome />} />
-          <Route exact path="/lovedOneWelcome" element={<LovedOneWelcome />} />
-          <Route exact path="/familyMemberWelcome" element={<FamilyMemberWelcome />} />
-          <Route exact path="/localCareGiverWelcome" element={<LocalCareGiverWelcome />} />
-          <Route exact path="/connectDeviceWelcome" element={<ConnectDeviceWelcome />} />
-          <Route exact path="/healthVaultWelcome" element={<HealthVaultWelcome />} />
-          <Route exact path="/recordSymptomsWelcome" element={<RecordSymptomsWelcome />} />
-          <Route exact path="/recordVitalsWelcome" element={<RecordVitalsWelcome />} />
-          <Route exact path="/severityPain" element={<SeverityPain />} />
-          <Route exact path="/locationPain" element={<LocationPain />} />
-          <Route exact path="/typeAccident" element={<TypeAccident />} />
-          <Route exact path="/kindEmergency" element={<KindEmergency />} />
-          <Route exact path="/emergencyResponseAndPain" element={<EmergencyResponseAndPain />} />
-          <Route exact path="/emergencyConsent" element={<EmergencyConsent />} />
-          <Route exact path="/yourAccountWelcome" element={<YourAccountWelcome />} />
-          <Route exact path="/yourAccount" element={<YourAccount />} />
-          <Route exact path="/emergencyPain" element={<EmergencyPain />} />
-          <Route exact path="/anyOtherDetails" element={<AnyOtherDetails />} />
-          <Route exact path="/alertnessCheck" element={<AlertnessCheck />} />
-          <Route exact path="/verbalResponsiveness" element={<VerbalResponsiveness />} />
-          <Route exact path="/painCheck" element={<PainCheck />} />
-          <Route exact path="/patientUnresponsive" element={<PatientUnresponsive />} />
-         <Route exact path="/inviteLocalCareGiver" element={<InviteLocalCareGiver />} />
-         <Route exact path="/inviteALovedOne" element={<InviteALovedOne />} />
-        <Route exact path="/inviteConnect" element={<InviteConnect />} /> 
-        <Route exact path="/addLovedOnes_2" element={<AddLovedOnes_2 />} />
-        {/* <Route exact path="/emergencyGuidance" element={<EmergencyGuidance />} />
+            <Route exact path="/setMedications" element={<SetMedications />} />
+            <Route exact path="/healthInsurance" element={<HealthInsurance />} />
+
+            <Route exact path="/dashboardsWelcome" element={<DashboardsWelcome />} />
+            <Route exact path="/careManagerWelcome" element={<CareManagerWelcome />} />
+            <Route exact path="/lovedOneWelcome" element={<LovedOneWelcome />} />
+            <Route exact path="/familyMemberWelcome" element={<FamilyMemberWelcome />} />
+            <Route exact path="/localCareGiverWelcome" element={<LocalCareGiverWelcome />} />
+            <Route exact path="/connectDeviceWelcome" element={<ConnectDeviceWelcome />} />
+            <Route exact path="/healthVaultWelcome" element={<HealthVaultWelcome />} />
+            <Route exact path="/recordSymptomsWelcome" element={<RecordSymptomsWelcome />} />
+            <Route exact path="/recordVitalsWelcome" element={<RecordVitalsWelcome />} />
+            <Route exact path="/severityPain" element={<SeverityPain />} />
+            <Route exact path="/locationPain" element={<LocationPain />} />
+            <Route exact path="/typeAccident" element={<TypeAccident />} />
+            <Route exact path="/kindEmergency" element={<KindEmergency />} />
+            <Route exact path="/emergencyResponseAndPain" element={<EmergencyResponseAndPain />} />
+            <Route exact path="/emergencyConsent" element={<EmergencyConsent />} />
+            <Route exact path="/yourAccountWelcome" element={<YourAccountWelcome />} />
+            <Route exact path="/yourAccount" element={<YourAccount />} />
+            <Route exact path="/emergencyPain" element={<EmergencyPain />} />
+            <Route exact path="/anyOtherDetails" element={<AnyOtherDetails />} />
+            <Route exact path="/alertnessCheck" element={<AlertnessCheck />} />
+            <Route exact path="/verbalResponsiveness" element={<VerbalResponsiveness />} />
+            <Route exact path="/painCheck" element={<PainCheck />} />
+            <Route exact path="/patientUnresponsive" element={<PatientUnresponsive />} />
+            <Route exact path="/inviteLocalCareGiver" element={<InviteLocalCareGiver />} />
+            <Route exact path="/inviteALovedOne" element={<InviteALovedOne />} />
+            <Route exact path="/inviteConnect" element={<InviteConnect />} />
+            <Route exact path="/addLovedOnes_2" element={<AddLovedOnes_2 />} />
+            {/* <Route exact path="/emergencyGuidance" element={<EmergencyGuidance />} />
           <Route exact path="/emergencyGuidanceCurrentStatus" element={<EmergencyGuidanceCurrentStatus />} />
           <Route exact path="/emergencyGuidanceHealthStatus1" element={<EmergencyGuidanceHealthStatus1 />} />
           <Route exact path="/emergencyGuidanceHealthStatus2" element={<EmergencyGuidanceHealthStatus2 />} />
           <Route exact path="/seekHelp" element={<SeekHelp />} />
           <Route exact path="/videoAudioRecorder" element={<VideoAudioRecorder />} />
           <Route exact path="/blobStorage" element={<BlobStorage />} /> */}
-          <Route exact path="/addProviders" element={<AddProviders />} />
-          <Route exact path="/confirmDoctorDetails" element={<ConfirmDoctorDetails />} />
-          <Route exact path="/friendsAccess" element={<FriendsAccess />} />
-           <Route exact path="/careManagerModuleSummary" element={<CareManagerModuleSummary />} />
-          <Route exact path="/familyMembersModuleSummary" element={<FamilyMembersModuleSummary />} />
-          <Route exact path="/friendsModuleSummary" element={<FriendsModuleSummary />} />
-          <Route exact path="/friendsMemberWelcome" element={<FriendsMemberWelcome />} />
-          <Route exact path="/inviteFriends" element={<InviteFriends />} />
-          
-          <Route exact path="/webCamera" element={<WebCamera />} />
-          <Route exact path="/emergencyGuidance" element={<EmergencyGuidance />} />
-          <Route exact path="/emergencyGuidanceHealthStatus1" element={<EmergencyGuidanceHealthStatus1 />} />
-          <Route exact path="/emergencyGuidanceHealthStatus2" element={<EmergencyGuidanceHealthStatus2 />} />
-          <Route exact path="/emergencyGuidanceHealthStatus3" element={<EmergencyGuidanceHealthStatus3 />} />
-          <Route exact path="/seekHelp" element={<SeekHelp />} />
-          <Route exact path="/videoAudioRecorder" element={<VideoAudioRecorder />} />
-          <Route exact path="/careRingSeekHelp" element={<CareRingSeekHelp />} />
-          <Route exact path="/recordStatus" element={<RecordStatus />} />
-          <Route exact path="/tiredness" element={<Tiredness />} />
-          <Route exact path="/trainingScreen_1" element={<TrainingScreen_1 />} />
-          <Route exact path="/trainingScreen_2" element={<TrainingScreen_2 />} />
-          <Route exact path="/trainingScreen_3" element={<TrainingScreen_3 />} />
-          <Route exact path="/trainingScreen_4" element={<TrainingScreen_4 />} />
-          <Route exact path="/trainingScreen_5" element={<TrainingScreen_5 />} />
-          <Route exact path="/trainingScreen_6" element={<TrainingScreen_6 />} />
-          <Route exact path="/trainingScreen_7" element={<TrainingScreen_7 />} />
-          <Route exact path="/newUserLoginWithOTP" element={<NewUserLoginWithOTP />} />
-          
-          <Route exact path="/testData" element={<TestData />} />
-          <Route exact path="/chat" element={<Chat />} />
-          <Route exact path="/conversationComponent" element={<ConversationComponent />} />
-          {/* <Route exact path="/Data" element={<ConversationComponent />} /> */}
-          
-          {/* <Route exact path="/careGiverForm" element={<CareGiverForm />} /> */}
+            <Route exact path="/addProviders" element={<AddProviders />} />
+            <Route exact path="/confirmDoctorDetails" element={<ConfirmDoctorDetails />} />
+            <Route exact path="/friendsAccess" element={<FriendsAccess />} />
+            <Route exact path="/careManagerModuleSummary" element={<CareManagerModuleSummary />} />
+            <Route exact path="/familyMembersModuleSummary" element={<FamilyMembersModuleSummary />} />
+            <Route exact path="/friendsModuleSummary" element={<FriendsModuleSummary />} />
+            <Route exact path="/friendsMemberWelcome" element={<FriendsMemberWelcome />} />
+            <Route exact path="/inviteFriends" element={<InviteFriends />} />
 
-          <Route exact path="/virtualround" element={<VirtualRound getPatientOverviewDetails={getPatientOverviewDetails} />} />
-          <Route exact path="/patients" element={<PatientOverview patientDetails={patientDetails} imgBorderColor={imgBorderColor} time={time} />} />
-          <Route exact path="/trends" element={<VitalSigns patientDetails={patientDetails} imgBorderColor={imgBorderColor} time={time} />} />
-          <Route exact path="/patientReports" element={<PatientReports patientDetails={patientDetails} imgBorderColor={imgBorderColor} time={time} />} />
-          <Route exact path="/carePlanGeneration" element={<CarePlanGeneration patientDetails={patientDetails} imgBorderColor={imgBorderColor} time={time} />} />
-          <Route exact path="/userJourneySelf" element={<UserJourneySelf patientDetails={patientDetails} imgBorderColor={imgBorderColor} time={time} />} />
-          <Route exact path="/careConcierge" element={<CareConcierge patientDetails={patientDetails} imgBorderColor={imgBorderColor} time={time} />} />
+            <Route exact path="/webCamera" element={<WebCamera />} />
+            <Route exact path="/emergencyGuidance" element={<EmergencyGuidance />} />
+            <Route exact path="/emergencyGuidanceHealthStatus1" element={<EmergencyGuidanceHealthStatus1 />} />
+            <Route exact path="/emergencyGuidanceHealthStatus2" element={<EmergencyGuidanceHealthStatus2 />} />
+            <Route exact path="/emergencyGuidanceHealthStatus3" element={<EmergencyGuidanceHealthStatus3 />} />
+            <Route exact path="/seekHelp" element={<SeekHelp />} />
+            <Route exact path="/videoAudioRecorder" element={<VideoAudioRecorder />} />
+            <Route exact path="/careRingSeekHelp" element={<CareRingSeekHelp />} />
+            <Route exact path="/recordStatus" element={<RecordStatus />} />
+            <Route exact path="/tiredness" element={<Tiredness />} />
+            <Route exact path="/trainingScreen_1" element={<TrainingScreen_1 />} />
+            <Route exact path="/trainingScreen_2" element={<TrainingScreen_2 />} />
+            <Route exact path="/trainingScreen_3" element={<TrainingScreen_3 />} />
+            <Route exact path="/trainingScreen_4" element={<TrainingScreen_4 />} />
+            <Route exact path="/trainingScreen_5" element={<TrainingScreen_5 />} />
+            <Route exact path="/trainingScreen_6" element={<TrainingScreen_6 />} />
+            <Route exact path="/trainingScreen_7" element={<TrainingScreen_7 />} />
+            <Route exact path="/newUserLoginWithOTP" element={<NewUserLoginWithOTP />} />
 
-<Route exact path="/chatDashboard" element={<ChatDashboard />}/>
-          {/* <Route exact path="/virtualround" render={(props) => <VirtualRound getPatientOverviewDetails={getPatientOverviewDetails} {...props} />} />
+            <Route exact path="/testData" element={<TestData />} />
+            <Route exact path="/chat" element={<Chat />} />
+            <Route exact path="/conversationComponent" element={<ConversationComponent />} />
+            {/* <Route exact path="/Data" element={<ConversationComponent />} /> */}
+
+            {/* <Route exact path="/careGiverForm" element={<CareGiverForm />} /> */}
+
+            <Route exact path="/virtualround" element={<VirtualRound getPatientOverviewDetails={getPatientOverviewDetails} />} />
+            <Route exact path="/patients" element={<PatientOverview patientDetails={patientDetails} imgBorderColor={imgBorderColor} time={time} />} />
+            <Route exact path="/trends" element={<VitalSigns patientDetails={patientDetails} imgBorderColor={imgBorderColor} time={time} />} />
+            <Route exact path="/patientReports" element={<PatientReports patientDetails={patientDetails} imgBorderColor={imgBorderColor} time={time} />} />
+            <Route exact path="/carePlanGeneration" element={<CarePlanGeneration patientDetails={patientDetails} imgBorderColor={imgBorderColor} time={time} />} />
+            <Route exact path="/userJourneySelf" element={<UserJourneySelf patientDetails={patientDetails} imgBorderColor={imgBorderColor} time={time} />} />
+            <Route exact path="/careConcierge" element={<CareConcierge patientDetails={patientDetails} imgBorderColor={imgBorderColor} time={time} />} />
+
+            <Route exact path="/chatDashboard" element={<ChatDashboard />} />
+            {/* <Route exact path="/virtualround" render={(props) => <VirtualRound getPatientOverviewDetails={getPatientOverviewDetails} {...props} />} />
           <Route exact path="/patients" render={(props) => <PatientOverview patientDetails={patientDetails} imgBorderColor={imgBorderColor} time={time} {...props} />} /> 
           <Route exact path="/trends" render={(props) => <VitalSigns patientDetails={patientDetails} imgBorderColor={imgBorderColor} time={time} {...props} />} />*/}
-         </Routes>
+
+            <Route path="/consultation" element={<Index />} />
+
+        </Routes>
+
+
     );
 };
 
-const  App = ({ instance }) => {
+const App = ({ instance }) => {
     return (
         <MsalProvider instance={instance}>
             <UserProvider>
-            <PageLayout>
-              <Pages />
-            </PageLayout>
+                <PageLayout>
+                    <Pages />
+                </PageLayout>
             </UserProvider>
         </MsalProvider>
     );

@@ -1,0 +1,350 @@
+.Main-Page {
+  background-color: #F2F8F1;
+  /* height: 100vh; */
+  /* padding-top: 2rem; */
+  padding-bottom: 2rem;
+}
+
+.Card-Personal {
+  margin-top: 2rem;
+  margin-left: 2rem;
+  border-radius: 10pt;
+  box-shadow: rgba(0, 0, 0, 0.3) 18px 18px 11px -10px;
+  /* min-height: 100px; */
+  width: 680px;
+  background: white;
+}
+
+.Card {
+  margin-top: 2rem;
+  margin-left: 2rem;
+  border-radius: 10pt;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 18px 40px -12px;
+  /* min-height: 100px; */
+  background: white;
+}
+
+.Card-Main {
+  display: flex;
+}
+
+.Card-Main1 {
+  margin-left: 2rem;
+  margin-right: 2rem;
+  display: flex;
+}
+
+.Card-con {
+  /* margin-top: 2rem; */
+  margin-left: 2rem;
+  border-radius: 10pt;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 18px 40px -12px;
+  min-height: 400px;
+  background: white;
+  width: 680px;
+}
+
+.Consultation-label {
+  font-family: 'Segoe UI';
+  font-weight: 400;
+  font-size: 11pt;
+  color: #209F85;
+  margin-top: 2rem;
+  margin-left: 1rem;
+}
+
+.textarea-border {
+  border-top: 1px solid #209F85;
+  padding-top: 1rem;
+  margin: 1.5rem 2rem 2rem 2rem;
+}
+
+.text-area {
+  /* margin-top: 1rem; */
+  border-radius: 20pt !important;
+  box-shadow: rgba(0, 0, 0, 0.3) 10px 18px 20px -16px;
+  border: none !important;
+  padding: 10px;
+  text-align: justify !important;
+}
+
+.tab-div {
+  margin-left: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 0rem;
+}
+
+.tab-sub {
+  padding-top: 0rem;
+  padding-bottom: 2rem;
+  background: #EBEBEB;
+  /* box-shadow: rgba(0, 0, 0, 0.3) 10px 18px 20px -16px; */
+  box-shadow: rgba(0, 0, 0, 0.3) 18px 18px 11px -10px;
+  border-radius: 20pt;
+  margin-top: -0.8rem;
+}
+
+.main-div {
+  margin: 2rem;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  color: #000000 !important;
+  background-color: #EBEBEB !important;
+  border: none !important;
+  /* border-radius: 10pt !important; */
+  border-radius: 10px 10px 0px 0px !important;
+  margin-bottom: -0.5rem;
+}
+
+.nav-tabs {
+  border: none !important;
+}
+
+.user-img {
+  width: 50%;
+  margin-left: 1rem;
+}
+
+.form-control {
+  border: none !important;
+}
+
+.table {
+  margin-top: 0rem;
+  margin-bottom: 0.5rem !important;
+  font-family: 'Segoe UI';
+  font-weight: 400;
+  font-size: 10pt;
+  border-collapse: collapse;
+  font-family: 'Segoe UI';
+}
+
+.td1 {
+  width: 20%;
+}
+
+.td2 {
+  width: 30%;
+  font-family: 'Segoe UI';
+}
+
+.td3 {
+  width: 50%;
+}
+
+.gray {
+  color: #8D8D8D !important;
+  padding: 0pt !important;
+  font-family: 'Segoe UI' !important;
+}
+
+.green {
+  color: #209F85 !important;
+  padding: 0pt !important;
+  font-size: 15px;
+  font-weight: 500;
+}
+.pinfo {
+  color: #209F85 !important;
+  padding: 0pt !important;
+  font-size: 15px;
+  font-weight: 500;
+  /* margin-left: 1.5rem;
+  margin-top: 1.5rem; */
+}
+
+.right {
+  text-align: right;
+  margin-right: 0rem !important;
+}
+.right1 {
+  text-align: right;
+  margin-right: 2rem !important;
+}
+
+.call-img {
+  width: 15%;
+  padding-left: 0.5rem;
+}
+
+.table .td{
+  padding-left: 3rem;
+  font-family: 'Segoe UI';
+}
+
+
+/* .table1 {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem !important;
+  font-family: 'Segoe UI';
+  font-weight: 400;
+  font-size: 10pt;
+  border-collapse: collapse;
+} */
+
+.table2 {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  margin-top: 0rem;
+  margin-bottom: 0.5rem !important;
+  font-family: 'Segoe UI';
+  font-weight: 400;
+  font-size: 10pt;
+  border-collapse: collapse;
+}
+
+.btn {
+  border-radius: 50px !important;
+  background-color: #707070 !important;
+  font-family: 'Segoe UI' !important;
+  font-weight: 400 !important;
+  font-size: 10pt !important;
+  color: #fff !important;
+  /* width: 38% !important; */
+}
+
+.btn-c {
+  border-radius: 50px !important;
+  background-color: #3B5998 !important;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+  font-family: 'Segoe UI' !important;
+  font-weight: 400 !important;
+  font-size: 10pt !important;
+  color: #fff !important;
+  border: none !important;
+  width: 10% !important;
+}
+
+.ptop-1 {
+  padding-top: 1rem !important;
+}
+
+.pleft-1 {
+  padding-top: 1rem !important;
+}
+
+/* Voice recording  */
+
+
+.btn-str {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  background-color: #209F85;
+  border-radius: 50px;
+  width: 20%;
+  border: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: white;
+  vertical-align: top;
+}
+
+.btn-stp {
+  margin-left: 1rem;
+  background-color: red;
+  /* background-color: #707070; */
+  border-radius: 50px;
+  width: 20%;
+  border: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: white;
+  vertical-align: top;
+}
+
+  .btn-hs {
+  margin-left: 1rem;
+  background-color: #707070;
+  border-radius: 50px;
+  width: 40%;
+  border: none;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  color: white;
+  vertical-align: top;
+  font-size: 10pt;
+  }
+
+  .btn-at {
+  margin-left: 1rem;
+  background-color: #707070;
+  border-radius: 50px;
+  width: 40%;
+  border: none;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  color: white;
+  vertical-align: top;
+  font-size: 10pt;
+  box-shadow: 0px 7px 10px -2px rgba(0,0,0,0.6);
+  transition: background-color .6s ease;
+
+  display: inline-block;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  }
+  .btn-at:hover{
+    background-color: #3B5998;
+  }
+  .btn-at:active{
+    background-color: #3B5998;
+    top: 2px;
+  }
+/* .btn-div {
+  text-align: right;
+  margin-top: -0.5rem;
+  margin-bottom: 0.5rem;
+} */
+
+.btn-div1 {
+  margin: 1.5rem !important;
+  /* margin-left: 1.5rem !important; */
+}
+
+.transcribed-para {
+  color: #707070;
+  font-size: 12pt;
+  margin-top: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.info-div{
+  margin-top: 1.5rem !important;
+  margin-left: 1.5rem !important;
+}
+.mtop{
+  margin-top: -1rem;
+  margin-bottom: 0rem;
+}
+button#home-tab {
+  color: gray;
+}
+
+.summary-div {
+  margin-top: 1rem;
+  border-radius: 20pt !important;
+  /* box-shadow: rgba(0, 0, 0, 0.3) -9px 18px 50px -16px; */
+  box-shadow: 5px 5px 10px -3px rgba(0, 0, 0, 0.5);
+  border: none !important;
+  padding: 10px;
+  height: 133px;
+}
+
+.nav-link {
+  color: #8D8D8D !important;
+}
+.nav-tabs .nav-link {
+  border: none !important;
+}
+
+.img-right {
+  margin-right: 1rem;
+}
+

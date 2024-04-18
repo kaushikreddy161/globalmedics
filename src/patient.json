@@ -1,0 +1,31 @@
+{
+    "id": "23456-6789",
+    "first_name": "Adam",
+    "last_name": "Hilbert",
+    "gender": "M",
+    "age": "80",
+    "location": "Sydney",
+    "chief_complaint": "Chest Pain, Fatigue",
+    "summary_of_current_complaints":["Chest Pain", "Fatigue", "Shortness of Breath"],
+    "summary_of_patient_history":{
+        "patient_history": ["Type 2 Diabetes"],
+        "family_history": ["Father: Heart Disease", "Mother: High Blood Pressure, High Cholesterol"]},
+	"ai_recommendations": 
+		["Frequency and Severity of Symptoms: How often does the patient experience these symptoms and how severe are they?",
+		"Previous Consultations: Has the patient consulted any other doctor for these symptoms before?",
+		"Medication: What medications is the patient currently taking, including any over-the-counter drugs, herbal supplements, etc.?",
+		"Allergies: Does the patient have any known allergies, especially to any medications?",
+		"Dietary Habits: What does the patient's daily diet consist of?",
+		"Blood Sugar Levels: Recent blood sugar level readings and how well the patient's diabetes is being managed.",
+        "Alcohol and Tobacco Use: Does the patient smoke or consume alcohol? If so, how much and how often?",
+        "Blood Pressure Levels: What are the patient's recent blood pressure readings?",
+        "Cholesterol Levels: What are the patient's latest cholesterol level readings?",
+        "Previous Cardiac Evaluation: Has the patient ever undergone a cardiac evaluation? If so, when and what were the results?",
+        "Sleep Patterns: Does the patient have regular sleep patterns or any sleep-related problems?",
+        "Mental Health: Is the patient experiencing any stress, anxiety, or depression?",
+        "Living Situation: Does the patient live alone or with family? Does he have any caretaker or home health aide?",
+        "Medical Insurance: What kind of medical insurance does the patient have?",
+        "Vaccination Status: What vaccines has the patient received relevant to their age group (such as Shingles, Pneumonia, Flu)? When were these administered?"],
+	"medical_research": ["'Fatigue in patients with diabetes: A review' published in Journal of Psychosomatic Research, July 2014.",
+                        "'Type 2 diabetes and cardiovascular disease: Have all risk factors the same strength?' published in National Library of Medicine"]
+}

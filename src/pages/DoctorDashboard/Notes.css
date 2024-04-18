@@ -1,0 +1,8 @@
+.text-area {
+    /* margin-top: 1rem; */
+    border-radius: 20pt !important;
+    box-shadow: rgba(0, 0, 0, 0.3) 10px 18px 20px -16px;
+    border: none !important;
+    padding: 10px;
+    text-align: justify !important;
+  }

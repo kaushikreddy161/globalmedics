@@ -1,25 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { handlePrint } from '../../components/DoctorDashboard/Editor/MyEditor';
 import './PreConsultation.css';
 import { useVoiceRecording } from '../../contexts/DoctorDashboard/voiceRecordingContext';
 import data from "../../patient.json";
 import IconInfo from '../../assets/DoctorDashboard/icon-info.png';
 
-
-
-
 const PreConsultation = () => {
-
   const [voiceRecording, setVoiceRecording] = useVoiceRecording();
   const [patientHistory, setPatientHistory] = useState(data.summary_of_patient_history);
-  const [currentComplaints, setCurrentComplaints] = useState(data.summary_of_current_complaints); // New state variable for current complaints
-  const [aiRecommendations, setAiRecommendations] = useState(data.ai_recommendations);
+  const [currentComplaints, setCurrentComplaints] = useState(data.summary_of_current_complaints);
+  const [aiRecommendations, setAiRecommendations] = useState({});
   const [medicalResearch, setMedicalResearch] = useState(data.medical_research);
 
-
+  useEffect(() => {
+    setAiRecommendations(data.ai_recommendations);
+  }, []);
 
   const handlePrintButtonClick = () => {
-    handlePrint(); // Call the handlePrint function
+    handlePrint();
   };
 
   return (
@@ -33,7 +31,6 @@ const PreConsultation = () => {
               <div class="card-body">
                 <h6 class="sub-title">Summary of Current Complaints</h6>
                 <p className='summary-txt'>AI Health bot would record current symptoms and chief complaints reported by the patient. It would ask relevant follow-up questions and display a summary of its findings here</p>
-                {/* <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea> */}
                 <ul className='summary-txt'>
                   {currentComplaints.map(item => <li key={item}>{item}</li>)}
                 </ul>
@@ -44,7 +41,6 @@ const PreConsultation = () => {
                 <h6 class="sub-title">Summary of Patient and Family History</h6>
                 <p className='summary-txt'>AI would scan all available history of the patient over the years and summarise it here. It can also provide a summary of Medical Research Literature relevant to the patient’s case</p>
                 <div class="form-control" id="exampleFormControlTextarea1" rows="2">
-
                   <strong className='summary-txt'>Patient History:</strong>
                   <ul className='summary-txt'>
                     {patientHistory.patient_history.map(item => <li key={item}>{item}</li>)}
@@ -56,7 +52,6 @@ const PreConsultation = () => {
                   </ul>
                 </div>
               </div>
-
             </div>
             <div class="card mt-4">
               <div class="card-body">
@@ -78,11 +73,17 @@ const PreConsultation = () => {
                 <div class='mt-4'>
                   <p className='summary-txt'>AI suggests a checklist of what additional information might be collected during a consultation</p>
                 </div>
-                <ul className='summary-txt'>
-                  {aiRecommendations.map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul></div>
+                {Object.entries(aiRecommendations).map(([category, recommendations], index) => (
+                  <div key={index}>
+                    <strong className='summary-txt'>{category}:</strong>
+                    <ul className='summary-txt'>
+                      {recommendations.map((item, index) => (
+                        <li key={index}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
               <div class="row btn-div1">
                 <div class="col">
                   <button className="btn custom-btn-width">View References</button>
@@ -90,7 +91,6 @@ const PreConsultation = () => {
                 <div class="col btn-div">
                   <button className="btn custom-btn-width">Copy Text</button>
                 </div>
-
               </div>
             </div>
           </div>

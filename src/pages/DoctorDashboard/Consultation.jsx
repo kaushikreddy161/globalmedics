@@ -19,7 +19,7 @@ import { useVoiceRecording } from '../../contexts/DoctorDashboard/voiceRecording
 const HomePage = () => {
 
   const [voiceRecording, setVoiceRecording] = useVoiceRecording();
-  const patient = require('../../../src/patient.json');
+  const patient = require('../../patient.json');
   const [subjective, setSubjective] = useState('');
   const [objective, setObjective] = useState('');
   const [assessment, setAssessment] = useState('');
@@ -93,7 +93,7 @@ const HomePage = () => {
 
   const reContructConversation = async () => {
     try {
-      const response = await fetch('https://conversationcontructor.azurewebsites.net/construct', {
+      const response = await fetch('https://conversationconstructor.azurewebsites.net/construct', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -176,8 +176,8 @@ const HomePage = () => {
                 <button class="nav-link" id="reports-tab" data-bs-toggle="tab" data-bs-target="#reports" type="button" role="tab" aria-controls="reports" aria-selected="true">Reports</button>
               </li>
               {/* <li class="nav-item" role="presentation">
-                <button class="nav-link" id="trends-tab" data-bs-toggle="tab" data-bs-target="#trends" type="button" role="tab" aria-controls="trends" aria-selected="true" disabled>Trends</button>
-              </li> */}
+                  <button class="nav-link" id="trends-tab" data-bs-toggle="tab" data-bs-target="#trends" type="button" role="tab" aria-controls="trends" aria-selected="true" disabled>Trends</button>
+                </li> */}
               <li key="pre-consultation" class="nav-item" role="presentation">
                 <button class="nav-link" id="pre-consultation-tab" data-bs-toggle="tab" data-bs-target="#pre-consultation" type="button" role="tab" aria-controls="pre-consultation" aria-selected="true">Pre-Consultation</button>
               </li>
@@ -188,14 +188,14 @@ const HomePage = () => {
                 <button class="nav-link " id="documentation-tab" data-bs-toggle="tab" data-bs-target="#documentation" type="button" role="tab" aria-controls="documentation" aria-selected="true">Documentation</button>
               </li>
               {/* <li class="nav-item" role="presentation">
-                <button class="nav-link" id="to-dos-tab" data-bs-toggle="tab" data-bs-target="#to-dos" type="button" role="tab" aria-controls="to-dos" aria-selected="true" disabled>To Dos</button>
-              </li> */}
+                  <button class="nav-link" id="to-dos-tab" data-bs-toggle="tab" data-bs-target="#to-dos" type="button" role="tab" aria-controls="to-dos" aria-selected="true" disabled>To Dos</button>
+                </li> */}
               <li class="nav-item" role="presentation">
                 <button class="nav-link" id="claims-tab" data-bs-toggle="tab" data-bs-target="#claims" type="button" role="tab" aria-controls="claims" aria-selected="true" disabled>Claims</button>
               </li>
               {/* <li class="nav-item" role="notes">
-                <button class="nav-link" id="notes-tab" data-bs-toggle="tab" data-bs-target="#notes" type="button" role="tab" aria-controls="notes" aria-selected="true">Note</button>
-              </li> */}
+                  <button class="nav-link" id="notes-tab" data-bs-toggle="tab" data-bs-target="#notes" type="button" role="tab" aria-controls="notes" aria-selected="true">Note</button>
+                </li> */}
             </ul>
           </div>
 
@@ -240,21 +240,21 @@ const HomePage = () => {
 
                           </textarea>
                           {/* <div className="summary-div">
-                            Subjective
-                            <textarea class="form-control text-area" id="exampleFormControlTextarea1" rows="3" value={subjective} onChange={e => setSubjective(e.target.value)}></textarea>
-                          </div>
-                          <div className="summary-div">
-                            Objective
-                            <textarea class="form-control text-area" id="exampleFormControlTextarea1" rows="3" value={objective} onChange={e => setObjective(e.target.value)}></textarea>
-                          </div>
-                          <div className="summary-div">
-                            Assessment
-                            <textarea class="form-control text-area" id="exampleFormControlTextarea1" rows="3" value={assessment} onChange={e => setAssessment(e.target.value)}></textarea>
-                          </div>
-                          <div className="summary-div">
-                            Plan
-                            <textarea class="form-control text-area" id="exampleFormControlTextarea1" rows="3" value={plan} onChange={e => setPlan(e.target.value)}></textarea>
-                          </div> */}
+                              Subjective
+                              <textarea class="form-control text-area" id="exampleFormControlTextarea1" rows="3" value={subjective} onChange={e => setSubjective(e.target.value)}></textarea>
+                            </div>
+                            <div className="summary-div">
+                              Objective
+                              <textarea class="form-control text-area" id="exampleFormControlTextarea1" rows="3" value={objective} onChange={e => setObjective(e.target.value)}></textarea>
+                            </div>
+                            <div className="summary-div">
+                              Assessment
+                              <textarea class="form-control text-area" id="exampleFormControlTextarea1" rows="3" value={assessment} onChange={e => setAssessment(e.target.value)}></textarea>
+                            </div>
+                            <div className="summary-div">
+                              Plan
+                              <textarea class="form-control text-area" id="exampleFormControlTextarea1" rows="3" value={plan} onChange={e => setPlan(e.target.value)}></textarea>
+                            </div> */}
                         </div>
                         <div class="row btn-div1">
                           <div class="col">
@@ -287,8 +287,8 @@ const HomePage = () => {
                 />
               </div>
               {/* <div class="tab-pane fade" id="notes" role="tabpanel" aria-labelledby="notes-tab">
-                <Notes />
-              </div> */}
+                  <Notes />
+                </div> */}
             </div>
           </div>
         </div>

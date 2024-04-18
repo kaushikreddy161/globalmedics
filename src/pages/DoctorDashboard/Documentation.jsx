@@ -15,9 +15,10 @@ import IconInfo from '../../assets/DoctorDashboard/icon-info.png';
 
 import contries from '../../speechToTextLanguage.json';
 import Select from 'react-select';
-import { useSelectedLanguage } from '../../contexts/DoctorDashboard/selectedLanguageContext';
-import { useVoiceRecording } from '../../contexts/DoctorDashboard/voiceRecordingContext';
+import ReactMarkdown from 'react-markdown';
 
+// import { useSelectedLanguage } from '../../contexts/DoctorDashboard/selectedLanguageContext';
+// import { useVoiceRecording } from '../../contexts/DoctorDashboard/voiceRecordingContext';
 
 
 const Documentation = (prop) => {
@@ -28,6 +29,7 @@ const Documentation = (prop) => {
 
   const [selectedRadio, setSelectedRadio] = useState('');
   const [content, setContent] = useState('');
+  const [boldContent, setBoldContent] = useState('');
 
   const [patientInstruction, setPatientInstruction] = useState('');
   const [selectedLanguage, setSelectedLanguage] = useState('');
@@ -37,7 +39,14 @@ const Documentation = (prop) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [soapNoteOption, setSoapNoteOption] = useState({ label: 'Concise' });
   const [referralOption, setReferralOption] = useState({ label: 'Specialists' });
-  const [medicalCertificateOption, setMedicalCertificateOption] = useState({ label: 'Electronic Health Records' });
+  const [medicalCertificateOption, setMedicalCertificateOption] = useState({ label: 'Medical Certificate' });
+
+  const [lengthListOption, setLengthListOption] = useState({ label: 'Concise' });
+  const [languagesOption, setLanguagesOption] = useState({ label: 'English (United States)' });
+  const [ageGroupOption, setAgeGroupOption] = useState({ label: '8-10 Years' });
+  const [medicalLiteracyOption, setMedicalLiteracyOption] = useState({ label: 'Low' });
+  const [healthRecordsOption, setHealthRecordsOption] = useState({ label: 'Electronic Health Records' });
+  const [Markdown, setMarkdown] = useState('');
 
   // const [, setSelectedLanguageGlobal] = useSelectedLanguage();
   // const [, , , setIsStopGlobal] = useVoiceRecording();
@@ -51,17 +60,28 @@ const Documentation = (prop) => {
 
   const handleSoapNoteChange = (value) => {
     setSoapNoteOption(value);
-
   };
-
   const handleReferralChange = (value) => {
     setReferralOption(value);
 
   };
-
   const handleMedicalCertificateChange = (value) => {
     setMedicalCertificateOption(value);
-
+  };
+  const handleLengthChange = (value) => {
+    setLengthListOption(value);
+  };
+  const handleLanguagesChange = (value) => {
+    setLanguagesOption(value);
+  };
+  const handleAgeGroupChange = (value) => {
+    setAgeGroupOption(value);
+  };
+  const handleMedicalLiteracyChange = (value) => {
+    setMedicalLiteracyOption(value);
+  };
+  const handleHealthRecordsChange = (value) => {
+    setHealthRecordsOption(value);
   };
 
   const languagesList = Object.entries(contries).map(([key, value]) => {
@@ -70,13 +90,11 @@ const Documentation = (prop) => {
       value: value
     }
   })
-
-
   const medicalCertificateList = [
-    { label: 'Electronic Health Records' },
+    { label: 'Medical Certificate' },
   ];
   const healthRecordsList = [
-    { label: 'Medical Certificate' },
+    { label: 'Electronic Health Records' },
   ];
 
   const soapNotesList = [
@@ -120,11 +138,11 @@ const Documentation = (prop) => {
     setSelectedLanguage(event.target.value);
   };
 
-  const handleAgeGroupChange = (event) => {
+  const handleAgeGroupChange_p = (event) => {
     setAgeGroup(event.target.value);
   };
 
-  const handleMedicalLiteracyChange = (event) => {
+  const handleMedicalLiteracyChange_p = (event) => {
     setMedicalLiteracy(event.target.value);
   };
 
@@ -148,12 +166,22 @@ const Documentation = (prop) => {
       if (medicalCertificateOption.label === 'Electronic Health Records') response = await medicalDocument(conversation);
 
     } else if (selectedRadio === 'Patient Instructions') {
-      response = await patientInstructions(conversation);
+      if (lengthListOption.label === 'Concise') {
+        const form = new FormData();
+        form.append('conversation', conversation);
+        form.append('language', languagesOption.label);
+        form.append('ageGroup', ageGroupOption.label);
+        form.append('medicalLiteracy', medicalLiteracyOption.label);
+        form.append('length', lengthListOption.label);
+        response = await patientInstructions(form);
+      };
 
     } else if (selectedRadio === 'Update EHR') {
       response = ''
     }
     setContent(response);
+    const boldHeaders = response.replace(/(#+\s*)(.+)/g, '$1**$2**');
+    setBoldContent(boldHeaders);
   };
 
 
@@ -175,50 +203,27 @@ const Documentation = (prop) => {
                     <label class="form-check-label card-subtitle1" for="exampleRadios1">Soap Notes</label>
                     <div class="row">
                       <div class="col-4 d-flex align-items-center">
-                        <label class='form-check-label' for="">Soap Notes</label>
+                        {/* <label class='form-check-label' for=""></label> */}
                       </div>
                       <div class="col-8">
                         <Select
                           value={soapNoteOption}
                           onChange={handleSoapNoteChange}
-                          options={soapNotesList}
+                          options={soapNotesList.map(item => ({ label: item.label, value: item.label }))}
                           defaultInputValue='Concise'
+
+                          theme={(theme) => ({
+                            ...theme,
+                            colors: {
+                              ...theme.colors,
+                              primary25: "#F2F8F1",
+                              primary: '#209F85',
+                            },
+                          })}
                         />
                       </div>
                     </div>
                   </div>
-
-                  {/* <div class='ms-2'> */}
-                  {/* <div class="form-check">
-                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                        value="SOAP Notes Concise" onChange={handleRadioChange}
-                      />
-                      <label class="form-check-label" for="exampleRadios1">SOAP Notes (Concise)</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="" />
-                      <label class="form-check-label" for="exampleRadios2">SOAP Notes (Detailed)</label>
-                    </div> */}
-                  {/* <div class="form-check">
-                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="" />
-                      <label class="form-check-label" for="exampleRadios3">Diagnostic Therapeutic, Info</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="" />
-                      <label class="form-check-label" for="exampleRadios4">H&P</label>
-                    </div> */}
-                  {/* </div> */}
-
-                  {/* <h6 class="card-subtitle1 mb-2 text-muted">Update Practice Manager</h6>
-                  <div class='ms-2'>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                        value="Electronic Health Records" onChange={handleRadioChange} />
-                      <label class="form-check-label" for="exampleRadios1">Electronic Health Records</label>
-                    </div>
-                  </div> */}
-
-
 
                   <div class="form-check mt-4">
                     <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
@@ -228,50 +233,27 @@ const Documentation = (prop) => {
                     <label class="form-check-label card-subtitle1" for="exampleRadios2">Referrals</label>
                     <div class="row">
                       <div class="col-4 d-flex align-items-center">
-                        <label class='form-check-label' for="">Referrals</label>
+                        {/* <label class='form-check-label' for=""></label> */}
                       </div>
                       <div class="col-8">
                         <Select
                           value={referralOption}
                           onChange={handleReferralChange}
-                          options={referralsList}
+                          options={referralsList.map(item => ({ label: item.label, value: item.label }))}
                           defaultInputValue='Specialists'
+
+                          theme={(theme) => ({
+                            ...theme,
+                            colors: {
+                              ...theme.colors,
+                              primary25: "#F2F8F1",
+                              primary: '#209F85',
+                            },
+                          })}
                         />
                       </div>
                     </div>
                   </div>
-
-                  {/* <div class='ms-2'>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                        value="To Specialists" onChange={handleRadioChange}
-                      />
-                      <label class="form-check-label" for="exampleRadios1">Specialists</label>
-                    </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
-                        value="To Path Labs" onChange={handleRadioChange}
-                      />
-                      <label class="form-check-label" for="exampleRadios2">Path Labs</label>
-                    </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3"
-                        value="Allied Health" onChange={handleRadioChange}
-                      />
-                      <label class="form-check-label" for="exampleRadios3">Allied Health</label>
-                    </div>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4"
-                        value="Claims Department" onChange={handleRadioChange}
-                      />
-                      <label class="form-check-label" for="exampleRadios4">Hospital Department</label>
-                    </div>
-
-                  </div> */}
 
                   <div class="form-check mt-4">
                     <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3"
@@ -281,65 +263,27 @@ const Documentation = (prop) => {
                     <label class="form-check-label card-subtitle1" for="exampleRadios3">Medical Certificate</label>
                     <div class="row">
                       <div class="col-4 d-flex align-items-center">
-                        <label class='form-check-label' for="">Medical Certificate</label>
+                        {/* <label class='form-check-label' for=""></label> */}
                       </div>
                       <div class="col-8">
                         <Select
                           value={medicalCertificateOption}
                           onChange={handleMedicalCertificateChange}
-                          options={medicalCertificateList}
-                          defaultInputValue='Electronic Health Records'
+                          options={medicalCertificateList.map(item => ({ label: item.label, value: item.label }))}
+                          defaultInputValue='Medical Certificate'
+
+                          theme={(theme) => ({
+                            ...theme,
+                            colors: {
+                              ...theme.colors,
+                              primary25: "#F2F8F1",
+                              primary: '#209F85',
+                            },
+                          })}
                         />
                       </div>
                     </div>
                   </div>
-
-
-
-                  {/* <div class="form-check">
-                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
-                        value="Electronic Health Records" onChange={handleRadioChange}
-                      />
-                      <label class="form-check-label" for="exampleRadios2">Type 2</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3"
-                        value="Electronic Health Records" onChange={handleRadioChange}
-                      />
-                      <label class="form-check-label" for="exampleRadios3">Type 3</label>
-                    </div> */}
-
-
-                  {/* <h6 class="card-subtitle mb-2 text-muted">Prescription</h6>
-                  <div class='ms-2'>
-
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                        value="Electronic Health Records" onChange={handleRadioChange}
-                      />
-                      <label class="form-check-label" for="exampleRadios1">Type 1</label>
-                    </div>
-                  </div> */}
-
-
-                  {/* <div class="form-check">
-                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                        value="Patient Instructions" onChange={handleRadioChange}
-                      />
-                      <label class="form-check-label" for="exampleRadios1">Patient Instructions</label>
-                    </div> */}
-                  {/* <div class="form-check">
-                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                        value="Patient Instructions" onChange={handleRadioChange}
-                      />
-                      <label class="form-check-label" for="exampleRadios1">Concise</label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
-                        value="Detailed" onChange={handleRadioChange}
-                      />
-                      <label class="form-check-label" for="exampleRadios1">Detailed</label>
-                    </div> */}
 
                   <div class="form-check mt-4">
                     <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4"
@@ -355,10 +299,19 @@ const Documentation = (prop) => {
                       </div>
                       <div class="col-8">
                         <Select
-                          value={selectedOption}
-                          onChange={handleChange}
-                          options={lengthList}
+                          value={lengthListOption}
+                          onChange={handleLengthChange}
+                          options={lengthList.map(item => ({ label: item.label, value: item.label }))}
                           defaultInputValue='Concise'
+
+                          theme={(theme) => ({
+                            ...theme,
+                            colors: {
+                              ...theme.colors,
+                              primary25: "#F2F8F1",
+                              primary: '#209F85',
+                            },
+                          })}
                         />
                         {/* <select className="select-dropdown">
                             <option value="1" selected="selected">Concise</option>
@@ -373,10 +326,19 @@ const Documentation = (prop) => {
                         </div>
                         <div class="col-8">
                           <Select
-                            value={selectedOption}
-                            onChange={handleChange}
+                            value={languagesOption}
+                            onChange={handleLanguagesChange}
                             options={languagesList}
                             defaultInputValue='English (United States)'
+
+                            theme={(theme) => ({
+                              ...theme,
+                              colors: {
+                                ...theme.colors,
+                                primary25: "#F2F8F1",
+                                primary: '#209F85',
+                              },
+                            })}
                           />
                           {/* {selectedOption && (
                             <p>Selected Option: {selectedOption.label}</p>
@@ -392,10 +354,19 @@ const Documentation = (prop) => {
                         <div class="col-8">
 
                           <Select
-                            value={selectedOption}
-                            onChange={handleChange}
-                            options={ageGroupList}
+                            value={ageGroupOption}
+                            onChange={handleAgeGroupChange}
+                            options={ageGroupList.map(item => ({ label: item.label, value: item.label }))}
                             defaultInputValue='8-10 Years'
+
+                            theme={(theme) => ({
+                              ...theme,
+                              colors: {
+                                ...theme.colors,
+                                primary25: "#F2F8F1",
+                                primary: '#209F85',
+                              },
+                            })}
                           />
                           {/* <select className="select-dropdown">
                             <option value="1" selected="selected">8-10 Years</option>
@@ -414,10 +385,19 @@ const Documentation = (prop) => {
                         <div class="col-8">
 
                           <Select
-                            value={selectedOption}
-                            onChange={handleChange}
-                            options={medicalLiteracyList}
+                            value={medicalLiteracyOption}
+                            onChange={handleMedicalLiteracyChange}
+                            options={medicalLiteracyList.map(item => ({ label: item.label, value: item.label }))}
                             defaultInputValue='Low'
+
+                            theme={(theme) => ({
+                              ...theme,
+                              colors: {
+                                ...theme.colors,
+                                primary25: "#F2F8F1",
+                                primary: '#209F85',
+                              },
+                            })}
                           />
 
                           {/* <select className="select-dropdown" value={medicalLiteracy} onChange={handleMedicalLiteracyChange}>
@@ -447,27 +427,30 @@ const Documentation = (prop) => {
                     <label class="form-check-label card-subtitle1" for="exampleRadios5">Update EHR</label>
                     <div class="row">
                       <div class="col-4 d-flex align-items-center">
-                        <label class='form-check-label' for="">Electronic Health Records</label>
+                        {/* <label class='form-check-label' for=""></label> */}
                       </div>
                       <div class="col-8">
                         <Select
-                          value={selectedOption}
-                          onChange={handleChange}
-                          options={healthRecordsList}
+                          value={healthRecordsOption}
+                          onChange={handleHealthRecordsChange}
+                          options={healthRecordsList.map(item => ({ label: item.label, value: item.label }))}
                           defaultInputValue='Electronic Health Records'
+
+                          theme={(theme) => ({
+                            ...theme,
+                            colors: {
+                              ...theme.colors,
+                              primary25: "#F2F8F1",
+                              primary: '#209F85',
+                            },
+                          })}
                         />
                       </div>
                     </div>
                   </div>
 
-
-
-
-
                   <div class="d-grid gap-4 d-md-flex justify-content-md-end mt-4">
-                    <button type="button" class="btn custom-btn-width"
-                      onClick={handleGenerateDocument}
-                    >
+                    <button type="button" class="btn custom-btn-width" onClick={handleGenerateDocument}>
                       Generate Document
                     </button>
                   </div>
@@ -504,10 +487,11 @@ const Documentation = (prop) => {
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Edit Document</h5>
-                <div class='mt-4'>
-                  <MyEditor
+                <div class='mt-4' style={{ height: "593px", overflow: "auto" }}>
+                  {/* <MyEditor
                     content={content}
-                  />
+                  /> */}
+                  <ReactMarkdown>{boldContent}</ReactMarkdown>
                 </div>
                 <div class="d-grid gap-4 d-md-flex justify-content-md-end mt-4">
                   <button type="button" class="btn custom-btn-width btn-blue mt-5">Confirm</button>

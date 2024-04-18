@@ -1,3 +1,7 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+}
+
 .card {
   box-shadow: 5px 5px 10px -3px rgba(0, 0, 0, 0.5);
   border: none !important;
@@ -39,6 +43,7 @@
 .custom-btn-width {
   width: 150px !important;
   font-size: 10pt !important;
+  font-family: 'Segoe UI' !important;
 }
 
 .ml-mr {
@@ -67,17 +72,18 @@
   border: 1px solid #707070 !important;
   height: 28pt;
 }
+
 .css-t3ipsp-control{
   min-height: 30px !important;
   height: 30px !important;
   border-radius: 20px !important;
 }
-
 .css-13cymwt-control{
   min-height: 30px !important;
   height: 30px !important;
   border-radius: 20px !important;
 }
+
 .css-1fdsijx-ValueContainer{
   padding: 0px 14px 6px !important;
   font-size: 10pt !important;
@@ -91,4 +97,15 @@
 }
 .form-check-input[type=radio] {
   margin-top: 4pt !important;
+}
+
+.css-1qtkgp3-control{
+  min-height: 30px !important;
+  height: 30px !important;
+  border-radius: 20px !important;
+
+}
+.css-1nmdiq5-menu{
+  padding: 0px 14px 7px !important;
+  font-size: 10pt !important;
 }

@@ -22,6 +22,7 @@
   box-shadow: rgba(0, 0, 0, 0.3) 0px 18px 40px -12px;
   /* min-height: 100px; */
   background: white;
+  margin-top: auto !important;
 }
 
 .Card-Main {

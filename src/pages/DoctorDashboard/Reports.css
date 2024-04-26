@@ -15,6 +15,7 @@
   color: #209F85;
   font-size: 12pt;
   font-weight: 400;
+  margin-top: auto !important;
 }
 
 /* .card .card-subtitle{

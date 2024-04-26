@@ -1,4 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useState, useEffect } from "react";
+import { UserContext } from "../../contexts/user.context";
+import { useMsal } from '@azure/msal-react';
+import { BSON } from "realm-web";
+import cypherData from "../../crypt/cypherData";
+import moment from "moment";
+import { alert } from "react-bootstrap-confirmation";
 import MyEditor, { handlePrint } from '../../components/DoctorDashboard/Editor/MyEditor';
 import './Documentation.css';
 import PropTypes from 'prop-types';
@@ -22,12 +28,17 @@ import ReactMarkdown from 'react-markdown';
 
 
 const Documentation = (prop) => {
+  const { user, pId, pName, adbuser } = useContext(UserContext);
+  const { instance } = useMsal();
+  const activeAccount = instance.getActiveAccount();
+  
   Documentation.propTypes = {
     content: PropTypes.string,
     // setTransription: PropTypes.func,
   };
 
   const [selectedRadio, setSelectedRadio] = useState('');
+  const [selectedTemplateValue, setselectedTemplateValue] = useState('');
   const [content, setContent] = useState('');
   const [boldContent, setBoldContent] = useState('');
 
@@ -154,6 +165,7 @@ const Documentation = (prop) => {
 
     if (selectedRadio === 'SOAP Notes') {
       if (soapNoteOption.label === 'Concise') {
+        setselectedTemplateValue('Concise');
         response = await soapNoteConcise(conversation);
       }
 
@@ -183,7 +195,45 @@ const Documentation = (prop) => {
     const boldHeaders = response.replace(/(#+\s*)(.+)/g, '$1**$2**');
     setBoldContent(boldHeaders);
   };
-
+  const handleContinueDocumentationClick = async (event) => {
+    event.preventDefault();
+    if (boldContent === "") {
+         alert("Please fill document content");
+    }else{
+      //console.log("document content:", boldContent);
+      
+      
+      try {
+        if (user) {
+           console.log('auth:',user.id);
+          let dt = new Date();
+          let id = new BSON.ObjectID();
+          let cid = BSON.ObjectID(user.id).toString();
+          //let pid = selLid;
+          let pid = pId;
+          const createx = user.functions.createPatientConsultationDocumentationData(
+            id,
+            'cid0003',
+            'p00001',
+            pid,
+            selectedRadio,
+            selectedTemplateValue,
+            boldContent,
+            dt,
+            "GlobalMedics2021",
+          );
+          createx.then((resp) => {
+            console.log("resp:", resp);
+            alert("Consulation saved Successfully");
+          });
+        }
+      }
+      catch (error) {
+        //  alert(error);
+        console.log("error:", error);
+      }
+    }
+  };
 
   return (
     <>
@@ -502,7 +552,7 @@ const Documentation = (prop) => {
         </div>
 
         <div className="right mt-4">
-          <button type="button" class="btn-c">Continue</button>
+          <button onClick={handleContinueDocumentationClick}  type="button" class="btn-c">Continue</button>
         </div>
       </div>
     </>

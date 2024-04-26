@@ -1,4 +1,10 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useContext, useState, useEffect, useRef } from "react";
+import { UserContext } from "../../contexts/user.context";
+import { useMsal } from '@azure/msal-react';
+import { BSON } from "realm-web";
+import cypherData from "../../crypt/cypherData";
+import moment from "moment";
+import { alert } from "react-bootstrap-confirmation";
 import User from "../../assets/DoctorDashboard/adam-hilbert.png";
 import Flag from "../../assets/DoctorDashboard/flag.png";
 import Call from "../../assets/DoctorDashboard/call.png";
@@ -17,7 +23,11 @@ import { useVoiceRecording } from '../../contexts/DoctorDashboard/voiceRecording
 
 // function HomePage() {
 const HomePage = () => {
+  const { user, pId, pName, adbuser } = useContext(UserContext);
+  const { instance } = useMsal();
+  const activeAccount = instance.getActiveAccount();
 
+ // const [activeTab, setActiveTab] = useState('consultation'); // State to track active tab
   const [voiceRecording, setVoiceRecording] = useVoiceRecording();
   const patient = require('../../patient.json');
   const [subjective, setSubjective] = useState('');
@@ -26,7 +36,8 @@ const HomePage = () => {
   const [plan, setPlan] = useState('');
   const [conversation, setConversation] = useState('');
   // const [transcriptionTemp, setTranscriptionTemp] = useState('');
-
+  const documentationTabRef = useRef(null); // Ref to Documentation tab button
+  const preconsultationTabRef = useRef(null); // Ref to preconsultationTabRef tab button
 
 
   const handleAcceptText = async (event) => {
@@ -120,7 +131,46 @@ const HomePage = () => {
     // setConversation(voiceRecording);
   }, [voiceRecording]);
 
-
+  const handleContinueConsultationClick = async (event) => {
+    event.preventDefault();
+    console.log("conversation::", conversation);
+    console.log("voiceRecording::", voiceRecording);
+    if (conversation != "" || voiceRecording !='') {
+        
+      try {
+        if (user) {
+           console.log('auth:',user.id);
+          let dt = new Date();
+          let id = new BSON.ObjectID();
+          let cid = BSON.ObjectID(user.id).toString();
+          //let pid = selLid;
+          let pid = pId;
+          const createx = user.functions.createPatientConsultationConsultationData(
+            id,
+            'cid0003',
+            'p00001',
+            pid,
+            voiceRecording,
+            conversation,
+            dt,
+            "GlobalMedics2021",
+          );
+          createx.then((resp) => {
+            console.log("resp:", resp);
+            alert("Consulation saved Successfully");
+          });
+        }
+      }
+      catch (error) {
+        //  alert(error);
+        console.log("error:", error);
+      }
+    }
+    //setActiveTab('documentation'); // Update active tab state
+    if (documentationTabRef.current) {
+      documentationTabRef.current.click();
+    }
+  };
   return (
     <>
       <div className="Main-Page">
@@ -179,13 +229,13 @@ const HomePage = () => {
                   <button class="nav-link" id="trends-tab" data-bs-toggle="tab" data-bs-target="#trends" type="button" role="tab" aria-controls="trends" aria-selected="true" disabled>Trends</button>
                 </li> */}
               <li key="pre-consultation" class="nav-item" role="presentation">
-                <button class="nav-link" id="pre-consultation-tab" data-bs-toggle="tab" data-bs-target="#pre-consultation" type="button" role="tab" aria-controls="pre-consultation" aria-selected="true">Pre-Consultation</button>
+                <button ref={preconsultationTabRef} class="nav-link" id="pre-consultation-tab" data-bs-toggle="tab" data-bs-target="#pre-consultation" type="button" role="tab" aria-controls="pre-consultation" aria-selected="true">Pre-Consultation</button>
               </li>
               <li key="consultation" class="nav-item" role="presentation">
                 <button class="nav-link active" id="consultation-tab" data-bs-toggle="tab" data-bs-target="#consultation" type="button" role="tab" aria-controls="consultation" aria-selected="true">Consultation</button>
               </li>
               <li key="documentation" class="nav-item" role="presentation">
-                <button class="nav-link " id="documentation-tab" data-bs-toggle="tab" data-bs-target="#documentation" type="button" role="tab" aria-controls="documentation" aria-selected="true">Documentation</button>
+                <button ref={documentationTabRef} class="nav-link " id="documentation-tab" data-bs-toggle="tab" data-bs-target="#documentation" type="button" role="tab" aria-controls="documentation" aria-selected="true">Documentation</button>
               </li>
               {/* <li class="nav-item" role="presentation">
                   <button class="nav-link" id="to-dos-tab" data-bs-toggle="tab" data-bs-target="#to-dos" type="button" role="tab" aria-controls="to-dos" aria-selected="true" disabled>To Dos</button>
@@ -270,7 +320,7 @@ const HomePage = () => {
                 </div>
 
                 <div className="right1 mt-4">
-                  <button type="button" class="btn-c">Continue</button>
+                  <button onClick={handleContinueConsultationClick} type="button" class="btn-c">Continue</button>
                 </div>
                 {/* end here */}
               </div>
@@ -286,6 +336,7 @@ const HomePage = () => {
                   content={conversation}
                 />
               </div>
+    
               {/* <div class="tab-pane fade" id="notes" role="tabpanel" aria-labelledby="notes-tab">
                   <Notes />
                 </div> */}

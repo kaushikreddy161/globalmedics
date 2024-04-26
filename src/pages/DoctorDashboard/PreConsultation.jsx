@@ -1,4 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect } from "react";
+import { UserContext } from "../../contexts/user.context";
+import { useMsal } from '@azure/msal-react';
+import { BSON } from "realm-web";
+import cypherData from "../../crypt/cypherData";
+import moment from "moment";
+import { alert } from "react-bootstrap-confirmation";
 import { handlePrint } from '../../components/DoctorDashboard/Editor/MyEditor';
 import './PreConsultation.css';
 import { useVoiceRecording } from '../../contexts/DoctorDashboard/voiceRecordingContext';
@@ -6,6 +12,10 @@ import data from "../../patient.json";
 import IconInfo from '../../assets/DoctorDashboard/icon-info.png';
 
 const PreConsultation = () => {
+  const { user, pId, pName, adbuser } = useContext(UserContext);
+  const { instance } = useMsal();
+  const activeAccount = instance.getActiveAccount();
+
   const [voiceRecording, setVoiceRecording] = useVoiceRecording();
   const [patientHistory, setPatientHistory] = useState(data.summary_of_patient_history);
   const [currentComplaints, setCurrentComplaints] = useState(data.summary_of_current_complaints);
@@ -18,6 +28,53 @@ const PreConsultation = () => {
 
   const handlePrintButtonClick = () => {
     handlePrint();
+  };
+
+  const handleContinuePreCClick = async (event) => {
+    event.preventDefault();
+    console.log('Handel Click');
+    console.log('auth:',user.id);
+    //if (currentComplaints === "") {
+       //  alert("Please fill Summary of Current Complaints");
+    //}else{
+      //console.log("patient History:", patientHistory);
+      //console.log("current Complaints:", currentComplaints);
+      //console.log("aiRecommendations:", aiRecommendations);
+      //console.log("medicalResearch:", medicalResearch);
+      //Console.log("voiceRecording:", voiceRecording);
+      
+      try {
+        if (user) {
+           console.log('auth:',user.id);
+          let dt = new Date();
+          let id = new BSON.ObjectID();
+          let cid = BSON.ObjectID(user.id).toString();
+          //let pid = selLid;
+          let pid = pId;
+          const createx = user.functions.createPatientConsultationPreConsultationData(
+            id,
+            'cid0003',
+            'p00001',
+            pid,
+            currentComplaints,
+            patientHistory,
+            medicalResearch,
+            voiceRecording,
+            aiRecommendations,
+            dt,
+            "GlobalMedics2021",
+          );
+          createx.then((resp) => {
+            console.log("resp:", resp);
+            alert("Pre Consulation saved Successfully");
+          });
+        }
+      }
+      catch (error) {
+        //  alert(error);
+        console.log("error:", error);
+      }
+    //}
   };
 
   return (
@@ -112,7 +169,7 @@ const PreConsultation = () => {
           </div>
         </div>
         <div className="right mt-4">
-          <button type="button" class="btn-c">Continue</button>
+          <button onClick={handleContinuePreCClick} type="button" class="btn-c">Continue</button>
         </div>
       </div >
     </>

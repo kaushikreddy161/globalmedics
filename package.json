@@ -39,7 +39,7 @@
         "microsoft-cognitiveservices-speech-sdk": "^1.36.0",
         "moment": "^2.29.4",
         "moment-timezone": "^0.5.37",
-        "mongodb": "^5.1.0",
+        "mongodb": "^5.9.2",
         "mongoose": "^6.10.0",
         "os-browserify": "^0.3.0",
         "powerbi-client": "^2.22.3",

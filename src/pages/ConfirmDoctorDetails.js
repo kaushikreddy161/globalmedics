@@ -14,6 +14,8 @@ import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import FixedHeader from "../components/FixedHeader";
 import "./Main.css";
+// import { client } from "../utils/mongodb";
+const { client } = require(".././utils/mongodb");
 
 const ConfirmDoctorDetails = () => {
   const { user } = useContext(UserContext);
@@ -29,7 +31,7 @@ const ConfirmDoctorDetails = () => {
   const [status, setStatus] = useState("0");
   const [lid, setSelLId] = useState("");
   const [aorg, setAorg] = useState("");
-  
+
   const [hospName, setHospName] = useState("");
   const [sName, setsName] = useState("");
   const [regNumber, setRegNumber] = useState("");
@@ -74,17 +76,31 @@ const ConfirmDoctorDetails = () => {
     }
   };
 
-  const onConfirm = () => {
-    if (fName === "" && hospName === ""  && email === "") {
+  const onConfirm = async () => {
+    if (fName === "" && hospName === "" && email === "") {
       alert(
         "Please enter the data for the Doctor First Name, Hospital Name and Email id."
       );
     }
-    else {
-      navigate(`/virtualround`);
-    }
+    else
+
+      try {
+        await client.connect();
+        const database = client.db('globalMedicsDev'); // replace with your database name
+        const collection = database.collection('usersList'); // replace with your collection name
+        const doc = { firstName: fName, hospitalName: hospName, email: email };
+        const result = await collection.insertOne(doc);
+        console.log(`A document was inserted with the _id: ${result.insertedId}`);
+      } finally {
+        await client.close();
+      }
+
+
+    // navigate(`/virtualround`);
+
+
   };
-  
+
 
   // const onConfirm = () => {
   //   navigate(`/patientpersonalDetailsForm`, { state: { lid: lid } });
@@ -193,7 +209,7 @@ const ConfirmDoctorDetails = () => {
                   <Form
                     className="signup-form"
                     style={{ color: "#209F85" }}
-                    // onSubmit={onSubmit}
+                  // onSubmit={onSubmit}
                   >
                     <Form.Group>
                       <Card
@@ -457,7 +473,7 @@ const ConfirmDoctorDetails = () => {
                               <label class="form-check-label text-gray1" for="checkbox1">Remote</label>
                             </div>
                             <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="checkbox" name="checkboxOptions" id="checkbox2" value="option2" style={{textAlign:"right"}}/>
+                              <input class="form-check-input" type="checkbox" name="checkboxOptions" id="checkbox2" value="option2" style={{ textAlign: "right" }} />
                               <label class="form-check-label text-gray1" for="checkbox2">Physical</label>
                             </div>
                           </div>
@@ -517,26 +533,26 @@ const ConfirmDoctorDetails = () => {
               )}
             </> */}
             <div
-                  style={{
-                    textAlign: "center",
-                    marginTop: "10pt",
-                    marginBottom: "10pt",
-                  }}
-                >
-                  <Button
-                    style={{
-                      background: "#1D5A90",
-                      borderRadius: 50,
-                      width: "50%",
-                      color: "#ffffff",
-                      textTransform: "none",
-                    }}
-                    onClick={onConfirm}
-                    type="submit"
-                  >
-                    Confirm
-                  </Button>
-                </div>
+              style={{
+                textAlign: "center",
+                marginTop: "10pt",
+                marginBottom: "10pt",
+              }}
+            >
+              <Button
+                style={{
+                  background: "#1D5A90",
+                  borderRadius: 50,
+                  width: "50%",
+                  color: "#ffffff",
+                  textTransform: "none",
+                }}
+                onClick={onConfirm}
+                type="submit"
+              >
+                Confirm
+              </Button>
+            </div>
             <div style={{ height: "5vh" }}></div>
           </Card>
         </div>

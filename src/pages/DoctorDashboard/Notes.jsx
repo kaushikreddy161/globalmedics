@@ -46,7 +46,7 @@ const Notes = () => {
                                     onClick={handleRadio2Click}
                                 />
                                 <textarea ref={textarea2Ref} class="form-control text-justify text-area" id="exampleFormControlTextarea1" rows="14"></textarea>
-                            </div>
+                                                           </div>
                         </div>
                     </div>
                 </div>

@@ -2,25 +2,28 @@ import { LogLevel } from '@azure/msal-browser';
 
 export const b2cPolicies = {
     names: {
-       signUpSignIn: 'B2C_1_signupsigningm', // loc or pro
+       signUpSignIn: 'B2C_1_SandBox_SignIn_SignOut', // loc or pro
       //  signUpSignIn: 'B2C_1_signinsignupdev',
         forgotPassword: 'B2C_1_resetgm',
       //  editProfile: 'B2C_1_edit_profile_v2',
+
+      //https://GlobalMedicsWebApp.b2clogin.com/GlobalMedicsWebApp.onmicrosoft.com/<policy-name>/oauth2/v2.0/authorize
+
     },
     authorities: {
         signUpSignIn: {
          //  authority: 'https://globalmedicsb2c.b2clogin.com/globalmedicsb2c.onmicrosoft.com/B2C_1_signinsignupdev',
-           authority: 'https://globalmedicsb2c.b2clogin.com/globalmedicsb2c.onmicrosoft.com/B2C_1_signupsigningm',
+           authority: 'https://GlobalMedicsWebApp.b2clogin.com/GlobalMedicsWebApp.onmicrosoft.com/B2C_1_SandBox_SignIn_SignOut',
           // authority: 'https://globalmedicsb2c.b2clogin.com/globalmedicsb2c.onmicrosoft.com/B2C_1_signupsigninprod',
         },
          forgotPassword: {
-             authority: 'https://globalmedicsb2c.b2clogin.com/globalmedicsb2c.onmicrosoft.com/B2C_1_resetgm',
+             authority: 'https://GlobalMedicsWebApp.b2clogin.com/GlobalMedicsWebApp.onmicrosoft.com/B2C_1_resetgm',
          },
         // editProfile: {
         //     authority: 'https://fabrikamb2c.b2clogin.com/fabrikamb2c.onmicrosoft.com/b2c_1_edit_profile_v2',
         // },
     },
-    authorityDomain: 'https://globalmedicsb2c.b2clogin.com',
+    authorityDomain: 'https://GlobalMedicsWebApp.b2clogin.com',
 };
 
 //  const params = new URLSearchParams(window.location.search);
@@ -33,7 +36,8 @@ export const b2cPolicies = {
 export const msalConfig = {
     auth: {
      // clientId: 'b3d34755-317c-4fd2-a004-1cf92ac6f847', // production old
-      clientId: 'c61cd9bd-8e87-45fd-a8f2-f2ff2c7cc96b', // Prod and local
+      //clientId: 'c61cd9bd-8e87-45fd-a8f2-f2ff2c7cc96b', // Prod and local
+        clientId: 'b44f5769-9310-43bb-be73-4bfb2e005c94', // sandbox
      // clientId: '32ddf657-01f9-4f6d-b3cc-21d0a295167f', //  Dev
         authority: b2cPolicies.authorities.signUpSignIn.authority, // Choose SUSI as your default authority.
         knownAuthorities: [b2cPolicies.authorityDomain], // Mark your B2C tenant's domain as trusted.

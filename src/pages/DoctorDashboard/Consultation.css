@@ -1,7 +1,7 @@
 .Main-Page {
   background-color: #F2F8F1;
   /* height: 100vh; */
-  /* padding-top: 2rem; */
+  padding-top: 1rem;
   padding-bottom: 2rem;
 }
 
@@ -22,7 +22,6 @@
   box-shadow: rgba(0, 0, 0, 0.3) 0px 18px 40px -12px;
   /* min-height: 100px; */
   background: white;
-  margin-top: auto !important;
 }
 
 .Card-Main {
@@ -103,37 +102,21 @@
   border: none !important;
 }
 
-.user-img {
-  width: 50%;
-  margin-left: 1rem;
+.user-profile {
+  width: 60px;
+  height: 60px;
+  margin-left: 1.75rem;
+  border-radius: 50%;
 }
 
-.form-control {
-  border: none !important;
-}
-
-.table {
-  margin-top: 0rem;
-  margin-bottom: 0.5rem !important;
+.user-details {
+  font-size: 10pt;
   font-family: 'Segoe UI';
   font-weight: 400;
-  font-size: 10pt;
-  border-collapse: collapse;
-  font-family: 'Segoe UI';
+  margin-top: 0rem;
+  margin-bottom: 0rem;
 }
 
-.td1 {
-  width: 20%;
-}
-
-.td2 {
-  width: 30%;
-  font-family: 'Segoe UI';
-}
-
-.td3 {
-  width: 50%;
-}
 
 .gray {
   color: #8D8D8D !important;
@@ -147,15 +130,6 @@
   font-size: 15px;
   font-weight: 500;
 }
-.pinfo {
-  color: #209F85 !important;
-  padding: 0pt !important;
-  font-size: 15px;
-  font-weight: 500;
-  /* margin-left: 1.5rem;
-  margin-top: 1.5rem; */
-}
-
 .right {
   text-align: right;
   margin-right: 0rem !important;
@@ -165,10 +139,7 @@
   margin-right: 2rem !important;
 }
 
-.call-img {
-  width: 15%;
-  padding-left: 0.5rem;
-}
+
 
 .table .td{
   padding-left: 3rem;
@@ -198,16 +169,34 @@
   border-collapse: collapse;
 }
 
-.btn {
+.btn-c {
   border-radius: 50px !important;
-  background-color: #707070 !important;
+  background-color: #3B5998 !important;
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
   font-family: 'Segoe UI' !important;
   font-weight: 400 !important;
   font-size: 10pt !important;
   color: #fff !important;
-  /* width: 38% !important; */
-}
+  border: none !important;
+  width: 10%;
+  box-shadow: 0px 7px 10px -2px rgba(0,0,0,0.6);
+  transition: background-color .6s ease;
 
+  display: inline-block;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.btn-c:hover{
+  background-color: #437df5 !important;
+}
+.btn-c:active{
+  background-color: #437df5 !important;
+  top: 2px;
+}
+/* 
 .btn-c {
   border-radius: 50px !important;
   background-color: #3B5998 !important;
@@ -219,7 +208,7 @@
   color: #fff !important;
   border: none !important;
   width: 10% !important;
-}
+} */
 
 .ptop-1 {
   padding-top: 1rem !important;
@@ -317,8 +306,8 @@
 }
 
 .info-div{
-  margin-top: 1.5rem !important;
-  margin-left: 1.5rem !important;
+  margin-top: 5.2px !important;
+  margin-left: 1px !important;
 }
 .mtop{
   margin-top: -1rem;
@@ -349,3 +338,119 @@ button#home-tab {
   margin-right: 1rem;
 }
 
+.ai-logo-ai {
+  width: 6%;
+  float: right;
+  background: white;
+  margin-top: 5pt;
+}
+.ml-4c {
+  margin-left: 3.2rem !important;
+}
+.pr-4c {
+  padding-right: 3.5rem !important;
+}
+.pb-1c {
+  padding-bottom: 20px;
+}
+
+.grid-item-call {
+  text-align: right;
+  margin-left: -5pt;
+}
+img.call-img {
+  width: 32px;
+  height: 32px;
+}
+
+.pinfo {
+  color: #209F85 !important;
+  padding: 0pt !important;
+  font-size: 1rem;
+  font-weight: 500;
+  /* margin-left: 1.5rem;
+  margin-top: 1.5rem; */
+}
+.card-mt{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.soap-consult{
+  margin-right: 17rem;
+}
+
+@media screen and (min-width: 1440px) {
+  .soap-consult{
+    margin-right: 16rem;
+  }
+}
+@media screen and (min-device-width: 1024px) and (max-device-width: 1399px) {
+  .soap-consult{
+    margin-right: 7rem;
+  }
+}
+@media screen and (min-device-width: 768px) and (max-device-width: 1023px) {
+  .soap-consult{
+    margin-right: 7rem;
+  }
+}
+@media screen and (min-device-width: 425px) and (max-device-width: 639px) {
+  .soap-consult{
+    margin-right: 2rem;
+  }
+}
+@media screen and (min-device-width: 375px) and (max-device-width: 424px) {
+  .soap-consult{
+    margin-right: 2rem;
+  }
+}
+@media screen and (min-device-width: 320px) and (max-device-width: 374px) {
+  .soap-consult{
+    margin-right: 0rem;
+  }
+}
+
+
+.soap-dropdown{
+  border-radius: 50px !important;
+  height: 30px !important;
+  margin-left: 2.5rem !important;
+  color: #000000 !important;
+  border: 1px solid #cccccc !important;
+}
+.soap-dropdown:focus {
+  outline: none; /* Remove default outline */
+}
+.soap-dropdown option {
+  /* padding: 8px 10px; */
+  text-align: center;
+}
+.radio-btn-soap{
+  vertical-align: middle !important;
+  margin-top: 1pt !important;
+  margin-left: 0em !important;
+}
+.soap-note-label{
+  padding-left: 0.3rem !important;
+  vertical-align: bottom !important;
+}
+
+.radio-btn-soap:checked {
+  background-color: #209F85 !important;
+  border-color: #209F85 !important;
+}
+
+.radio-btn-soap[type=radio] {
+  margin-top: 2pt !important;
+}
+.soap-card-text{
+  height: 756px;
+  /* overflow: auto; */
+}
+.ai-logo-consultation {
+  width: 7%;
+  float: right;
+  background: white;
+  /* margin-top: -3pt; */
+}

@@ -1,0 +1,120 @@
+.border-ds {
+  border-right: 2px solid #e0e0e0;
+  /* height: 35pt; */
+  align-content: center;
+}
+
+.claim-div-height {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  height: 70px !important;
+  vertical-align: middle;
+  margin-left: -1rem;
+  margin-right: -2rem,
+}
+
+.claim-card {
+  transition: 0.3s;
+  box-shadow: 0 18px 40px -12px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 10pt;
+}
+
+.claim-text {
+  font-size: 10pt !important;
+  font-weight: normal;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #8D8D8D;
+  /* align-items: start !important; */
+}
+.claim-para {
+  font-size: 10pt !important;
+  font-weight: normal;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #707070;
+  margin: 0rem;
+}
+.align-middle{
+  align-content: center;
+}
+
+.claim-btn {
+  /* margin-left: 1rem; */
+  background-color: #707070;
+  border-radius: 50px;
+  width: 25%;
+  border: none;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  color: white;
+  vertical-align: top;
+  font-size: 10pt;
+  box-shadow: 0px 7px 10px -2px rgba(0, 0, 0, 0.6);
+  transition: background-color .6s ease;
+  display: inline-block;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.claim-btn:hover {
+  background-color: #3B5998;
+}
+
+.claim-btn:active {
+  background: #3B5998;
+  top: 2px;
+}
+.btn-claim-div {
+  position: absolute;
+  bottom: 20px;
+  left: 50.8%;
+  transform: translateX(-50%);
+  width: 99.2%;
+  z-index: 999;
+}
+
+.btn-claim-div .col {
+  display: inline-block;
+  /* Display columns inline */
+}
+.mt2{
+  margin-top: 2pt;
+}
+
+.ml-c{
+  margin-right: 4rem!important;
+}
+.ai-logo-claims {
+  width: 3%;
+  float: right;
+  background: white;
+  margin-top: 3pt;
+}
+
+/* .form-check-input[type=radio] {
+  border-radius: 25% !important;
+} */
+
+
+
+.input-container {
+  position: relative;
+}
+
+.textarea-image {
+  position: absolute;
+  width: 7%;
+  /* right: 10px; */
+  top: 66px;
+  cursor: pointer;
+}
+
+.text-top{
+  align-items: start !important;
+}
+.claims-txt{
+  height: 80pt;
+  overflow: auto;
+}

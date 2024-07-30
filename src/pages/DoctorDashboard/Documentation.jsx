@@ -1,10 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
-import { UserContext } from "../../contexts/user.context";
-import { useMsal } from '@azure/msal-react';
-import { BSON } from "realm-web";
-import cypherData from "../../crypt/cypherData";
-import moment from "moment";
-import { alert } from "react-bootstrap-confirmation";
+import React, { useEffect, useState } from 'react';
 import MyEditor, { handlePrint } from '../../components/DoctorDashboard/Editor/MyEditor';
 import './Documentation.css';
 import PropTypes from 'prop-types';
@@ -14,31 +8,35 @@ import {
   specialistDocument,
   pathlogyLetter,
   alliedHealth,
-  patientInstructions,
-  soapNoteConcise
+  patientInstructions
+  // soapNoteConcise,
+  // soapNoteDetailed
 } from '../../components/DoctorDashboard/apiCalls';
 import IconInfo from '../../assets/DoctorDashboard/icon-info.png';
-
 import contries from '../../speechToTextLanguage.json';
 import Select from 'react-select';
+import { useSelectedLanguage } from '../../contexts/DoctorDashboard/selectedLanguageContext';
+import { useVoiceRecording } from '../../contexts/DoctorDashboard/voiceRecordingContext';
+
+import AILogo from '../../assets/DoctorDashboard/ai-logo.gif';
+import AILogos from '../../assets/DoctorDashboard/ai-logo.png';
+
 import ReactMarkdown from 'react-markdown';
+import { BarLoader } from 'react-spinners';
+import RecordButton from '../../components/DoctorDashboard/AudioRecorder/RecordButton';
 
-// import { useSelectedLanguage } from '../../contexts/DoctorDashboard/selectedLanguageContext';
-// import { useVoiceRecording } from '../../contexts/DoctorDashboard/voiceRecordingContext';
-
+import MarkdownIt from 'markdown-it';
+import MdEditor from 'react-markdown-editor-lite';
+import 'react-markdown-editor-lite/lib/index.css';
 
 const Documentation = (prop) => {
-  const { user, pId, pName, adbuser } = useContext(UserContext);
-  const { instance } = useMsal();
-  const activeAccount = instance.getActiveAccount();
-  
   Documentation.propTypes = {
     content: PropTypes.string,
     // setTransription: PropTypes.func,
   };
 
+  const [voiceRecording, setVoiceRecording, , , recorderConfig, setRecorderConfig] = useVoiceRecording();
   const [selectedRadio, setSelectedRadio] = useState('');
-  const [selectedTemplateValue, setselectedTemplateValue] = useState('');
   const [content, setContent] = useState('');
   const [boldContent, setBoldContent] = useState('');
 
@@ -48,51 +46,60 @@ const Documentation = (prop) => {
   const [medicalLiteracy, setMedicalLiteracy] = useState('');
 
   const [selectedOption, setSelectedOption] = useState(null);
-  const [soapNoteOption, setSoapNoteOption] = useState({ label: 'Concise' });
-  const [referralOption, setReferralOption] = useState({ label: 'Specialists' });
-  const [medicalCertificateOption, setMedicalCertificateOption] = useState({ label: 'Medical Certificate' });
+  const [childOption, setChildOption] = useState('Concise');
+  // const [soapNoteOption, setSoapNoteOption] = useState();
+  const [referralOption, setReferralOption] = useState();
+  const [medicalCertificateOption, setMedicalCertificateOption] = useState();
 
-  const [lengthListOption, setLengthListOption] = useState({ label: 'Concise' });
-  const [languagesOption, setLanguagesOption] = useState({ label: 'English (United States)' });
-  const [ageGroupOption, setAgeGroupOption] = useState({ label: '8-10 Years' });
-  const [medicalLiteracyOption, setMedicalLiteracyOption] = useState({ label: 'Low' });
-  const [healthRecordsOption, setHealthRecordsOption] = useState({ label: 'Electronic Health Records' });
+  const [lengthListOption, setLengthListOption] = useState('Concise');
+  const [languagesOption, setLanguagesOption] = useState('English (United States)');
+  const [ageGroupOption, setAgeGroupOption] = useState('8-10 Years');
+  const [medicalLiteracyOption, setMedicalLiteracyOption] = useState('Low');
+  const [healthRecordsOption, setHealthRecordsOption] = useState();
   const [Markdown, setMarkdown] = useState('');
-
+  const [loading, setLoading] = useState(false);
   // const [, setSelectedLanguageGlobal] = useSelectedLanguage();
   // const [, , , setIsStopGlobal] = useVoiceRecording();
 
   // Convert the data from the JSON file to the format required by react-select
   // const options = languages.map(item => ({ value: item.language, label: item.language }));
 
-  const handleChange = (value) => {
-    setSelectedOption(value);
-  };
+  // const handleChange = (value) => {
+  //   setSelectedOption(value);
+  // };
 
-  const handleSoapNoteChange = (value) => {
-    setSoapNoteOption(value);
-  };
-  const handleReferralChange = (value) => {
-    setReferralOption(value);
+  // const handleSoapNoteChange = (selectedOption) => {
+  //   setChildOption(selectedOption.label);
+  //   setSelectedRadio('soapNotes');
+  // };
 
+  const handleReferralChange = (selectedOption) => {
+    setChildOption(selectedOption.label);
+    setSelectedRadio('referrals');
   };
-  const handleMedicalCertificateChange = (value) => {
-    setMedicalCertificateOption(value);
+  const handleMedicalCertificateChange = (selectedOption) => {
+    setChildOption(selectedOption.label);
+    setSelectedRadio('medicalCertificate');
   };
-  const handleLengthChange = (value) => {
-    setLengthListOption(value);
+  const handleLengthChange = (selectedOption) => {
+    setLengthListOption(selectedOption.label);
+    setSelectedRadio('patientIntrusctions');
   };
-  const handleLanguagesChange = (value) => {
-    setLanguagesOption(value);
+  const handleLanguagesChange = (selectedOption) => {
+    setLanguagesOption(selectedOption.label);
+    setSelectedRadio('patientIntrusctions');
   };
-  const handleAgeGroupChange = (value) => {
-    setAgeGroupOption(value);
+  const handleAgeGroupChange = (selectedOption) => {
+    setAgeGroupOption(selectedOption.label);
+    setSelectedRadio('patientIntrusctions');
   };
-  const handleMedicalLiteracyChange = (value) => {
-    setMedicalLiteracyOption(value);
+  const handleMedicalLiteracyChange = (selectedOption) => {
+    setMedicalLiteracyOption(selectedOption.label);
+    setSelectedRadio('patientIntrusctions');
   };
-  const handleHealthRecordsChange = (value) => {
-    setHealthRecordsOption(value);
+  const handleHealthRecordsChange = (selectedOption) => {
+    setChildOption(selectedOption.label);
+    setSelectedRadio('EHR');
   };
 
   const languagesList = Object.entries(contries).map(([key, value]) => {
@@ -101,39 +108,39 @@ const Documentation = (prop) => {
       value: value
     }
   })
-  const medicalCertificateList = [
-    { label: 'Medical Certificate' },
-  ];
-  const healthRecordsList = [
-    { label: 'Electronic Health Records' },
-  ];
 
-  const soapNotesList = [
-    { label: 'Concise' },
-    { label: 'Detailed' },
-  ];
+
+  // const soapNotesList = [
+  //   { value: 1, label: 'Concise' },
+  //   { value: 2, label: 'Detailed' },
+  // ];
   const referralsList = [
-    { label: 'Specialists' },
-    { label: 'Path Labs' },
-    { label: 'Allied Health' },
-    { label: 'Hospital Department' },
+    { value: 1, label: 'Specialists' },
+    { value: 2, label: 'Path Labs' },
+    { value: 3, label: 'Allied Health' },
+    // { value: 4, label: 'Hospital Department' },
+  ];
+  const medicalCertificateList = [
+    { value: 1, label: 'Medical Certificate' },
   ];
   const lengthList = [
-    { label: 'Concise' },
-    { label: 'Detailed' },
+    { value: 1, label: 'Concise' },
+    // { value: 2, label: 'Detailed' },
   ];
   const ageGroupList = [
-    { label: '8-10 Years' },
-    { label: '10-15 Years' },
-    { label: '15-21  Years' },
-    { label: 'Older than 21  Years' },
+    { value: 1, label: '8-10 Years' },
+    { value: 2, label: '10-15 Years' },
+    { value: 3, label: '15-21  Years' },
+    { value: 4, label: 'Older than 21  Years' },
   ];
   const medicalLiteracyList = [
-    { label: 'Low' },
-    { label: 'Medium' },
-    { label: 'High' },
+    { value: 1, label: 'Low' },
+    { value: 2, label: 'Medium' },
+    { value: 3, label: 'High' },
   ];
-
+  const healthRecordsList = [
+    { value: 1, label: 'Electronic Health Records' },
+  ];
 
 
 
@@ -160,79 +167,54 @@ const Documentation = (prop) => {
 
 
   const handleGenerateDocument = async () => {
+    setLoading(true);
     const conversation = prop.content;
     let response = '';
 
-    if (selectedRadio === 'SOAP Notes') {
-      if (soapNoteOption.label === 'Concise') {
-        setselectedTemplateValue('Concise');
-        response = await soapNoteConcise(conversation);
-      }
+    // if (selectedRadio === 'soapNotes') {
+    //   if (childOption === 'Concise') {
+    //     response = await soapNoteConcise(conversation);
+    //   } else if (childOption === 'Detailed') {
+    //     response = await soapNoteDetailed(conversation);
+    //   }
 
-    } else if (selectedRadio === 'Referrals') {
-      if (referralOption.label === 'Specialists') response = await specialistDocument(conversation);
-      if (referralOption.label === 'Path Labs') response = await pathlogyLetter(conversation);
-      if (referralOption.label === 'Allied Health') response = await alliedHealth(conversation);
+    // }
+    if (selectedRadio === 'referrals') {
+      if (childOption === 'Specialists') response = await specialistDocument(conversation);
+      if (childOption === 'Path Labs') response = await pathlogyLetter(conversation);
+      if (childOption === 'Allied Health') response = await alliedHealth(conversation);
+      if (childOption === 'Hospital Department') response = await claimsDocument(conversation);
 
-    } else if (selectedRadio === 'Medical Certificate') {
-      if (medicalCertificateOption.label === 'Electronic Health Records') response = await medicalDocument(conversation);
+    } else if (selectedRadio === 'medicalCertificate') {
+      if (childOption === 'Medical Certificate') response = await medicalDocument(conversation);
 
-    } else if (selectedRadio === 'Patient Instructions') {
-      if (lengthListOption.label === 'Concise') {
+    } else if (selectedRadio === 'patientIntrusctions') {
+      if (lengthListOption === 'Concise') {
         const form = new FormData();
         form.append('conversation', conversation);
-        form.append('language', languagesOption.label);
-        form.append('ageGroup', ageGroupOption.label);
-        form.append('medicalLiteracy', medicalLiteracyOption.label);
-        form.append('length', lengthListOption.label);
+        form.append('language', languagesOption);
+        form.append('ageGroup', ageGroupOption);
+        form.append('medicalLiteracy', medicalLiteracyOption);
+        form.append('length', lengthListOption);
         response = await patientInstructions(form);
       };
 
-    } else if (selectedRadio === 'Update EHR') {
+    } else if (selectedRadio === 'EHR') {
       response = ''
     }
+    setLoading(false);
     setContent(response);
-    const boldHeaders = response.replace(/(#+\s*)(.+)/g, '$1**$2**');
+    if (response === undefined) return;
+    const boldHeaders = response.replace(/^(.*:)$/gm, '**$1**');
     setBoldContent(boldHeaders);
+
+
   };
-  const handleContinueDocumentationClick = async (event) => {
-    event.preventDefault();
-    if (boldContent === "") {
-         alert("Please fill document content");
-    }else{
-      //console.log("document content:", boldContent);
-      
-      
-      try {
-        if (user) {
-           console.log('auth:',user.id);
-          let dt = new Date();
-          let id = new BSON.ObjectID();
-          let cid = BSON.ObjectID(user.id).toString();
-          //let pid = selLid;
-          let pid = pId;
-          const createx = user.functions.createPatientConsultationDocumentationData(
-            id,
-            'cid0003',
-            'p00001',
-            pid,
-            selectedRadio,
-            selectedTemplateValue,
-            boldContent,
-            dt,
-            "GlobalMedics2021",
-          );
-          createx.then((resp) => {
-            console.log("resp:", resp);
-            alert("Consulation saved Successfully");
-          });
-        }
-      }
-      catch (error) {
-        //  alert(error);
-        console.log("error:", error);
-      }
-    }
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  const mdParser = new MarkdownIt();
+  const handleEditorChange = ({ content }) => {
+    setContent(content);
   };
 
   return (
@@ -240,28 +222,26 @@ const Documentation = (prop) => {
       <div class="container-fluid ms-3 pe-5">
         <div className='pt-2 info'><img src={IconInfo} className='imgs' /></div>
         <div class="row">
-          <div class="col-4">
+          <div class="col-lg-4 col-md-12">
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Document Templates</h5>
                 <div class='ms-3'>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                      value="SOAP Notes"
+                  {/* <div class="form-check">
+                    <input class="form-check-input" type="radio" name="radio" value="soapNotes" checked={selectedRadio === 'soapNotes'}
                       onChange={handleRadioChange}
                     />
                     <label class="form-check-label card-subtitle1" for="exampleRadios1">Soap Notes</label>
                     <div class="row">
                       <div class="col-4 d-flex align-items-center">
-                        {/* <label class='form-check-label' for=""></label> */}
                       </div>
                       <div class="col-8">
                         <Select
-                          value={soapNoteOption}
+                          className='doc-md-width'
+                          options={soapNotesList}
+                          value={soapNotesList.find(option => option.value === soapNoteOption)}
                           onChange={handleSoapNoteChange}
-                          options={soapNotesList.map(item => ({ label: item.label, value: item.label }))}
                           defaultInputValue='Concise'
-
                           theme={(theme) => ({
                             ...theme,
                             colors: {
@@ -273,11 +253,10 @@ const Documentation = (prop) => {
                         />
                       </div>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div class="form-check mt-4">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
-                      value="Referrals"
+                    <input class="form-check-input" type="radio" name="radio" value="referrals" checked={selectedRadio === 'referrals'}
                       onChange={handleRadioChange}
                     />
                     <label class="form-check-label card-subtitle1" for="exampleRadios2">Referrals</label>
@@ -287,10 +266,12 @@ const Documentation = (prop) => {
                       </div>
                       <div class="col-8">
                         <Select
-                          value={referralOption}
+                          className='doc-md-width'
+                          options={referralsList}
+                          value={referralsList.find(option => option.value === referralOption)}
+
                           onChange={handleReferralChange}
-                          options={referralsList.map(item => ({ label: item.label, value: item.label }))}
-                          defaultInputValue='Specialists'
+                          defaultInputValue='Path Labs'
 
                           theme={(theme) => ({
                             ...theme,
@@ -306,8 +287,7 @@ const Documentation = (prop) => {
                   </div>
 
                   <div class="form-check mt-4">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3"
-                      value="Medical Certificate"
+                    <input class="form-check-input" type="radio" name="radio" value="medicalCertificate" checked={selectedRadio == 'medicalCertificate'}
                       onChange={handleRadioChange}
                     />
                     <label class="form-check-label card-subtitle1" for="exampleRadios3">Medical Certificate</label>
@@ -317,9 +297,11 @@ const Documentation = (prop) => {
                       </div>
                       <div class="col-8">
                         <Select
-                          value={medicalCertificateOption}
+                          className='doc-md-width'
+                          options={medicalCertificateList}
+                          value={medicalCertificateList.find(option => option.value === medicalCertificateOption)}
+
                           onChange={handleMedicalCertificateChange}
-                          options={medicalCertificateList.map(item => ({ label: item.label, value: item.label }))}
                           defaultInputValue='Medical Certificate'
 
                           theme={(theme) => ({
@@ -336,12 +318,10 @@ const Documentation = (prop) => {
                   </div>
 
                   <div class="form-check mt-4">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4"
-                      value="Patient Instructions"
+                    <input class="form-check-input" type="radio" name="radio" value="patientIntrusctions" checked={selectedRadio === 'patientIntrusctions'}
                       onChange={handleRadioChange}
                     />
                     <label class="form-check-label card-subtitle1" for="exampleRadios4">Patient Instructions</label>
-
 
                     <div class="row">
                       <div class="col-4 d-flex align-items-center">
@@ -349,11 +329,11 @@ const Documentation = (prop) => {
                       </div>
                       <div class="col-8">
                         <Select
-                          value={lengthListOption}
+                          className='doc-md-width'
+                          options={lengthList}
+                          value={lengthList.find(option => option.value === lengthListOption)}
                           onChange={handleLengthChange}
-                          options={lengthList.map(item => ({ label: item.label, value: item.label }))}
                           defaultInputValue='Concise'
-
                           theme={(theme) => ({
                             ...theme,
                             colors: {
@@ -376,9 +356,10 @@ const Documentation = (prop) => {
                         </div>
                         <div class="col-8">
                           <Select
-                            value={languagesOption}
-                            onChange={handleLanguagesChange}
+                            className='doc-md-width'
                             options={languagesList}
+                            value={languagesList.find(option => option.value === languagesOption)}
+                            onChange={handleLanguagesChange}
                             defaultInputValue='English (United States)'
 
                             theme={(theme) => ({
@@ -404,11 +385,11 @@ const Documentation = (prop) => {
                         <div class="col-8">
 
                           <Select
-                            value={ageGroupOption}
+                            className='doc-md-width'
+                            options={ageGroupList}
+                            value={ageGroupList.find(option => option.value === ageGroupOption)}
                             onChange={handleAgeGroupChange}
-                            options={ageGroupList.map(item => ({ label: item.label, value: item.label }))}
                             defaultInputValue='8-10 Years'
-
                             theme={(theme) => ({
                               ...theme,
                               colors: {
@@ -435,11 +416,11 @@ const Documentation = (prop) => {
                         <div class="col-8">
 
                           <Select
-                            value={medicalLiteracyOption}
+                            className='doc-md-width'
+                            options={medicalLiteracyList}
+                            value={medicalLiteracyList.find(option => option.value === medicalLiteracyOption)}
                             onChange={handleMedicalLiteracyChange}
-                            options={medicalLiteracyList.map(item => ({ label: item.label, value: item.label }))}
                             defaultInputValue='Low'
-
                             theme={(theme) => ({
                               ...theme,
                               colors: {
@@ -470,31 +451,32 @@ const Documentation = (prop) => {
 
 
                   <div class="form-check mt-4">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios5"
-                      value="Update EHR"
-                      onChange={handleRadioChange}
+                    <input class="form-check-input" type="radio" name="radio" value="EHR"
+                      disabled={isDisabled}
                     />
                     <label class="form-check-label card-subtitle1" for="exampleRadios5">Update EHR</label>
                     <div class="row">
-                      <div class="col-4 d-flex align-items-center">
-                        {/* <label class='form-check-label' for=""></label> */}
-                      </div>
-                      <div class="col-8">
-                        <Select
-                          value={healthRecordsOption}
-                          onChange={handleHealthRecordsChange}
-                          options={healthRecordsList.map(item => ({ label: item.label, value: item.label }))}
-                          defaultInputValue='Electronic Health Records'
-
-                          theme={(theme) => ({
-                            ...theme,
-                            colors: {
-                              ...theme.colors,
-                              primary25: "#F2F8F1",
-                              primary: '#209F85',
-                            },
-                          })}
-                        />
+                      <div className={`form-check mt-4 ${isDisabled ? 'disabled-section' : ''}`}>
+                        <div class="col-4 d-flex align-items-center">
+                          {/* <label class='form-check-label' for=""></label> */}
+                        </div>
+                        <div class="col-8 non-interactive">
+                          <Select
+                            className='doc-md-width'
+                            options={healthRecordsList}
+                            value={healthRecordsList.find(option => option.value === healthRecordsOption)}
+                            onChange={handleHealthRecordsChange}
+                            defaultInputValue='Electronic Health Records'
+                            theme={(theme) => ({
+                              ...theme,
+                              colors: {
+                                ...theme.colors,
+                                primary25: "#F2F8F1",
+                                primary: '#209F85',
+                              },
+                            })}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -507,54 +489,126 @@ const Documentation = (prop) => {
                 </div>
               </div>
             </div>
-
-            <div class="card mt-4">
-              <div class="card-body">
-                <h5 class="card-title">Send Document to</h5>
-                <div class='ms-2'>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" />
-                    <label class="form-check-label" for="exampleRadios1">Printer</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" />
-                    <label class="form-check-label" for="exampleRadios2">Email</label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" />
-                    <label class="form-check-label" for="exampleRadios3">Fax</label>
-                  </div>
-                </div>
-                <div class="d-grid gap-4 d-md-flex justify-content-md-end">
-                  <button type="button" class="btn custom-btn-width" onClick={handlePrintButtonClick}>Print</button>
-                </div>
-              </div>
-            </div>
-
-
           </div>
-          <div class="col-8">
-            <div class="card">
+          <div class="col-lg-8 col-md-12">
+            <div class="card con-md-top">
               <div class="card-body">
-                <h5 class="card-title">Edit Document</h5>
-                <div class='mt-4' style={{ height: "593px", overflow: "auto" }}>
-                  {/* <MyEditor
-                    content={content}
-                  /> */}
-                  <ReactMarkdown>{boldContent}</ReactMarkdown>
+                {/* <h5 class="card-title">Edit Document</h5> */}
+                <div style={{ height: "478px" }}>
+                  {loading ? (
+                    <>
+                      <h5 className="card-title-nl">Document Output</h5>
+                      <div className="spinner-container" style={{ marginBottom: "1rem" }}>
+                        <BarLoader loading={loading} color="#209F85" width={838} height={1} />
+                        <img src={AILogo} alt="" className='ai-logo-da' />
+                      </div>
+                      <MdEditor
+                        value={content}
+                        style={{ height: '421px' }}
+                        renderHTML={(content) => mdParser.render(content)}
+                        onChange={handleEditorChange}
+                        view={{ menu: true, md: false, html: true }}
+                        config={{
+                          canView: {
+                            menu: true,
+                            md: true,
+                            html: true,
+                            fullScreen: true, // Optional: if you want to keep full screen option
+                            both: false // This hides the "both" option
+                          },
+                        }}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <img src={AILogos} alt="" className='ai-logo-ds' />
+                      <h5 className="card-title">Document Output</h5>
+                      {/* <ReactMarkdown>{boldContent}</ReactMarkdown> */}
+                      {/* <MyEditor content={content} /> */}
+                      {/* <ReactMarkdown>{content}</ReactMarkdown> */}
+                      {/* <MyEditor content={content} /> */}
+                      <MdEditor
+                        value={content}
+                        style={{ height: '421px' }}
+                        renderHTML={(content) => mdParser.render(content)}
+                        onChange={handleEditorChange}
+                        view={{ menu: true, md: false, html: true }}
+                        config={{
+                          canView: {
+                            menu: true,
+                            md: true,
+                            html: true,
+                            fullScreen: true, // Optional: if you want to keep full screen option
+                            both: false // This hides the "both" option
+                          },
+                        }}
+                      />
+                    </>
+                  )}
+                  {/* <ReactMarkdown>{boldContent}</ReactMarkdown> */}
+
                 </div>
-                <div class="d-grid gap-4 d-md-flex justify-content-md-end mt-4">
-                  <button type="button" class="btn custom-btn-width btn-blue mt-5">Confirm</button>
+                <div class="gap-4 d-md-flex justify-content-md-end">
+                  <button type="button" class="btn custom-btn-width btn-blue mt-2" style={{marginRight:"1.2rem"}}>Confirm</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        <div className="row">
+          <div class="col-lg-4 col-md-12 mt-4">
+            <div className="card">
+              <div className={`form-check ${isDisabled ? 'disabled-section' : ''}`} style={{ marginLeft: "-1.3rem" }}>
+                <div class="card-body">
+                  <h5 class="card-title">Send Document to</h5>
+                  <div class='ms-2'>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" disabled={isDisabled} />
+                      <label class="form-check-label" for="exampleRadios1">Printer</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" disabled={isDisabled} />
+                      <label class="form-check-label" for="exampleRadios2">Email</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" disabled={isDisabled} />
+                      <label class="form-check-label" for="exampleRadios3">Fax</label>
+                    </div>
+                  </div>
+                  <div class="d-grid gap-4 d-md-flex justify-content-md-end" style={{ marginTop: "5.6rem" }}>
+                    <button type="button" class="btn custom-btn-width" disabled={isDisabled} onClick={handlePrintButtonClick}>Print</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8 col-md-12">
+            <div className="card mt-4">
+              <div className="card-body">
+                <h5 className="card-title">Add Notes</h5>
+                <textarea className="form-control" id="exampleFormControlTextarea1" rows="4"
+                  // value={voiceRecording}
+                  onInput={e => setVoiceRecording(e.target.value)}>{voiceRecording}</textarea>
+              </div>
 
-        <div className="right mt-4">
-          <button onClick={handleContinueDocumentationClick}  type="button" class="btn-c">Continue</button>
+              <div className="row btn-div1">
+                <div className="col">
+                  <RecordButton status={recorderConfig.status} setRecorderStatus={setRecorderConfig} />
+                </div>
+                <div className="col btn-div">
+                  <button className="btn custom-btn-width btn-blue">Confirm</button>
+                </div>
+              </div>
+              
+            </div>
+          </div>
         </div>
       </div>
+
+
+      {/* <div className="right mt-4">
+          <button type="button" class="btn-c">Continue</button>
+        </div> */}
     </>
   )
 }

@@ -7,15 +7,16 @@
 .card .card-title {
   color: #209F85;
   font-size: 12pt;
-  font-weight: 400;
+  font-weight: 500;
   border-bottom: 1px solid #209F85;
 }
 
 .card .card-title-nl {
+  margin-top: 0rem;
+  margin-bottom: 0rem;
   color: #209F85;
   font-size: 12pt;
-  font-weight: 400;
-  margin-top: auto !important;
+  font-weight: 500;
 }
 
 /* .card .card-subtitle{
@@ -128,7 +129,8 @@
 }
 
 .imgs {
-  width: 1.4%;
+  width: 20px;
+  height: 20px;
   cursor: pointer;
   margin-right: -1rem;
 }
@@ -140,7 +142,7 @@
 }
 
 .card-AI-height {
-  height: 820px !important;
+  height: 837px !important;
   overflow-y: auto;
 }
 
@@ -320,7 +322,7 @@
 }
 
 .ai-logo-move {
-  width: 15%;
+  width: 10%;
   float: right;
   background: white;
   margin-top: -23pt;
@@ -331,4 +333,9 @@
   float: right;
   background: white;
   margin-top: 5pt;
+}
+
+.report-spinner {
+margin-top:5pt;
+margin-bottom:0pt;
 }

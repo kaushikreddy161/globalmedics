@@ -142,11 +142,11 @@ export const SidebarData = [
     iconClosed: <RiIcons.RiArrowDownSFill />,
     iconOpened: <RiIcons.RiArrowUpSFill />,
     subNav: [
-      // {
-      //   title: "Dashboard",
-      //   path: "/dashboardsWelcome",
-      //   icon: IconVirtualRound,
-      // },
+      {
+        title: "Dashboard",
+        path: "/dashboardsWelcome",
+        icon: IconVirtualRound,
+      },
       {
         title: 'Virtual Round',
         path: '/virtualround',
@@ -176,64 +176,15 @@ export const SidebarData = [
       //   path: "/vitalsSummary",
       //   icon: IconAcn,
       // }
-      // {
-      //   title: "Care Plan Generation",
-      //   path: "/carePlanGeneration",
-      //   icon: IconPPDel,
-      // },
       {
-        title: 'Care Central',
-        path: '/consultation',
+        title: "Care Plan Generation",
+        path: "/carePlanGeneration",
         icon: IconPPDel,
-      }
+      },
     ]
   },
   {
-    title: "MDT Management",
-    icon: IconCRing,
-    path: "/careRingManagement",
-    iconClosed: <RiIcons.RiArrowDownSFill />,
-    iconOpened: <RiIcons.RiArrowUpSFill />,
-    subNav: [
-      {
-        title: "MDT Summary",
-        path: "/mDTSummary",
-        icon: IconACRS,
-      },
-      {
-        title: "Patient",
-        path: "/lovedOneWelcome",
-        icon: IconALO,
-      },
-      {
-        title: "Nurse",
-        path: "/localCareGiversConsent",
-        icon: IconCRLocalCare,
-      },
-      {
-        title: "General Practitioner",
-        path: "/familyMembersConsent",
-        icon: IconCRAddFmlyMem,
-      },
-      {
-        title: "Allied Health",
-        path: "/friendsAccess",
-        icon: IconFriends,
-      },
-      {
-        title: "Specialist",
-        path: "/inviteCommunity",
-        icon: IconInviteCommunity,
-      },
-      // {
-      //   title: "Add Provider",
-      //   path: "/addProviders",
-      //   icon: IconCRAddDoc,
-      // },
-    ],
-  },
-  {
-    title: "Care Ring Management",
+    title: "Manage Care Rings",
     icon: IconCRing,
     path: "/careRingManagement",
     iconClosed: <RiIcons.RiArrowDownSFill />,
@@ -401,7 +352,7 @@ export const SidebarData = [
       },
       {
         title: "Medication",
-        path: "/setMedications",
+        path: "/medication",
         icon: IconMedication,
       },
       {
@@ -626,16 +577,16 @@ export const SidebarData = [
   //   path: "/WebcamVideo",
   //   icon: IconPPDel,
   // },
-  // {
-  //   title: "Chat",
-  //   path: "/chat",
-  //   icon: IconPPDel,
-  // },
-  // {
-  //   title: "Chat Contact List",
-  //   path: "/chatContactList",
-  //   icon: IconPPDel,
-  // },
+  {
+    title: "Chat",
+    path: "/chat",
+    icon: IconPPDel,
+  },
+  {
+    title: "Chat Contact List",
+    path: "/chatContactList",
+    icon: IconPPDel,
+  },
   // {
   //   title: "Conversation Component",
   //   path: "/conversationComponent",
@@ -890,11 +841,11 @@ export const SidebarData = [
   //   path: "/tiredness",
   //   icon: IconEmergency,
   //  },
-  // {
-  //   title: "Training Screen",
-  //   path: "/trainingScreen_1",
-  //   icon: IconEmergency,
-  // },
+  {
+    title: "Training Screen 1",
+    path: "/trainingScreen_1",
+    icon: IconEmergency,
+  },
 
   {
     title: "System Admin ",
@@ -908,7 +859,17 @@ export const SidebarData = [
         title: "UX Designer",
         path: "/carePlanGeneration",
         icon: IconProfessionals,
-      },
+      }
+    ]
+  },
+  {
+    title: "Set Up",
+    path: "/userJourneySelf",
+    icon: IconEmergency,
+    iconClosed: <RiIcons.RiArrowDownSFill />,
+    iconOpened: <RiIcons.RiArrowUpSFill />,
+
+    subNav: [
       {
         title: "User Journey Self",
         path: "/userJourneySelf",
@@ -992,27 +953,27 @@ export const SidebarData = [
   //   path: "/inviteReceived",
   //   icon: IconPPDel,
   // },
-  // {
-  //   title: "Care Concierge",
-  //   path: "/careConcierge",
-  //   icon: IconPPDel,
-  // },
+  {
+    title: "Care Concierge",
+    path: "/careConcierge",
+    icon: IconPPDel,
+  },
   //   {
   //   title: "Care Giver Form",
   //   path: "/careGiverForm",
   //   icon: IconPPDel,
   // },
-  // {
-  //   title: 'Test Data',
-  //   path: '/testData',
-  //   icon: IconPPDel,
-  // },
-  // {
-  //   title: 'Doctor Dashboard',
-  //   path: '/consultation',
-  //   icon: IconPPDel,
-  // }
+  {
+    title: 'Test Data',
+    path: '/testData',
+    icon: IconPPDel,
+  },
 
+  {
+    title: 'Doctor Dashboard',
+    path: '/consultation',
+    icon: IconPPDel,
+  }
 
 
 ];

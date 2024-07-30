@@ -1,34 +1,42 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
-import { UserContext } from "../../contexts/user.context";
-import { useMsal } from '@azure/msal-react';
-import { BSON } from "realm-web";
-import cypherData from "../../crypt/cypherData";
-import moment from "moment";
-import { alert } from "react-bootstrap-confirmation";
+import React, { useEffect, useState, useMemo, useRef } from 'react';
 import User from "../../assets/DoctorDashboard/adam-hilbert.png";
 import Flag from "../../assets/DoctorDashboard/flag.png";
 import Call from "../../assets/DoctorDashboard/call.png";
 import Video from "../../assets/DoctorDashboard/video.png";
-import IconInfo from '../../assets/DoctorDashboard/icon-info.png';
-// import VoiceRecorder from '../components/VoiceRecorder';
+// import VoiceRecorder from '../../components/DoctorDashboard/VoiceRecorder';
 import AudioRecorder from '../../components/DoctorDashboard/AudioRecorder/AudioRecorder';
 import Documentation from './Documentation';
 import PreConsultation from './PreConsultation';
 import Reports from './Reports';
+import Claims from './Claims';
 import './Consultation.css';
+import './MediaStyles.css';
 import { useVoiceRecording } from '../../contexts/DoctorDashboard/voiceRecordingContext';
+import IconInfo from '../../assets/DoctorDashboard/icon-info.png';
 
+import ReactMarkdown from 'react-markdown';
+import { BarLoader } from 'react-spinners';
+import AILogo from '../../assets/DoctorDashboard/ai-logo.gif';
+import AILogos from '../../assets/DoctorDashboard/ai-logo.png';
 
+import { soapNoteConcise, soapNoteDetailed } from '../../components/DoctorDashboard/apiCalls';
+import Select from 'react-select';
+import RecordButton from '../../components/DoctorDashboard/AudioRecorder/RecordButton';
+import { Quill } from 'react-quill';
+
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+// import MarkdownEditor from '../../components/DoctorDashboard/Editor/MarkdownEditor';
+
+import MarkdownIt from 'markdown-it';
+import MdEditor from 'react-markdown-editor-lite';
+import 'react-markdown-editor-lite/lib/index.css';
 
 
 // function HomePage() {
 const HomePage = () => {
-  const { user, pId, pName, adbuser } = useContext(UserContext);
-  const { instance } = useMsal();
-  const activeAccount = instance.getActiveAccount();
+  const [voiceRecording, setVoiceRecording, , , recorderConfig, setRecorderConfig] = useVoiceRecording();
 
- // const [activeTab, setActiveTab] = useState('consultation'); // State to track active tab
-  const [voiceRecording, setVoiceRecording] = useVoiceRecording();
   const patient = require('../../patient.json');
   const [subjective, setSubjective] = useState('');
   const [objective, setObjective] = useState('');
@@ -36,72 +44,67 @@ const HomePage = () => {
   const [plan, setPlan] = useState('');
   const [conversation, setConversation] = useState('');
   // const [transcriptionTemp, setTranscriptionTemp] = useState('');
+
+  const [loading, setLoading] = useState(false);
+
+  const [selectedRadio, setSelectedRadio] = useState('');
+  const [soapNoteOption, setSoapNoteOption] = useState();
+  const [childOption, setChildOption] = useState('Concise');
+  const [selectedSoap, setSelectedSoap] = useState('');
+  const [selectedOption, setSelectedOption] = useState('');
   const documentationTabRef = useRef(null); // Ref to Documentation tab button
-  const preconsultationTabRef = useRef(null); // Ref to preconsultationTabRef tab button
+  const [value, setValue] = useState('');
+
+  const mdParser = new MarkdownIt();
+
+  const handleEditorChange = ({ conversation }) => {
+    setConversation(conversation);
+  };
+
+  const handleChangeSoapNotes = async (selectedType) => {
+    setSelectedOption(selectedType);
+    setLoading(true);
+
+    try {
+      console.log(`Selected value: ${selectedType}`);
+      let response = '';
+
+      if (selectedType === 'Concise') {
+        response = await soapNoteConcise(voiceRecording);
+        console.log('Consultation Concise response:', response)
+      } else if (selectedType === 'Detailed') {
+        response = await soapNoteDetailed(voiceRecording);
+      }
+
+      // Format the response
+      // const formattedResponse = response
+      // .split('-') // Handle new lines
+      // .map(line => line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')) // Format bold text
+      // .join('<br/><br/>'); // Join lines with <br/> for HTML new lines
+      // console.log(formattedResponse);
+      // setConversation(formattedResponse);
+
+      console.log(response);
+      setConversation(response);
+    } catch (error) {
+      console.error('Error fetching SOAP notes:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleRadioChange = (event) => {
+    setSelectedRadio(event.target.value);
+  };
+
 
 
   const handleAcceptText = async (event) => {
     event.preventDefault(); // Prevent form submission
-    try {
-      const response = await fetch('https://azurespeechtotextsummary.azurewebsites.net/summarise', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ conversation: conversation }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      console.log(data); // Log the response data to the console
-
-      if (data.summary) {
-        const summary = JSON.parse(data.summary);
-
-        const formatText = (text) => {
-          let textArray = Array.isArray(text) ? text : [text]; // Ensure textArray is an array
-
-          if (!Array.isArray(textArray)) {
-            console.error('Expected an array, but received:', textArray);
-            return '';
-          }
-          // Join the array into a single string
-          let joinedText = textArray.join('. ');
-
-          if (!joinedText.endsWith('.')) {
-            joinedText += '.';
-          }
-
-
-          // Remove commas after full stops
-          let newText = joinedText.replace(/\.+,/g, '.');
-
-          // Replace "Dr." with "Dr" to avoid splitting the text at this point.
-          newText = newText.replace(/Dr\./g, 'Dr');
-          // Split by full stops, filter out empty strings, add bullet points (and full stops back in), and join back together
-          newText = newText.split(/(?<=\D)\.(?=\s[A-Z]|$)/)
-            .filter(sentence => sentence.trim() !== '')
-            .map(sentence => `• ${sentence.trim()}`)
-            .join('\n');
-
-          return newText;
-        };
-
-        setSubjective(formatText(summary.Subjective));
-        setObjective(formatText(summary.Objective));
-        setAssessment(formatText(summary.Assessment));
-        setPlan(formatText(summary.Plan));
-      } else {
-        console.error('Summary not found in response');
-      }
-    } catch (error) {
-      console.error('Failed to fetch summary:', error);
+    if (documentationTabRef.current) {
+      documentationTabRef.current.click();
     }
   };
-
   const reContructConversation = async () => {
     try {
       const response = await fetch('https://conversationconstructor.azurewebsites.net/construct', {
@@ -127,96 +130,83 @@ const HomePage = () => {
 
 
   useEffect(() => {
-    reContructConversation();
+    //reContructConversation();
     // setConversation(voiceRecording);
   }, [voiceRecording]);
 
-  const handleContinueConsultationClick = async (event) => {
-    event.preventDefault();
-    console.log("conversation::", conversation);
-    console.log("voiceRecording::", voiceRecording);
-    if (conversation != "" || voiceRecording !='') {
-        
-      try {
-        if (user) {
-           console.log('auth:',user.id);
-          let dt = new Date();
-          let id = new BSON.ObjectID();
-          let cid = BSON.ObjectID(user.id).toString();
-          //let pid = selLid;
-          let pid = pId;
-          const createx = user.functions.createPatientConsultationConsultationData(
-            id,
-            'cid0003',
-            'p00001',
-            pid,
-            voiceRecording,
-            conversation,
-            dt,
-            "GlobalMedics2021",
-          );
-          createx.then((resp) => {
-            console.log("resp:", resp);
-            alert("Consulation saved Successfully");
-          });
-        }
-      }
-      catch (error) {
-        //  alert(error);
-        console.log("error:", error);
-      }
-    }
-    //setActiveTab('documentation'); // Update active tab state
-    if (documentationTabRef.current) {
-      documentationTabRef.current.click();
-    }
+
+  const handleSoapNoteChange = (selectedOption) => {
+    setChildOption(selectedOption.label);
+    setSelectedRadio('soapNotes');
   };
+
+  const soapNotesList = [
+    { value: 1, label: 'Concise' },
+    { value: 2, label: 'Detailed' },
+  ];
+
+  // const handleGenerateDocument = async () => {
+  //   setLoading(true);
+  //   const conversation = prop.content;
+  //   let response = '';
+
+  //   if (selectedRadio === 'soapNotes') {
+  //     if (childOption === 'Concise') {
+  //       response = await soapNoteConcise(conversation);
+  //     } else if (childOption === 'Detailed') {
+  //       response = await soapNoteDetailed(conversation);
+  //     }
+  //   }
+  // };
+
   return (
     <>
       <div className="Main-Page">
 
-        {/* Personal Detail Card */}
-        <div className="Card-Main1">
-          <div class="Card-Personal">
+        {/* New Code for Patient particulars */}
+        <div class='ml-4c pr-4c'>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <div class="card card-height-info">
+                <div class='row info-div'>
+                  <div class='col-7'><span className="green">Patient Particulars</span></div>
+                  <div class='col-5 right'><img src={Flag} className="img-right" /></div>
+                </div>
 
-            <div class='row info-div'>
-              <div class='col'>
-                <h2 className="pinfo">Patient Particulars</h2>
-              </div>
-              <div class='col right'>
-                <img src={Flag} className="img-right" />
+                <div className="container-fluid card-mt">
+                  <div className="row mb-3">
+                    <div className="col-lg-3 col-md-5 col-sm-6 col-xs-12">
+                      <img src={User} className="user-profile" />
+                    </div>
+                    <div className="col-lg-5 col-md-7 col-sm-6 col-xs-12 user-details">
+                      {patient.first_name} {patient.last_name} <br /><span className="gray">{patient.gender} / {patient.age} years / {patient.location}</span>
+                      <br />
+                      Patient ID: <span className='gray'>{patient.id}</span>
+                    </div>
+                    <div className="col-lg-4 col-md-12 col-sm-6 col-xs-12 user-details">
+                      <div className="div-right">
+                        Chief Complaints <span className="gray">{patient.chief_complaint}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-
-            <table className="table">
-              <tr><td rowSpan={3} className="td1">
-                <img src={User} className="user-img" />
-              </td>
-                <td className="td2">{patient.first_name} {patient.last_name} <br /><span className="gray">{patient.gender} / {patient.age} years / {patient.location}</span></td>
-                <td className="td">Chief Complaints <br /><span className="gray">{patient.chief_complaint}</span></td>
-              </tr>
-              {/* <tr><td><span className="gray">M / 43 years / Sydney</span></td><td className='td'><span className="gray">Cardiovascular Disease</span></td></tr> */}
-              <tr><td className="td2">Patient ID: <span className='gray'>{patient.id}</span></td>
-                <td>
-                  {/* Patient id: <span className="gray">23165 412346</span> */}
-                </td></tr>
-            </table>
-          </div>
-
-          {/*recording section */}
-          <div class="Card-Personal">
-            <table className="table1">
-              <colgroup>
-                <col style={{ width: "50%" }} />
-                <col style={{ width: "50%" }} />
-              </colgroup>
-              <tr><td><span className="green">Record Consulation</span></td>
-                <td className="right"><img src={Call} className="call-img" /> <img src={Video} className="call-img" /></td></tr>
-            </table>
-            {/* <VoiceRecorder /> */}
-            <AudioRecorder />
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 mt-sx">
+              <div class="card pb-1c card-consult-height">
+                <div class="container mt-2">
+                  <div class="row">
+                    <div class="col-7"><span className="green">Record Consulation</span></div>
+                    <div class="col-5 grid-item-call"><img src={Call} className="call-img" /> <img src={Video} className="call-img" /></div>
+                  </div>
+                </div>
+                <AudioRecorder />
+              </div>
+            </div>
           </div>
         </div>
+
+        {/* end */}
 
         {/* Tab Section */}
         <div className="mt-2 mb-4 ms-4 me-4">
@@ -226,10 +216,10 @@ const HomePage = () => {
                 <button class="nav-link" id="reports-tab" data-bs-toggle="tab" data-bs-target="#reports" type="button" role="tab" aria-controls="reports" aria-selected="true">Reports</button>
               </li>
               {/* <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="trends-tab" data-bs-toggle="tab" data-bs-target="#trends" type="button" role="tab" aria-controls="trends" aria-selected="true" disabled>Trends</button>
-                </li> */}
+                <button class="nav-link" id="trends-tab" data-bs-toggle="tab" data-bs-target="#trends" type="button" role="tab" aria-controls="trends" aria-selected="true" disabled>Trends</button>
+              </li> */}
               <li key="pre-consultation" class="nav-item" role="presentation">
-                <button ref={preconsultationTabRef} class="nav-link" id="pre-consultation-tab" data-bs-toggle="tab" data-bs-target="#pre-consultation" type="button" role="tab" aria-controls="pre-consultation" aria-selected="true">Pre-Consultation</button>
+                <button class="nav-link" id="pre-consultation-tab" data-bs-toggle="tab" data-bs-target="#pre-consultation" type="button" role="tab" aria-controls="pre-consultation" aria-selected="true">Pre-Consultation</button>
               </li>
               <li key="consultation" class="nav-item" role="presentation">
                 <button class="nav-link active" id="consultation-tab" data-bs-toggle="tab" data-bs-target="#consultation" type="button" role="tab" aria-controls="consultation" aria-selected="true">Consultation</button>
@@ -238,14 +228,14 @@ const HomePage = () => {
                 <button ref={documentationTabRef} class="nav-link " id="documentation-tab" data-bs-toggle="tab" data-bs-target="#documentation" type="button" role="tab" aria-controls="documentation" aria-selected="true">Documentation</button>
               </li>
               {/* <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="to-dos-tab" data-bs-toggle="tab" data-bs-target="#to-dos" type="button" role="tab" aria-controls="to-dos" aria-selected="true" disabled>To Dos</button>
-                </li> */}
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" id="claims-tab" data-bs-toggle="tab" data-bs-target="#claims" type="button" role="tab" aria-controls="claims" aria-selected="true" disabled>Claims</button>
+                <button class="nav-link" id="to-dos-tab" data-bs-toggle="tab" data-bs-target="#to-dos" type="button" role="tab" aria-controls="to-dos" aria-selected="true" disabled>To Dos</button>
+              </li> */}
+              <li key="claims" class="nav-item" role="presentation">
+                <button class="nav-link" id="claims-tab" data-bs-toggle="tab" data-bs-target="#claims" type="button" role="tab" aria-controls="claims" aria-selected="true">Claims</button>
               </li>
               {/* <li class="nav-item" role="notes">
-                  <button class="nav-link" id="notes-tab" data-bs-toggle="tab" data-bs-target="#notes" type="button" role="tab" aria-controls="notes" aria-selected="true">Note</button>
-                </li> */}
+                <button class="nav-link" id="notes-tab" data-bs-toggle="tab" data-bs-target="#notes" type="button" role="tab" aria-controls="notes" aria-selected="true">Note</button>
+              </li> */}
             </ul>
           </div>
 
@@ -258,60 +248,145 @@ const HomePage = () => {
                   <div className='pt-2 info'><img src={IconInfo} className='imgs' /></div>
 
                   <div class='row'>
-                    <div class='col'>
-
-                      <div class="card">
-                        <div class="card-body">
-                          <h5 class="card-title">Transcription of Consulation</h5>
-                          <textarea class="form-control text-area" id="exampleFormControlTextarea1" rows="24"
+                    <div className="col-lg-6 col-md-12">
+                      <div className="card card-height">
+                        <div className="card-body">
+                          <h5 class="card-title">Transcription of Consultaion</h5>
+                          <textarea class="form-control" id="exampleFormControlTextarea1" rows="18"
+                            style={{ fontSize: '10pt', textAlign: "justify" }}
                             value={voiceRecording}
                             onInput={e => setVoiceRecording(e.target.value)}
                           />
                         </div>
-                        <div class="row btn-div1">
-                          <div class="col">
-                            <button className="btn-hs">Human Scribe</button>
-                          </div>
-                          <div class="col btn-div">
-                            <button className="btn-at" onClick={handleAcceptText}>Accept Text</button>
+                        <div className="row btn-div1">
+                          <div className="col"></div>
+                          <div className="col btn-div">
+                            <button className="btn-hs" onClick={() => handleChangeSoapNotes('Concise')}>Summarise</button>
                           </div>
                         </div>
                       </div>
-
+                      <div className="card mt-4">
+                        <div className="card-body">
+                          <h5 className="card-title">Add Notes</h5>
+                          <textarea className="form-control" id="exampleFormControlTextarea1" rows="4"
+                            // value={voiceRecording}
+                            onInput={e => setVoiceRecording(e.target.value)}>{voiceRecording}</textarea>
+                        </div>
+                        <div className="row btn-div1">
+                          <div className="col">
+                            <RecordButton status={recorderConfig.status} setRecorderStatus={setRecorderConfig} />
+                          </div>
+                          <div className="col btn-div">
+                            <button className="btn-hs">Confirm</button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div class='col'>
-                      <div class="card">
-                        <div class="card-body">
-                          <h5 class="card-title">Summary of Medical Notes by AI</h5>
-                          <textarea class="form-control text-area" id="exampleFormControlTextarea1" rows="24"
-                            value={conversation}
-                            onInput={e => setConversation(e.target.value)}
-                          >
 
-                          </textarea>
-                          {/* <div className="summary-div">
-                              Subjective
-                              <textarea class="form-control text-area" id="exampleFormControlTextarea1" rows="3" value={subjective} onChange={e => setSubjective(e.target.value)}></textarea>
-                            </div>
-                            <div className="summary-div">
-                              Objective
-                              <textarea class="form-control text-area" id="exampleFormControlTextarea1" rows="3" value={objective} onChange={e => setObjective(e.target.value)}></textarea>
-                            </div>
-                            <div className="summary-div">
-                              Assessment
-                              <textarea class="form-control text-area" id="exampleFormControlTextarea1" rows="3" value={assessment} onChange={e => setAssessment(e.target.value)}></textarea>
-                            </div>
-                            <div className="summary-div">
-                              Plan
-                              <textarea class="form-control text-area" id="exampleFormControlTextarea1" rows="3" value={plan} onChange={e => setPlan(e.target.value)}></textarea>
-                            </div> */}
+
+
+                    <div class='col-lg-6 col-md-12'>
+                      <div class="card con-md-top">
+                        <div class="card-body soap-card-text" style={{ fontSize: "10pt" }}>
+                          {/* {loading ? (
+                            <>
+                              <h5 className="card-title-nl">SOAP by AI
+                                <div class="form-check form-check-inline">
+                                  <input className='form-check-input radio-btn-soap' type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Concise"
+                                    //  onChange={() => handleChangeSoapNotes('Concise')}
+                                    onChange={handleChangeSoapNotes}
+                                    checked={selectedOption === 'Concise'}
+                                  />
+                                  <label className='soap-note-label' for="inlineRadio1">Concise</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input className='form-check-input radio-btn-soap' type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Detailed"
+                                    // onChange={() => handleChangeSoapNotes('Detailed')}
+                                    onChange={handleChangeSoapNotes}
+                                    checked={selectedOption === 'Detailed'}
+                                  />
+                                  <label className='soap-note-label' for="inlineRadio2">Detailed</label>
+                                </div>
+                              </h5>
+                              <div className="spinner-container">
+                                <BarLoader loading={loading} color="#209F85" width={598} height={1} className='report-spinner' />
+                                <img src={AILogo} alt="" className='ai-logo-move' />
+                              </div>
+                            </>
+                          ) : (
+                            <>
+                              <img src={AILogos} alt="" className='ai-logo' />
+                              <h5 className="card-title-soap">SOAP by AI
+                                <div class="form-check form-check-inline">
+                                  <input className='form-check-input radio-btn-soap' type="radio" name="inlineRadioOptions" id="inlineRadio1" value="Concise"
+                                    // onChange={() => handleChangeSoapNotes('Concise')}
+                                    onChange={handleChangeSoapNotes}
+                                    checked={selectedOption === 'Concise'}
+                                  />
+                                  <label className='soap-note-label' for="inlineRadio1">Concise</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input className='form-check-input radio-btn-soap' type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Detailed"
+                                    // onChange={() => handleChangeSoapNotes('Concise')}
+                                    onChange={handleChangeSoapNotes}
+                                    checked={selectedOption === 'Detailed'}
+                                  />
+                                  <label className='soap-note-label' for="inlineRadio2">Detailed</label>
+                                </div>
+                              </h5>
+                              <ReactMarkdown>{conversation}</ReactMarkdown>
+                            </>
+                          )} */}
+
+                          {
+                            loading ? (
+                              <>
+                                <h5 className="card-title-nl">Clinical Note</h5>
+                                <div className="spinner-container">
+                                  <BarLoader loading={loading} color="#209F85" width={598} height={1} className='report-spinner' />
+                                  <img src={AILogo} alt="" className='ai-logo-move' />
+                                </div>
+                              </>
+                            ) : (
+                              <>
+                                <img src={AILogos} alt="" className='ai-logo-consultation' />
+                                <h5 className="card-title-soap">Clinical Note</h5>
+
+
+                                {/* <ReactMarkdown>{conversation}</ReactMarkdown> */}
+                                {/* <Quill value={conversation}/> */}
+                                {/* <ReactQuill theme="snow" value={conversation}/>; */}
+                                {/* <MarkdownEditor>{conversation}</MarkdownEditor> */}
+
+                                <MdEditor
+                                  value={conversation}
+                                  style={{ height: '691px' }}
+                                  renderHTML={(conversation) => mdParser.render(conversation)}
+                                  onChange={handleEditorChange}
+                                  view={{ menu: true, md: false, html: true }}
+                                  config={{
+                                    canView: {
+                                      menu: true,
+                                      md: true,
+                                      html: true,
+                                      fullScreen: true, // Optional: if you want to keep full screen option
+                                      both: false // This hides the "both" option
+                                    },
+                                  }}
+                                />
+
+                              </>
+                            )
+                          }
+
+
                         </div>
                         <div class="row btn-div1">
                           <div class="col">
-                            <button className="btn-hs">Redraft</button>
+                            {/* <button className="btn-hs">Redraft</button> */}
                           </div>
                           <div class="col btn-div">
-                            <button className="btn-at">Copy Text</button>
+                            <button className="btn-at" onClick={handleAcceptText}>Accept Text</button>
                           </div>
                         </div>
                       </div>
@@ -319,9 +394,9 @@ const HomePage = () => {
                   </div>
                 </div>
 
-                <div className="right1 mt-4">
-                  <button onClick={handleContinueConsultationClick} type="button" class="btn-c">Continue</button>
-                </div>
+                {/* <div className="right1 mt-4">
+                  <button type="button" class="btn-c">Continue</button>
+                </div> */}
                 {/* end here */}
               </div>
 
@@ -336,14 +411,16 @@ const HomePage = () => {
                   content={conversation}
                 />
               </div>
-    
+              <div class="tab-pane fade" id="claims" role="tabpanel" aria-labelledby="claims-tab">
+                <Claims content={conversation} />
+              </div>
               {/* <div class="tab-pane fade" id="notes" role="tabpanel" aria-labelledby="notes-tab">
-                  <Notes />
-                </div> */}
+                <Notes />
+              </div> */}
             </div>
           </div>
         </div>
-      </div>
+      </div >
     </>
   );
 }

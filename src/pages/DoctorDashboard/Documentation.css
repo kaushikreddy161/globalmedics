@@ -6,15 +6,34 @@ body {
   box-shadow: 5px 5px 10px -3px rgba(0, 0, 0, 0.5);
   border: none !important;
   border-radius: 10pt !important;
-  margin-top: auto !important;
 }
 
 .card .card-title {
   color: #209F85;
   padding-bottom: 3pt;
   font-size: 12pt;
-  font-weight: 400;
+  font-weight: 500;
   border-bottom: 1px solid #209F85;
+  margin-top: 0rem;
+  margin-bottom: 1.5rem;
+}
+
+.card .card-title-soap {
+  color: #209F85;
+  padding-bottom: 3pt;
+  font-size: 12pt;
+  font-weight: 500;
+  border-bottom: 1px solid #209F85;
+  margin-top: 0rem;
+  margin-bottom: 1.5rem;
+}
+
+.card .card-title-nl {
+  color: #209F85;
+  font-size: 12pt;
+  font-weight: 400;
+  margin-top: 0rem;
+  margin-bottom: 1.5rem;
 }
 
 .card .card-subtitle {
@@ -74,18 +93,19 @@ body {
   height: 28pt;
 }
 
-.css-t3ipsp-control{
-  min-height: 30px !important;
-  height: 30px !important;
-  border-radius: 20px !important;
-}
-.css-13cymwt-control{
+.css-t3ipsp-control {
   min-height: 30px !important;
   height: 30px !important;
   border-radius: 20px !important;
 }
 
-.css-1fdsijx-ValueContainer{
+.css-13cymwt-control {
+  min-height: 30px !important;
+  height: 30px !important;
+  border-radius: 20px !important;
+}
+
+.css-1fdsijx-ValueContainer {
   padding: 0px 14px 6px !important;
   font-size: 10pt !important;
 }
@@ -93,20 +113,60 @@ body {
 .css-1u9des2-indicatorSeparator {
   margin-bottom: 14px !important;
 }
+
 .css-tj5bde-Svg {
   padding-bottom: 3pt !important;
 }
+
 .form-check-input[type=radio] {
   margin-top: 4pt !important;
 }
 
-.css-1qtkgp3-control{
+.css-1qtkgp3-control {
   min-height: 30px !important;
   height: 30px !important;
   border-radius: 20px !important;
 
 }
-.css-1nmdiq5-menu{
+
+.css-1nmdiq5-menu {
   padding: 0px 14px 7px !important;
   font-size: 10pt !important;
+}
+
+
+.ai-logo-da {
+  width: 7%;
+  float: right;
+  background: white;
+  margin-top: -23pt;
+}
+
+.ai-logo-ds {
+  width: 4%;
+  float: right;
+  background: white;
+  margin-top: 5pt;
+}
+
+.img-pro {
+  border-radius: 50%;
+}
+
+.non-interactive {
+  pointer-events: none;
+  /* Make the Select component non-interactive */
+  opacity: 1;
+  /* Ensure it is fully visible */
+  margin-left: 6.7rem;
+}
+
+.disabled-section {
+  opacity: 0.6;
+  /* Adjust opacity to make it look visually disabled */
+}
+
+
+.ql-container {
+  height: 264pt !important;
 }

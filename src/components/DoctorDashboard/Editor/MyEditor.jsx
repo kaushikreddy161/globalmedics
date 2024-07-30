@@ -59,6 +59,24 @@ const MyEditor = (prop) => {
     URL.revokeObjectURL(url);
   };
 
+  const modules = {
+    toolbar: [
+      [{ 'font': [] }],
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'script': 'sub'}, { 'script': 'super' }],
+      [{ 'indent': '-1'}, { 'indent': '+1' }],
+      [{ 'direction': 'rtl' }],
+      [{ 'size': ['small', false, 'large', 'huge'] }],
+      [{ 'header': 1 }, { 'header': 2 }],
+      ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      [{ 'color': [] }, { 'background': [] }],
+      [{ 'align': [] }],
+      ['link', 'image', 'video'],
+      ['clean']
+    ],
+  };
+
   return (
     <>
       <div ref={editorRef}>
@@ -66,7 +84,8 @@ const MyEditor = (prop) => {
           theme="snow" // Snow theme for a Word-like interface
           value={editorHtml}
           onChange={handleChange}
-          style={{ height: '602px' }}
+          style={{height: '563px'}}
+          modules={modules}
         />
 
         {/* <button onClick={handlePrint}>Print</button> */}

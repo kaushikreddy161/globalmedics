@@ -1,0 +1,1751 @@
+{
+    "status": "success",
+    "user_details": {
+      "ageInDays": 7670,
+      "ageText": "21 years",
+      "gender": "F",
+      "genderText": "Female"
+    },
+    "symptoms": {
+      "initial": [
+        {
+          "id": "s_98",
+          "name": "Fever",
+          "common_name": "Fever",
+          "sex_filter": "both",
+          "category": "Signs and symptoms",
+          "seriousness": "normal",
+          "extras": {},
+          "children": [
+            {
+              "id": "s_100",
+              "parent_relation": "severity"
+            },
+            {
+              "id": "s_1820",
+              "parent_relation": "severity"
+            },
+            {
+              "id": "s_2000",
+              "parent_relation": "severity"
+            },
+            {
+              "id": "s_2319",
+              "parent_relation": "duration"
+            },
+            {
+              "id": "s_2320",
+              "parent_relation": "duration"
+            },
+            {
+              "id": "s_2854",
+              "parent_relation": "duration"
+            },
+            {
+              "id": "s_2855",
+              "parent_relation": "duration"
+            },
+            {
+              "id": "s_2879",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_2888",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_2890",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_2891",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_99",
+              "parent_relation": "severity"
+            }
+          ],
+          "image_url": null,
+          "image_source": null,
+          "parent_id": null,
+          "parent_relation": null,
+          "type": "symptom",
+          "status": "present",
+          "initial": true
+        }
+      ],
+      "additional": [
+        {
+          "id": "s_81",
+          "name": "Chills",
+          "common_name": "Chills",
+          "sex_filter": "both",
+          "category": "Signs and symptoms",
+          "seriousness": "normal",
+          "extras": {},
+          "children": [],
+          "image_url": null,
+          "image_source": null,
+          "parent_id": null,
+          "parent_relation": null,
+          "type": "symptom",
+          "status": "unknown",
+          "initial": false
+        },
+        {
+          "id": "s_2100",
+          "name": "Fatigue",
+          "common_name": "Fatigue",
+          "sex_filter": "both",
+          "category": "Signs and symptoms",
+          "seriousness": "normal",
+          "extras": {},
+          "children": [
+            {
+              "id": "s_1332",
+              "parent_relation": "exacerbating_factor"
+            },
+            {
+              "id": "s_1547",
+              "parent_relation": "duration"
+            },
+            {
+              "id": "s_2645",
+              "parent_relation": "exacerbating_factor"
+            }
+          ],
+          "image_url": null,
+          "image_source": null,
+          "parent_id": null,
+          "parent_relation": null,
+          "type": "symptom",
+          "status": "unknown",
+          "initial": false
+        },
+        {
+          "id": "s_1142",
+          "name": "Myalgia",
+          "common_name": "Muscle pain",
+          "sex_filter": "both",
+          "category": "Signs and symptoms",
+          "seriousness": "normal",
+          "extras": {},
+          "children": [
+            {
+              "id": "s_1766",
+              "parent_relation": "exacerbating_factor"
+            },
+            {
+              "id": "s_2455",
+              "parent_relation": "exacerbating_factor"
+            }
+          ],
+          "image_url": null,
+          "image_source": null,
+          "parent_id": null,
+          "parent_relation": null,
+          "type": "symptom",
+          "status": "present",
+          "initial": false
+        },
+        {
+          "id": "s_284",
+          "name": "Diminished appetite",
+          "common_name": "Diminished appetite",
+          "sex_filter": "both",
+          "category": "Signs and symptoms",
+          "seriousness": "normal",
+          "extras": {},
+          "children": [],
+          "image_url": null,
+          "image_source": null,
+          "parent_id": null,
+          "parent_relation": null,
+          "type": "symptom",
+          "status": "present",
+          "initial": false
+        },
+        {
+          "id": "s_21",
+          "name": "Headache",
+          "common_name": "Headache",
+          "sex_filter": "both",
+          "category": "Signs and symptoms",
+          "seriousness": "normal",
+          "extras": {},
+          "children": [
+            {
+              "id": "s_1193",
+              "parent_relation": "severity"
+            },
+            {
+              "id": "s_1349",
+              "parent_relation": "location"
+            },
+            {
+              "id": "s_1535",
+              "parent_relation": "duration"
+            },
+            {
+              "id": "s_1762",
+              "parent_relation": "exacerbating_factor"
+            },
+            {
+              "id": "s_1780",
+              "parent_relation": "severity"
+            },
+            {
+              "id": "s_1781",
+              "parent_relation": "severity"
+            },
+            {
+              "id": "s_1871",
+              "parent_relation": "exacerbating_factor"
+            },
+            {
+              "id": "s_1905",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_1911",
+              "parent_relation": "location"
+            },
+            {
+              "id": "s_1912",
+              "parent_relation": "duration"
+            },
+            {
+              "id": "s_22",
+              "parent_relation": "location"
+            },
+            {
+              "id": "s_23",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_24",
+              "parent_relation": "location"
+            },
+            {
+              "id": "s_25",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_2516",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_2566",
+              "parent_relation": "location"
+            },
+            {
+              "id": "s_2567",
+              "parent_relation": "location"
+            },
+            {
+              "id": "s_2568",
+              "parent_relation": "location"
+            },
+            {
+              "id": "s_3034",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_604",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_605",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_625",
+              "parent_relation": "exacerbating_factor"
+            },
+            {
+              "id": "s_799",
+              "parent_relation": "exacerbating_factor"
+            },
+            {
+              "id": "s_970",
+              "parent_relation": "location"
+            }
+          ],
+          "image_url": null,
+          "image_source": null,
+          "parent_id": null,
+          "parent_relation": null,
+          "type": "symptom",
+          "status": "present",
+          "initial": false
+        },
+        {
+          "id": "s_220",
+          "name": "Enlarged lymph nodes",
+          "common_name": "Enlarged lymph nodes",
+          "sex_filter": "both",
+          "category": "Signs and symptoms",
+          "seriousness": "normal",
+          "extras": {},
+          "children": [
+            {
+              "id": "s_2248",
+              "parent_relation": "location"
+            },
+            {
+              "id": "s_2292",
+              "parent_relation": "location"
+            }
+          ],
+          "image_url": null,
+          "image_source": null,
+          "parent_id": null,
+          "parent_relation": null,
+          "type": "symptom",
+          "status": "unknown",
+          "initial": false
+        },
+        {
+          "id": "s_305",
+          "name": "Vomiting",
+          "common_name": "Vomiting",
+          "sex_filter": "both",
+          "category": "Signs and symptoms",
+          "seriousness": "normal",
+          "extras": {},
+          "children": [
+            {
+              "id": "s_1365",
+              "parent_relation": "exacerbating_factor"
+            },
+            {
+              "id": "s_1949",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_2055",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_2056",
+              "parent_relation": "duration"
+            },
+            {
+              "id": "s_2057",
+              "parent_relation": "duration"
+            },
+            {
+              "id": "s_2658",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_306",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_801",
+              "parent_relation": "character"
+            }
+          ],
+          "image_url": null,
+          "image_source": null,
+          "parent_id": null,
+          "parent_relation": null,
+          "type": "symptom",
+          "status": "unknown",
+          "initial": false
+        },
+        {
+          "id": "s_156",
+          "name": "Nausea",
+          "common_name": "Feeling sick or queasy",
+          "sex_filter": "both",
+          "category": "Signs and symptoms",
+          "seriousness": "normal",
+          "extras": {},
+          "children": [
+            {
+              "id": "s_2512",
+              "parent_relation": "exacerbating_factor"
+            }
+          ],
+          "image_url": null,
+          "image_source": null,
+          "parent_id": null,
+          "parent_relation": null,
+          "type": "symptom",
+          "status": "unknown",
+          "initial": false
+        },
+        {
+          "id": "s_1432",
+          "name": "Dyspepsia",
+          "common_name": "Indigestion",
+          "sex_filter": "both",
+          "category": "Signs and symptoms",
+          "seriousness": "normal",
+          "extras": {},
+          "children": [],
+          "image_url": null,
+          "image_source": null,
+          "parent_id": null,
+          "parent_relation": null,
+          "type": "symptom",
+          "status": "unknown",
+          "initial": false
+        },
+        {
+          "id": "s_2045",
+          "name": "Seizures",
+          "common_name": "Seizures",
+          "sex_filter": "both",
+          "category": "Signs and symptoms",
+          "seriousness": "serious",
+          "extras": {},
+          "children": [
+            {
+              "id": "s_189",
+              "parent_relation": "base"
+            },
+            {
+              "id": "s_2209",
+              "parent_relation": "base"
+            },
+            {
+              "id": "s_539",
+              "parent_relation": "base"
+            }
+          ],
+          "image_url": null,
+          "image_source": null,
+          "parent_id": null,
+          "parent_relation": null,
+          "type": "symptom",
+          "status": "present",
+          "initial": false
+        },
+        {
+          "id": "s_1193",
+          "name": "Headache, severe",
+          "common_name": "Severe headache",
+          "sex_filter": "both",
+          "category": "Signs and symptoms",
+          "seriousness": "normal",
+          "extras": {},
+          "children": [
+            {
+              "id": "s_1864",
+              "parent_relation": "severity"
+            }
+          ],
+          "image_url": null,
+          "image_source": null,
+          "parent_id": "s_21",
+          "parent_relation": "severity",
+          "type": "symptom",
+          "status": "unknown",
+          "initial": false
+        },
+        {
+          "id": "s_13",
+          "name": "Abdominal pain",
+          "common_name": "Stomach pain",
+          "sex_filter": "both",
+          "category": "Signs and symptoms",
+          "seriousness": "normal",
+          "extras": {},
+          "children": [
+            {
+              "id": "s_1195",
+              "parent_relation": "severity"
+            },
+            {
+              "id": "s_1202",
+              "parent_relation": "exacerbating_factor"
+            },
+            {
+              "id": "s_1207",
+              "parent_relation": "exacerbating_factor"
+            },
+            {
+              "id": "s_1369",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_1387",
+              "parent_relation": "location"
+            },
+            {
+              "id": "s_14",
+              "parent_relation": "exacerbating_factor"
+            },
+            {
+              "id": "s_15",
+              "parent_relation": "exacerbating_factor"
+            },
+            {
+              "id": "s_1528",
+              "parent_relation": "location"
+            },
+            {
+              "id": "s_1531",
+              "parent_relation": "location"
+            },
+            {
+              "id": "s_1532",
+              "parent_relation": "location"
+            },
+            {
+              "id": "s_1557",
+              "parent_relation": "location"
+            },
+            {
+              "id": "s_1591",
+              "parent_relation": "location"
+            },
+            {
+              "id": "s_1598",
+              "parent_relation": "location"
+            },
+            {
+              "id": "s_16",
+              "parent_relation": "exacerbating_factor"
+            },
+            {
+              "id": "s_17",
+              "parent_relation": "exacerbating_factor"
+            },
+            {
+              "id": "s_1729",
+              "parent_relation": "location"
+            },
+            {
+              "id": "s_1782",
+              "parent_relation": "severity"
+            },
+            {
+              "id": "s_1783",
+              "parent_relation": "severity"
+            },
+            {
+              "id": "s_1802",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_1840",
+              "parent_relation": "duration"
+            },
+            {
+              "id": "s_1842",
+              "parent_relation": "duration"
+            },
+            {
+              "id": "s_1843",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_1844",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_1845",
+              "parent_relation": "radiation"
+            },
+            {
+              "id": "s_1846",
+              "parent_relation": "radiation"
+            },
+            {
+              "id": "s_1847",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_1848",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_1852",
+              "parent_relation": "duration"
+            },
+            {
+              "id": "s_1853",
+              "parent_relation": "duration"
+            },
+            {
+              "id": "s_1854",
+              "parent_relation": "location"
+            },
+            {
+              "id": "s_1855",
+              "parent_relation": "location"
+            },
+            {
+              "id": "s_1859",
+              "parent_relation": "exacerbating_factor"
+            },
+            {
+              "id": "s_1860",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_2275",
+              "parent_relation": "location"
+            },
+            {
+              "id": "s_2281",
+              "parent_relation": "location"
+            },
+            {
+              "id": "s_2288",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_2311",
+              "parent_relation": "exacerbating_factor"
+            },
+            {
+              "id": "s_2558",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_471",
+              "parent_relation": "radiation"
+            },
+            {
+              "id": "s_57",
+              "parent_relation": "diminishing_factor"
+            }
+          ],
+          "image_url": null,
+          "image_source": null,
+          "parent_id": null,
+          "parent_relation": null,
+          "type": "symptom",
+          "status": "present",
+          "initial": false
+        },
+        {
+          "id": "s_1543",
+          "name": "Loss of consciousness",
+          "common_name": "Loss of consciousness",
+          "sex_filter": "both",
+          "category": "Signs and symptoms",
+          "seriousness": "normal",
+          "extras": {},
+          "children": [
+            {
+              "id": "s_190",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_2109",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_2302",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_2303",
+              "parent_relation": "character"
+            },
+            {
+              "id": "s_2468",
+              "parent_relation": "exacerbating_factor"
+            },
+            {
+              "id": "s_2471",
+              "parent_relation": "exacerbating_factor"
+            },
+            {
+              "id": "s_2472",
+              "parent_relation": "exacerbating_factor"
+            },
+            {
+              "id": "s_2474",
+              "parent_relation": "exacerbating_factor"
+            },
+            {
+              "id": "s_2475",
+              "parent_relation": "exacerbating_factor"
+            }
+          ],
+          "image_url": null,
+          "image_source": null,
+          "parent_id": null,
+          "parent_relation": null,
+          "type": "symptom",
+          "status": "unknown",
+          "initial": false
+        },
+        {
+          "id": "s_185",
+          "name": "Oliguria",
+          "common_name": "Urinating less than usual",
+          "sex_filter": "both",
+          "category": "Signs and symptoms",
+          "seriousness": "normal",
+          "extras": {},
+          "children": [],
+          "image_url": null,
+          "image_source": null,
+          "parent_id": null,
+          "parent_relation": null,
+          "type": "symptom",
+          "status": "present",
+          "initial": false
+        },
+        {
+          "id": "s_285",
+          "name": "Weight loss",
+          "common_name": "Weight loss",
+          "sex_filter": "both",
+          "category": "Signs and symptoms",
+          "seriousness": "normal",
+          "extras": {},
+          "children": [
+            {
+              "id": "s_237",
+              "parent_relation": "character"
+            }
+          ],
+          "image_url": null,
+          "image_source": null,
+          "parent_id": null,
+          "parent_relation": null,
+          "type": "symptom",
+          "status": "unknown",
+          "initial": false
+        },
+        {
+          "id": "s_169",
+          "name": "Episodes of depressed mood",
+          "common_name": "Depressed mood",
+          "sex_filter": "both",
+          "category": "Signs and symptoms",
+          "seriousness": "normal",
+          "extras": {},
+          "children": [
+            {
+              "id": "s_2663",
+              "parent_relation": "duration"
+            },
+            {
+              "id": "s_2664",
+              "parent_relation": "duration"
+            },
+            {
+              "id": "s_2665",
+              "parent_relation": "exacerbating_factor"
+            },
+            {
+              "id": "s_2666",
+              "parent_relation": "duration"
+            },
+            {
+              "id": "s_2667",
+              "parent_relation": "duration"
+            },
+            {
+              "id": "s_2677",
+              "parent_relation": "exacerbating_factor"
+            },
+            {
+              "id": "s_835",
+              "parent_relation": "exacerbating_factor"
+            }
+          ],
+          "image_url": null,
+          "image_source": null,
+          "parent_id": null,
+          "parent_relation": null,
+          "type": "symptom",
+          "status": "unknown",
+          "initial": false
+        },
+        {
+          "id": "s_189",
+          "name": "Seizures, with loss of consciousness",
+          "common_name": "Seizures with loss of consciousness",
+          "sex_filter": "both",
+          "category": "Signs and symptoms",
+          "seriousness": "emergency_ambulance",
+          "extras": {},
+          "children": [],
+          "image_url": null,
+          "image_source": null,
+          "parent_id": "s_2045",
+          "parent_relation": "base",
+          "type": "symptom",
+          "status": "present",
+          "initial": false
+        },
+        {
+          "id": "s_2302",
+          "name": "Loss of consciousness, transient",
+          "common_name": "Fainting",
+          "sex_filter": "both",
+          "category": "Signs and symptoms",
+          "seriousness": "normal",
+          "extras": {},
+          "children": [],
+          "image_url": null,
+          "image_source": null,
+          "parent_id": "s_1543",
+          "parent_relation": "character",
+          "type": "symptom",
+          "status": "present",
+          "initial": false
+        },
+        {
+          "id": "s_2320",
+          "name": "Fever, lasting 3 to 7 days",
+          "common_name": "Fever lasting 3 to 7 days",
+          "sex_filter": "both",
+          "category": "Signs and symptoms",
+          "seriousness": "normal",
+          "extras": {},
+          "children": [],
+          "image_url": null,
+          "image_source": null,
+          "parent_id": "s_98",
+          "parent_relation": "duration",
+          "type": "symptom",
+          "status": "present",
+          "initial": false
+        },
+        {
+          "id": "s_2000",
+          "name": "Fever, higher than 104°F or 40°C",
+          "common_name": "Fever higher than 104°F or 40°C",
+          "sex_filter": "both",
+          "category": "Signs and symptoms",
+          "seriousness": "serious",
+          "extras": {},
+          "children": [],
+          "image_url": null,
+          "image_source": null,
+          "parent_id": "s_98",
+          "parent_relation": "severity",
+          "type": "symptom",
+          "status": "present",
+          "initial": false
+        },
+        {
+          "id": "s_1557",
+          "name": "Abdominal pain, diffuse",
+          "common_name": "Widespread abdominal pain",
+          "sex_filter": "both",
+          "category": "Signs and symptoms",
+          "seriousness": "normal",
+          "extras": {},
+          "children": [],
+          "image_url": null,
+          "image_source": null,
+          "parent_id": "s_13",
+          "parent_relation": "location",
+          "type": "symptom",
+          "status": "present",
+          "initial": false
+        },
+        {
+          "id": "s_1853",
+          "name": "Abdominal pain, lasting 8 to 14 days",
+          "common_name": "Abdominal pain lasting 8 to 14 days",
+          "sex_filter": "both",
+          "category": "Signs and symptoms",
+          "seriousness": "normal",
+          "extras": {},
+          "children": [],
+          "image_url": null,
+          "image_source": null,
+          "parent_id": "s_13",
+          "parent_relation": "duration",
+          "type": "symptom",
+          "status": "present",
+          "initial": false
+        },
+        {
+          "id": "s_1195",
+          "name": "Abdominal pain, severe",
+          "common_name": "Severe abdominal pain",
+          "sex_filter": "both",
+          "category": "Signs and symptoms",
+          "seriousness": "normal",
+          "extras": {},
+          "children": [
+            {
+              "id": "s_1929",
+              "parent_relation": "severity"
+            }
+          ],
+          "image_url": null,
+          "image_source": null,
+          "parent_id": "s_13",
+          "parent_relation": "severity",
+          "type": "symptom",
+          "status": "present",
+          "initial": false
+        },
+        {
+          "id": "s_1922",
+          "name": "Heel drop test",
+          "common_name": "Stomach pain after dropping hard on heels",
+          "sex_filter": "both",
+          "category": "Signs and symptoms",
+          "seriousness": "emergency",
+          "extras": {},
+          "children": [],
+          "image_url": null,
+          "image_source": null,
+          "parent_id": null,
+          "parent_relation": null,
+          "type": "symptom",
+          "status": "unknown",
+          "initial": false
+        }
+      ]
+    },
+    "risk_factors": {
+      "initial": [],
+      "additional": [
+        {
+          "id": "p_500",
+          "name": "Contact with children with gastroenteritis",
+          "common_name": "Contact with children with gastroenteritis",
+          "sex_filter": "both",
+          "category": "Risk factors",
+          "seriousness": "normal",
+          "extras": {},
+          "image_url": null,
+          "image_source": null,
+          "type": "risk_factor",
+          "status": "absent",
+          "initial": false
+        },
+        {
+          "id": "p_42",
+          "name": "Pregnancy",
+          "common_name": "Pregnancy",
+          "sex_filter": "female",
+          "category": "Risk factors",
+          "seriousness": "normal",
+          "extras": {},
+          "image_url": null,
+          "image_source": null,
+          "type": "risk_factor",
+          "status": "absent",
+          "initial": false
+        },
+        {
+          "id": "p_305",
+          "name": "Oral antibiotics in the past 2 weeks",
+          "common_name": "Using antibiotics in the past 2 weeks",
+          "sex_filter": "both",
+          "category": "Risk factors",
+          "seriousness": "normal",
+          "extras": {},
+          "image_url": null,
+          "image_source": null,
+          "type": "risk_factor",
+          "status": "absent",
+          "initial": false
+        }
+      ]
+    },
+    "questions": [
+      {
+        "question": {
+          "type": "single",
+          "text": "Have you been around children who have had diarrhea or vomiting?",
+          "explication": null,
+          "instruction": null,
+          "items": [
+            {
+              "id": "p_500",
+              "name": "Contact with children with gastroenteritis",
+              "explication": null,
+              "instruction": null,
+              "choices": [
+                {
+                  "id": "present",
+                  "label": "Yes"
+                },
+                {
+                  "id": "absent",
+                  "label": "No"
+                },
+                {
+                  "id": "unknown",
+                  "label": "Don’t know"
+                }
+              ]
+            }
+          ],
+          "extras": {}
+        },
+        "response": "No"
+      },
+      {
+        "question": {
+          "type": "group_single",
+          "text": "Were the seizures accompanied by a loss of consciousness?",
+          "explication": null,
+          "instruction": null,
+          "items": [
+            {
+              "id": "s_189",
+              "name": "Yes",
+              "explication": "An involuntary, rapid shaking movement, with fainting or losing consciousness.",
+              "instruction": null,
+              "choices": [
+                {
+                  "id": "present",
+                  "label": "Yes"
+                },
+                {
+                  "id": "absent",
+                  "label": "No"
+                },
+                {
+                  "id": "unknown",
+                  "label": "Don’t know"
+                }
+              ]
+            },
+            {
+              "id": "s_539",
+              "name": "No",
+              "explication": "An involuntary, rapid shaking movement, without fainting or losing consciousness.",
+              "instruction": null,
+              "choices": [
+                {
+                  "id": "present",
+                  "label": "Yes"
+                },
+                {
+                  "id": "absent",
+                  "label": "No"
+                },
+                {
+                  "id": "unknown",
+                  "label": "Don’t know"
+                }
+              ]
+            }
+          ],
+          "extras": {}
+        },
+        "response": "Yes"
+      },
+      {
+        "question": {
+          "type": "group_single",
+          "text": "How long have you been unconscious?",
+          "explication": null,
+          "instruction": null,
+          "items": [
+            {
+              "id": "s_2302",
+              "name": "Brief loss of consciousness, but recovered spontaneously",
+              "explication": null,
+              "instruction": [
+                "Observe if she open her eyes spontaneously.",
+                "Check her verbal response, e.g., is it orientated and adequate to her development.",
+                "Observe if she moves spontaneously."
+              ],
+              "choices": [
+                {
+                  "id": "present",
+                  "label": "Yes"
+                },
+                {
+                  "id": "absent",
+                  "label": "No"
+                },
+                {
+                  "id": "unknown",
+                  "label": "Don’t know"
+                }
+              ]
+            },
+            {
+              "id": "s_2303",
+              "name": "Unresponsive for over 1 minute, i.e., not reacting in any way to sound or pain for an extended period",
+              "explication": null,
+              "instruction": [
+                "Make sure the area around her is safe.",
+                "Try to speak to her, shake her shoulders, and avoid putting too much pressure on her body.",
+                "If she does not react, please call the ambulance as soon as possible and seek help.",
+                "Include specific information such as the address, a brief description of the situation, her state, your name, and your telephone number.",
+                "Proceed as informed by the emergency services."
+              ],
+              "choices": [
+                {
+                  "id": "present",
+                  "label": "Yes"
+                },
+                {
+                  "id": "absent",
+                  "label": "No"
+                },
+                {
+                  "id": "unknown",
+                  "label": "Don’t know"
+                }
+              ]
+            }
+          ],
+          "extras": {}
+        },
+        "response": "Brief loss of consciousness, but recovered spontaneously"
+      },
+      {
+        "question": {
+          "type": "group_single",
+          "text": "How long have you had a fever?",
+          "explication": null,
+          "instruction": null,
+          "items": [
+            {
+              "id": "s_2319",
+              "name": "Less than 3 days",
+              "explication": null,
+              "instruction": null,
+              "choices": [
+                {
+                  "id": "present",
+                  "label": "Yes"
+                },
+                {
+                  "id": "absent",
+                  "label": "No"
+                },
+                {
+                  "id": "unknown",
+                  "label": "Don’t know"
+                }
+              ]
+            },
+            {
+              "id": "s_2320",
+              "name": "3 to 7 days",
+              "explication": null,
+              "instruction": null,
+              "choices": [
+                {
+                  "id": "present",
+                  "label": "Yes"
+                },
+                {
+                  "id": "absent",
+                  "label": "No"
+                },
+                {
+                  "id": "unknown",
+                  "label": "Don’t know"
+                }
+              ]
+            },
+            {
+              "id": "s_2855",
+              "name": "8 to 14 days",
+              "explication": null,
+              "instruction": null,
+              "choices": [
+                {
+                  "id": "present",
+                  "label": "Yes"
+                },
+                {
+                  "id": "absent",
+                  "label": "No"
+                },
+                {
+                  "id": "unknown",
+                  "label": "Don’t know"
+                }
+              ]
+            },
+            {
+              "id": "s_2854",
+              "name": "More than 14 days",
+              "explication": null,
+              "instruction": null,
+              "choices": [
+                {
+                  "id": "present",
+                  "label": "Yes"
+                },
+                {
+                  "id": "absent",
+                  "label": "No"
+                },
+                {
+                  "id": "unknown",
+                  "label": "Don’t know"
+                }
+              ]
+            }
+          ],
+          "extras": {}
+        },
+        "response": "3 to 7 days"
+      },
+      {
+        "question": {
+          "type": "group_single",
+          "text": "What is your body temperature?",
+          "explication": null,
+          "instruction": null,
+          "items": [
+            {
+              "id": "s_99",
+              "name": "Between 98.6 and 100.3°F or 37 and 37.9°C",
+              "explication": null,
+              "instruction": null,
+              "choices": [
+                {
+                  "id": "present",
+                  "label": "Yes"
+                },
+                {
+                  "id": "absent",
+                  "label": "No"
+                },
+                {
+                  "id": "unknown",
+                  "label": "Don’t know"
+                }
+              ]
+            },
+            {
+              "id": "s_100",
+              "name": "Between 100.4 and 104°F or 38 and 40°C",
+              "explication": null,
+              "instruction": null,
+              "choices": [
+                {
+                  "id": "present",
+                  "label": "Yes"
+                },
+                {
+                  "id": "absent",
+                  "label": "No"
+                },
+                {
+                  "id": "unknown",
+                  "label": "Don’t know"
+                }
+              ]
+            },
+            {
+              "id": "s_2000",
+              "name": "More than 104°F or 40°C",
+              "explication": null,
+              "instruction": null,
+              "choices": [
+                {
+                  "id": "present",
+                  "label": "Yes"
+                },
+                {
+                  "id": "absent",
+                  "label": "No"
+                },
+                {
+                  "id": "unknown",
+                  "label": "Don’t know"
+                }
+              ]
+            },
+            {
+              "id": "s_1820",
+              "name": "It wasn’t measured",
+              "explication": null,
+              "instruction": null,
+              "choices": [
+                {
+                  "id": "present",
+                  "label": "Yes"
+                },
+                {
+                  "id": "absent",
+                  "label": "No"
+                },
+                {
+                  "id": "unknown",
+                  "label": "Don’t know"
+                }
+              ]
+            }
+          ],
+          "extras": {}
+        },
+        "response": "More than 104°F or 40°C"
+      },
+      {
+        "question": {
+          "type": "group_single",
+          "text": "Where is your abdominal pain?",
+          "explication": null,
+          "instruction": null,
+          "items": [
+            {
+              "id": "s_1557",
+              "name": "All over the abdomen",
+              "explication": null,
+              "instruction": null,
+              "choices": [
+                {
+                  "id": "present",
+                  "label": "Yes"
+                },
+                {
+                  "id": "absent",
+                  "label": "No"
+                },
+                {
+                  "id": "unknown",
+                  "label": "Don’t know"
+                }
+              ]
+            },
+            {
+              "id": "s_2275",
+              "name": "In a specific part of the abdomen",
+              "explication": null,
+              "instruction": null,
+              "choices": [
+                {
+                  "id": "present",
+                  "label": "Yes"
+                },
+                {
+                  "id": "absent",
+                  "label": "No"
+                },
+                {
+                  "id": "unknown",
+                  "label": "Don’t know"
+                }
+              ]
+            },
+            {
+              "id": "s_2281",
+              "name": "Don’t know",
+              "explication": null,
+              "instruction": null,
+              "choices": [
+                {
+                  "id": "present",
+                  "label": "Yes"
+                },
+                {
+                  "id": "absent",
+                  "label": "No"
+                },
+                {
+                  "id": "unknown",
+                  "label": "Don’t know"
+                }
+              ]
+            }
+          ],
+          "extras": {}
+        },
+        "response": "All over the abdomen"
+      },
+      {
+        "question": {
+          "type": "group_single",
+          "text": "How long have you had abdominal pain?",
+          "explication": null,
+          "instruction": null,
+          "items": [
+            {
+              "id": "s_1840",
+              "name": "Less than 2 days",
+              "explication": null,
+              "instruction": null,
+              "choices": [
+                {
+                  "id": "present",
+                  "label": "Yes"
+                },
+                {
+                  "id": "absent",
+                  "label": "No"
+                },
+                {
+                  "id": "unknown",
+                  "label": "Don’t know"
+                }
+              ]
+            },
+            {
+              "id": "s_1852",
+              "name": "Between 2 and 7 days",
+              "explication": null,
+              "instruction": null,
+              "choices": [
+                {
+                  "id": "present",
+                  "label": "Yes"
+                },
+                {
+                  "id": "absent",
+                  "label": "No"
+                },
+                {
+                  "id": "unknown",
+                  "label": "Don’t know"
+                }
+              ]
+            },
+            {
+              "id": "s_1853",
+              "name": "Between 8 and 14 days",
+              "explication": null,
+              "instruction": null,
+              "choices": [
+                {
+                  "id": "present",
+                  "label": "Yes"
+                },
+                {
+                  "id": "absent",
+                  "label": "No"
+                },
+                {
+                  "id": "unknown",
+                  "label": "Don’t know"
+                }
+              ]
+            },
+            {
+              "id": "s_1842",
+              "name": "More than 2 weeks",
+              "explication": null,
+              "instruction": null,
+              "choices": [
+                {
+                  "id": "present",
+                  "label": "Yes"
+                },
+                {
+                  "id": "absent",
+                  "label": "No"
+                },
+                {
+                  "id": "unknown",
+                  "label": "Don’t know"
+                }
+              ]
+            }
+          ],
+          "extras": {}
+        },
+        "response": "Between 8 and 14 days"
+      },
+      {
+        "question": {
+          "type": "group_single",
+          "text": "How bad is your abdominal pain?",
+          "explication": null,
+          "instruction": null,
+          "items": [
+            {
+              "id": "s_1782",
+              "name": "Mild",
+              "explication": null,
+              "instruction": null,
+              "choices": [
+                {
+                  "id": "present",
+                  "label": "Yes"
+                },
+                {
+                  "id": "absent",
+                  "label": "No"
+                },
+                {
+                  "id": "unknown",
+                  "label": "Don’t know"
+                }
+              ]
+            },
+            {
+              "id": "s_1783",
+              "name": "Moderate",
+              "explication": null,
+              "instruction": null,
+              "choices": [
+                {
+                  "id": "present",
+                  "label": "Yes"
+                },
+                {
+                  "id": "absent",
+                  "label": "No"
+                },
+                {
+                  "id": "unknown",
+                  "label": "Don’t know"
+                }
+              ]
+            },
+            {
+              "id": "s_1195",
+              "name": "Severe",
+              "explication": null,
+              "instruction": null,
+              "choices": [
+                {
+                  "id": "present",
+                  "label": "Yes"
+                },
+                {
+                  "id": "absent",
+                  "label": "No"
+                },
+                {
+                  "id": "unknown",
+                  "label": "Don’t know"
+                }
+              ]
+            }
+          ],
+          "extras": {}
+        },
+        "response": "Severe"
+      },
+      {
+        "question": {
+          "type": "single",
+          "text": "Do you have abdominal pain when you stand on your toes and then drop down hard onto your heels?",
+          "explication": null,
+          "instruction": null,
+          "items": [
+            {
+              "id": "s_1922",
+              "name": "Heel drop test",
+              "explication": null,
+              "instruction": null,
+              "choices": [
+                {
+                  "id": "present",
+                  "label": "Yes"
+                },
+                {
+                  "id": "absent",
+                  "label": "No"
+                },
+                {
+                  "id": "unknown",
+                  "label": "Don’t know"
+                }
+              ]
+            }
+          ],
+          "extras": {}
+        },
+        "response": "Don’t know"
+      },
+      {
+        "question": {
+          "type": "single",
+          "text": "Are you pregnant?",
+          "explication": "Answering YES means that the person is pregnant, or in other words, that they are expecting a child.",
+          "instruction": null,
+          "items": [
+            {
+              "id": "p_42",
+              "name": "Pregnancy",
+              "explication": null,
+              "instruction": null,
+              "choices": [
+                {
+                  "id": "present",
+                  "label": "Yes"
+                },
+                {
+                  "id": "absent",
+                  "label": "No"
+                },
+                {
+                  "id": "unknown",
+                  "label": "Don’t know"
+                }
+              ]
+            }
+          ],
+          "extras": {}
+        },
+        "response": "No"
+      },
+      {
+        "question": {
+          "type": "single",
+          "text": "Have you taken antibiotics in the past 2 weeks?",
+          "explication": null,
+          "instruction": null,
+          "items": [
+            {
+              "id": "p_305",
+              "name": "Oral antibiotics in the past 2 weeks",
+              "explication": null,
+              "instruction": null,
+              "choices": [
+                {
+                  "id": "present",
+                  "label": "Yes"
+                },
+                {
+                  "id": "absent",
+                  "label": "No"
+                },
+                {
+                  "id": "unknown",
+                  "label": "Don’t know"
+                }
+              ]
+            }
+          ],
+          "extras": {}
+        },
+        "response": "No"
+      }
+    ],
+    "possible_causes": [
+      {
+        "id": "c_1075",
+        "name": "Epilepsy with loss of consciousness",
+        "common_name": "Epilepsy with loss of consciousness",
+        "sex_filter": "both",
+        "categories": [
+          "Neurology"
+        ],
+        "prevalence": "very_rare",
+        "acuteness": "chronic_with_exacerbations",
+        "severity": "severe",
+        "extras": {
+          "icd10_code": "G40.3, G40.4, G40.6",
+          "hint": "Please consult a neurologist."
+        },
+        "triage_level": "consultation",
+        "recommended_channel": "personal_visit",
+        "type": "condition",
+        "probability": 0.7835
+      },
+      {
+        "id": "c_1077",
+        "name": "Bacterial gastroenteritis",
+        "common_name": "Bacterial gastroenteritis",
+        "sex_filter": "both",
+        "categories": [
+          "Gastroenterology"
+        ],
+        "prevalence": "moderate",
+        "acuteness": "acute",
+        "severity": "moderate",
+        "extras": {
+          "icd10_code": "A04, A04.9, A09, K52.8, K52.9",
+          "hint": "Please consult a family doctor."
+        },
+        "triage_level": "consultation",
+        "recommended_channel": "audio_teleconsultation",
+        "type": "condition",
+        "probability": 0.5228
+      },
+      {
+        "id": "c_1076",
+        "name": "Viral gastroenteritis",
+        "common_name": "Stomach flu",
+        "sex_filter": "both",
+        "categories": [
+          "Gastroenterology"
+        ],
+        "prevalence": "common",
+        "acuteness": "acute",
+        "severity": "moderate",
+        "extras": {
+          "icd10_code": "A08, A08.4, A09, K52.8, K52.9",
+          "hint": "If the symptoms persist for more than 3 days, please consult a family doctor."
+        },
+        "triage_level": "self_care",
+        "recommended_channel": "audio_teleconsultation",
+        "type": "condition",
+        "probability": 0.1792
+      },
+      {
+        "id": "c_812",
+        "name": "Rotavirus infection",
+        "common_name": "Rotavirus infection",
+        "sex_filter": "both",
+        "categories": [
+          "Infectiology"
+        ],
+        "prevalence": "rare",
+        "acuteness": "acute",
+        "severity": "moderate",
+        "extras": {
+          "icd10_code": "A08.0",
+          "hint": "Please consult a family doctor."
+        },
+        "triage_level": "self_care",
+        "recommended_channel": "audio_teleconsultation",
+        "type": "condition",
+        "probability": 0.1056
+      }
+    ],
+    "triage_result": {
+      "triage_level": "emergency_ambulance",
+      "serious": [
+        {
+          "id": "s_2045",
+          "name": "Seizures",
+          "common_name": "Seizures",
+          "seriousness": "emergency",
+          "is_emergency": true
+        },
+        {
+          "id": "s_2000",
+          "name": "Fever, higher than 104°F or 40°C",
+          "common_name": "Fever higher than 104°F or 40°C",
+          "seriousness": "emergency",
+          "is_emergency": true
+        },
+        {
+          "id": "s_189",
+          "name": "Seizures, with loss of consciousness",
+          "common_name": "Seizures with loss of consciousness",
+          "seriousness": "emergency_ambulance",
+          "is_emergency": true
+        },
+        {
+          "id": "s_13",
+          "name": "Abdominal pain",
+          "common_name": "Stomach pain",
+          "seriousness": "serious",
+          "is_emergency": false
+        }
+      ],
+      "root_cause": "emergency_evidence_present",
+      "teleconsultation_applicable": false
+    },
+    "messages": {
+      "user_details": "Age: 21 years, Gender: Female \n\n",
+      "symptomSummary": "Initial complaint: Fever \n \nOther Problems or Symptoms: \n- Muscle pain\n- Diminished appetite\n- Headache\n- Seizures\n- Stomach pain\n- Urinating less than usual\n- Seizures with loss of consciousness\n- Fainting\n- Fever lasting 3 to 7 days\n- Fever higher than 104°F or 40°C\n- Widespread abdominal pain\n- Abdominal pain lasting 8 to 14 days\n- Severe abdominal pain\n\n",
+      "possible_causes": "Here are some possible causes for the problem:\n1. Epilepsy with loss of consciousness\n2. Bacterial gastroenteritis\n3. Stomach flu\n4. Rotavirus infection\n",
+      "triage_result": "Suggested Care: Ambulance"
+    },
+    "specialist": {
+      "recommended_specialist": {
+        "id": "sp_17",
+        "name": "Neurologist"
+      },
+      "recommended_channel": "personal_visit"
+    }
+  }

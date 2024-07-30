@@ -11,13 +11,13 @@ function Index() {
     const activeAccount = instance.getActiveAccount();
 
     return (
-        <MsalProvider instance={instance}>
+       
             <VoiceRecordingProvider>
                 <SelectedLanguageProvider>
                     <Consultation />
                 </SelectedLanguageProvider>
             </VoiceRecordingProvider>
-        </MsalProvider>
+       
     );
 }
 

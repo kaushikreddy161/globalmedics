@@ -152,13 +152,14 @@ const patientHistory = async () => {
 };
 
 // Cliams function is used to call the API to get the Claims
-const getClaimDetails = async (conversation, conciseData) => {
+const getClaimDetails = async (conversation) => {
     try {
         const response = await fetch('https://medicalcodesforaustralia.azurewebsites.net/australianmedicarecodes', {
             method: 'POST',
             headers: headers,
             body: JSON.stringify({
-                conversation, conciseData
+                "conversation": conversation,
+                // "claimsData": claimsData
             })
         });
         const data = await response.json();

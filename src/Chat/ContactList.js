@@ -66,10 +66,10 @@ const ContactList = ({ onContactClick }) => {
       </ul>
 
       <div className="bottom-bar">
-        <button className="btn">Update Status</button>
-        <button className="btn">Call</button>
-        <button className="btn">Settings</button>
-        <button className="btn">Chat</button>
+        <button className="btn-cn">Update Status</button>
+        <button className="btn-cn">Call</button>
+        <button className="btn-cn">Settings</button>
+        <button className="btn-cn">Chat</button>
       </div>
 
     </div>

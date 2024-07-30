@@ -19,6 +19,15 @@ import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import ReactLanguageSelect from 'react-languages-select';
 import 'react-languages-select/css/react-languages-select.css';
+import AddIcon from '../assets/add.png';
+import DeleteIcon from '../assets/delete.png';
+import IconGoogle from '../assets/icon-ad-google.png';
+import IconFacebook from '../assets/icon-ad-facebook.png';
+import IconTwitter from '../assets/icon-ad-twitter.png';
+import IconLinkedIn from '../assets/icon-ad-linkedin.png';
+import IconApple from '../assets/icon-ad-apple.png';
+import IconMailVerify from '../assets/icon-mail-verify.png';
+
 
 async function facebookPIC(fuserid, access_token) {
   // let userInfo = await axios.get("https://graph.facebook.com/v3.2/"+fuserid+"/picture?access_token="+access_token+"&type=square",
@@ -51,30 +60,30 @@ const CareManagerDetails = ({ t }) => {
     // console.log("userInfo google:", userInfo.data.picture);
   }
 
-  console.log("Id Calims :", activeAccount.idTokenClaims.family_name);
+  //console.log("Id Calims :", activeAccount.idTokenClaims.family_name);
 
   const navigate = useNavigate();
-  const [fName, setfName] = useState(activeAccount.idTokenClaims.given_name);
-  const [lName, setlName] = useState(activeAccount.idTokenClaims.family_name);
-  const [email, setEmail] = useState(activeAccount.username);
+  const [fName, setfName] = useState('Rakesh');
+  const [lName, setlName] = useState('Kumar');
+  const [email, setEmail] = useState('rakesh.kush87@gmail.com');
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [status, setStatus] = useState("0");
   const [value, setValue] = useState("");
 
   useEffect(() => {
-    if (activeAccount.idTokenClaims.idp) {
-      if (activeAccount.idTokenClaims.idp === "google.com") {
-        // console.log("logged in through adb2c google");
-        // const { access_token, refresh_token } = res.data; // now I have valid access_token
-        googlePIC(activeAccount.idTokenClaims.idp_access_token);
-      } else if (activeAccount.idTokenClaims.idp === "facebook.com") {
-        //  console.log("logged in through adb2c facebook");
-        facebookPIC(activeAccount.idTokenClaims.oid, activeAccount.idTokenClaims.idp_access_token);
-      } else {
-        console.log("logged in through adb2c");
-      }
-    }
+    // if (activeAccount.idTokenClaims.idp) {
+    //   if (activeAccount.idTokenClaims.idp === "google.com") {
+    //     // console.log("logged in through adb2c google");
+    //     // const { access_token, refresh_token } = res.data; // now I have valid access_token
+    //     googlePIC(activeAccount.idTokenClaims.idp_access_token);
+    //   } else if (activeAccount.idTokenClaims.idp === "facebook.com") {
+    //     //  console.log("logged in through adb2c facebook");
+    //     facebookPIC(activeAccount.idTokenClaims.oid, activeAccount.idTokenClaims.idp_access_token);
+    //   } else {
+    //     console.log("logged in through adb2c");
+    //   }
+    // }
 
     loadUser(); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [adbuser]);
@@ -170,6 +179,45 @@ const CareManagerDetails = ({ t }) => {
     }
   };
 
+
+
+  const [addEmailField, setAddEmailField] = useState([]);
+
+  const handleAddEmail = () => {
+    setAddEmailField([...addEmailField, { value: '' }]);
+  };
+
+  const handleInputEmailChange = (index, event) => {
+    const values = [...addEmailField];
+    values[index].value = event.target.value;
+    setAddEmailField(values);
+  };
+
+  const handleRemoveEmail = (index) => {
+    const values = [...addEmailField];
+    values.splice(index, 1);
+    setAddEmailField(values);
+  };
+
+
+  const [addPhoneField, setAddPhoneField] = useState([]);
+
+  const handleAddPhone = () => {
+    setAddPhoneField([...addPhoneField, { value: '' }]);
+  };
+
+  const handleInputPhoneChange = (index, event) => {
+    const values = [...addPhoneField];
+    values[index].value = event.target.value;
+    setAddPhoneField(values);
+  };
+
+  const handleRemovePhone = (index) => {
+    const values = [...addPhoneField];
+    values.splice(index, 1);
+    setAddPhoneField(values);
+  };
+
   return (
     <Container style={{ background: "#EBEBEB", maxWidth: "100%" }}>
       <Grid
@@ -203,7 +251,7 @@ const CareManagerDetails = ({ t }) => {
                   <Form
                     className="signup-form"
                     style={{ color: "#209F85" }}
-                    // onSubmit={onSubmit}
+                  // onSubmit={onSubmit}
                   >
                     <Form.Group>
                       <Card
@@ -276,20 +324,52 @@ const CareManagerDetails = ({ t }) => {
                       >
                         <Card.Body>
                           <label>Email</label>
-                          <Form.Control
-                            className="name-input"
-                            type="text"
-                            placeholder="email_id@MailProvider.com"
-                            name="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            style={{
-                              marginTop: "2pt",
-                              marginBottom: "0pt",
-                              color: "#707070",
-                              border: "1px solid #ced4da",
-                            }}
-                          ></Form.Control>
+                          <div class="row">
+                            <div class="col-10">
+                              <Form.Control
+                                className="name-input"
+                                type="text"
+                                placeholder="email_id@MailProvider.com"
+                                name="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                style={{
+                                  marginTop: "2pt",
+                                  marginBottom: "0pt",
+                                  color: "#707070",
+                                  border: "1px solid #ced4da",
+                                  // width: "100%",
+                                }}
+                              ></Form.Control>
+                            </div>
+                            
+                            <div class="col-2">
+                              <button className="add-input-btn" type="button" onClick={handleAddEmail}><img alt="" src={AddIcon} style={{ width: "50%" }} /></button>
+                            </div>
+                          </div>
+
+                          {addEmailField.map((addEmailField, index) => (
+                            <div class="row">
+                              <div class="col-9">
+                                <div key={index} className="mt-2">
+                                  <Form.Control
+                                    className="add-email"
+                                    type="text"
+                                    value={addEmailField.value}
+                                    onChange={(event) => handleInputEmailChange(index, event)}
+                                  ></Form.Control>
+                                </div>
+                              </div>
+                              <div class="col-1" style={{textAlign:"right"}}>
+                              <button className="add-input-btn" type="button"><img src={IconMailVerify} className="add-icons"/></button>
+                            </div>
+                              <div class="col-2" style={{textAlign:"right"}}>
+                                <button className="add-input-btn" type="button" onClick={() => handleRemoveEmail(index)}><img src={DeleteIcon} className="add-icons" /></button>
+                              </div>
+                            </div>
+
+                          ))}
+
                         </Card.Body>
                       </Card>
                       <Divider style={{ margin: "4pt" }} />
@@ -305,18 +385,44 @@ const CareManagerDetails = ({ t }) => {
                       >
                         <Card.Body>
                           <label>Mobile</label>
-                          <PhoneInput
-                            country={'in'}
-                            placeholder="Enter phone number"
-                            name="phone"
-                            value={value}
-                            onChange={setValue}
-                            style={{
-                              marginTop: "2pt",
-                              marginBottom: "0pt",
-                              color: "#707070",
-                            }}
-                          />
+                          <div class="row">
+                            <div class="col-10">
+                              <PhoneInput
+                                country={'in'}
+                                placeholder="Enter phone number"
+                                name="phone"
+                                value={value}
+                                onChange={setValue}
+                                style={{
+                                  marginTop: "2pt",
+                                  marginBottom: "0pt",
+                                  color: "#707070",
+                                  width: "100%"
+                                }}
+                              />
+                            </div>
+                            <div class="col-2">
+                              <button className="add-input-btn" type="button" onClick={handleAddPhone}><img alt="" src={AddIcon} style={{ width: "50%" }} /></button>
+                            </div>
+                          </div>
+
+                          {addPhoneField.map((addPhoneField, index) => (
+                            <div class="row">
+                              <div class="col-10">
+                                <div key={index} className="mt-2">
+                                  <Form.Control
+                                    className="add-email"
+                                    type="text"
+                                    value={addPhoneField.value}
+                                    onChange={(event) => handleInputPhoneChange(index, event)}
+                                  ></Form.Control>
+                                </div>
+                              </div>
+                              <div class="col-2">
+                                <button className="add-input-btn" type="button" onClick={() => handleRemovePhone(index)}><img alt="" src={DeleteIcon} style={{ width: "50%" }} /></button>
+                              </div>
+                            </div>
+                          ))}
                         </Card.Body>
                       </Card>
                       <Divider style={{ margin: "4pt" }} />
@@ -331,30 +437,14 @@ const CareManagerDetails = ({ t }) => {
                         }}
                       >
                         <Card.Body>
-                          <label>Preferred Language</label>
-                          
-
-                          <ReactLanguageSelect
-                            searchable={true}
-                            searchPlaceholder="Search for a language" />
-
-
-                          {/* <ReactLanguageSelect /> */}
-
-                          {/* <Form.Control
-                            className="name-input"
-                            type="text"
-                            placeholder=""
-                            // name="email"
-                            // value={email}
-                            // onChange={(e) => setEmail(e.target.value)}
-                            style={{
-                              marginTop: "2pt",
-                              marginBottom: "0pt",
-                              color: "#707070",
-                              border: "1px solid #ced4da",
-                            }}
-                          ></Form.Control> */}
+                          <label>Social Media</label>
+                          <div className="social-icons">
+                          <img src={IconGoogle} className="social-media-icons"/>
+                          <img src={IconFacebook} className="social-media-icons"/>
+                          <img src={IconTwitter} className="social-media-icons"/>
+                          <img src={IconLinkedIn} className="social-media-icons"/>
+                          <img src={IconApple} className="social-media-icons"/>
+                          </div>
                         </Card.Body>
                       </Card>
                     </Form.Group>

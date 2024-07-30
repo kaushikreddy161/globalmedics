@@ -1,34 +1,24 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
-import { UserContext } from "../../contexts/user.context";
-import { useMsal } from '@azure/msal-react';
+import React, { useState } from 'react';
+import { useVoiceRecording } from '../../contexts/DoctorDashboard/voiceRecordingContext';
+import RecordButton from '../../components/DoctorDashboard/AudioRecorder/RecordButton';
 import axios from 'axios';
-import { BSON } from "realm-web";
-import cypherData from "../../crypt/cypherData";
-import moment from "moment";
-import { alert } from "react-bootstrap-confirmation";
 import './Reports.css';
 import ReactMarkdown from 'react-markdown';
 import IconInfo from '../../assets/DoctorDashboard/icon-info.png';
+import { BarLoader } from 'react-spinners';
 import AILogo from '../../assets/DoctorDashboard/ai-logo.gif';
 import AILogos from '../../assets/DoctorDashboard/ai-logo.png';
 
-import { BarLoader } from 'react-spinners';
 
 const Reports = () => {
-  const { user, pId, pName, adbuser } = useContext(UserContext);
-  const { instance } = useMsal();
-  const activeAccount = instance.getActiveAccount();
+  const [voiceRecording, setVoiceRecording, , , recorderConfig, setRecorderConfig] = useVoiceRecording();
   const [image, setImage] = useState(null);
   const [base64Image, setBase64Image] = useState('');
   const [fullscreen, setFullscreen] = useState(false);
   const [Markdown, setMarkdown] = useState('');
   const [analysisResult, setAnalysisResult] = useState('');
   const [loading, setLoading] = useState(false);
-  const [clinicalNotes, setClinicalNotes] = useState('');
-  const preconsultationTabRef = useRef(null); // Ref to preconsultationTabRef tab button
-  useEffect(() => {
-    //  loadUser(); // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pId]);
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -66,7 +56,7 @@ const Reports = () => {
     setLoading(true); // Start loading
     try {
       const pureBase64Image = base64Image.split(',')[1]; // Remove the data:image/png;base64, part
-      const response = await axios.post('https://medicalimageanalysis.azurewebsites.net/analyse', {
+      const response = await axios.post('https://gpt4omedicalimageanalysis.azurewebsites.net/analyse', {
         base_64_encoding: pureBase64Image,
       });
       console.log(response.data); // Log the response to the console
@@ -82,54 +72,18 @@ const Reports = () => {
     }
   };
 
-  const handleContinueClick = async (event) => {
-    event.preventDefault();
-    if (analysisResult !== "" || clinicalNotes !== "" || image !=="") {
-        
-      console.log("Clinical Notes:", clinicalNotes);
-      console.log("AI Analysis:", analysisResult);
-      console.log("Base64 Image:", base64Image);
-      console.log("Image:", image);
-     // Console.log("Image Name:", image.name);
-      try {
-        if (user) {
-           console.log('auth:',user.id);
-          let dt = new Date();
-          let id = new BSON.ObjectID();
-          let cid = BSON.ObjectID(user.id).toString();
-          //let pid = selLid;
-          let pid = pId;
-          const createx = user.functions.createPatientConsultationReport(
-            id,
-            'cid0003',
-            'pid00001',
-            pid,
-            'testreport.jpg',
-            analysisResult,
-            clinicalNotes,
-            dt,
-            "GlobalMedics2021",
-          );
-          createx.then((resp) => {
-            console.log("resp:", resp);
-            alert("Reports saved Successfully");
-          });
-        }
-      } catch (error) {
-        //  alert(error);
-        console.log("error:", error);
-      }
-    }
-    if (preconsultationTabRef.current) {
-      preconsultationTabRef.current.click();
-    }
+  // const [markdown, setMarkdown] = useState('# Hello, *world*!');
+
+  const handleChange = (event) => {
+    setMarkdown(event.target.value);
   };
+
   return (
     <>
       <div className="container-fluid ms-3 pe-5">
         <div className='pt-2 info'><img src={IconInfo} className='imgs' /></div>
         <div className="row">
-          <div className="col-8">
+          <div className="col-lg-6 col-md-12">
             <div className="card card-height">
               <div className="card-body">
                 <h5 className="card-title">Clinical Image</h5>
@@ -159,19 +113,17 @@ const Reports = () => {
                   <button onClick={handleAnalyseClick} className="btn-float">Analyse</button>
                 </div>
               </div>
-
-
-
-
             </div>
             <div className="card mt-4">
               <div className="card-body">
-                <h5 className="card-title">Clinician Notes</h5>
-                <textarea onChange={(e) => setClinicalNotes(e.target.value)} className="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                <h5 className="card-title">Add Notes</h5>
+                <textarea className="form-control" id="exampleFormControlTextarea1" rows="4"
+                  // value={voiceRecording}
+                  onInput={e => setVoiceRecording(e.target.value)}>{voiceRecording}</textarea>
               </div>
               <div className="row btn-div1">
                 <div className="col">
-                  <button className="btn-hs">Dictate Notes</button>
+                  <RecordButton status={recorderConfig.status} setRecorderStatus={setRecorderConfig} />
                 </div>
                 <div className="col btn-div">
                   <button className="btn-hs">Confirm</button>
@@ -180,18 +132,17 @@ const Reports = () => {
             </div>
           </div>
 
-          <div className='col-4'>
+          <div className='col-lg-6 col-md-12 con-md-top'>
             <div className="card card-AI-height">
-              <div className="card-body">
+              <div className="card-body" style={{ fontSize: "10pt" }}>
                 {/* <p className='ai-logo'><img src={AILogo} alt="" style={{width:"15%"}}/></p> */}
                 {/* <img src={AILogo} alt="" className='ai-logo' /> */}
                 {/* <textarea className="form-control" id="exampleFormControlTextarea1" rows="28"></textarea> */}
                 {loading ? (
                   <>
                     <h5 className="card-title-nl">AI Analysis </h5>
-
                     <div className="spinner-container">
-                      <BarLoader loading={loading} color="#209F85" width={360} height={1} />
+                      <BarLoader loading={loading} color="#209F85" width={598} height={1} className='report-spinner' />
                       <img src={AILogo} alt="" className='ai-logo-move' />
                     </div>
                   </>
@@ -199,25 +150,34 @@ const Reports = () => {
                   <>
                     <img src={AILogos} alt="" className='ai-logo' />
                     <h5 className="card-title">AI Analysis</h5>
+                    {/* <textarea className="form-control" id="exampleFormControlTextarea1" rows="27" value={analysisResult} onChange={handleAnalysisResultChange}></textarea> */}
                     <ReactMarkdown>{Markdown}</ReactMarkdown>
                   </>
                 )}
+
+                {/* <div>
+                  <MdEditor
+                    value={Markdown}
+                    renderHTML={text => mdParser.render(text)}
+                    onChange={handleEditorChange}
+                  />
+                </div> */}
+
               </div>
-              <div className="row btn-div1">
-                <div className="col btn-div">
-                  <button className="btn-hs">Accept Text</button>
+
+              <div class="row btn-div1">
+                <div class="col"></div>
+                <div class="col btn-div">
+                  <button className="btn-at">Accept Text</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="right mt-4">
-          <button onClick={handleContinueClick} type="button" class="btn-c">Continue</button>
-        </div>
-        <div>
-      {/* <ImageUpload /> */}
-    </div>
+        {/* <div className="right mt-4">
+          <button type="button" class="btn-c">Continue</button>
+        </div> */}
       </div>
 
     </>

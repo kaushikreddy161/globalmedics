@@ -2,7 +2,7 @@
 import * as sdk from "microsoft-cognitiveservices-speech-sdk";
 let transcription = ""; // Variable to store the transcription
 
-const SPEECH_KEY = '777c75ce17384fed960da55e553b832e'
+const SPEECH_KEY = '5d626518fc8a44d59f923889fe4b81b5'
 const SPEECH_REGION = 'australiaeast'
 
 

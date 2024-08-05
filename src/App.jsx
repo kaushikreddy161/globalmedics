@@ -231,6 +231,7 @@ import TrainingScreen_5 from "./pages/TrainingScreen_5";
 import TrainingScreen_6 from "./pages/TrainingScreen_6";
 import TrainingScreen_7 from "./pages/TrainingScreen_7";
 import NewUserLoginWithOTP from "./pages/NewUserLoginWithOTP";
+import MDTSummary from "./pages/MDTSummary";
 
 import Chat from "./pages/Chat";
 import ConversationComponent from "./pages/ConversationComponent";
@@ -562,6 +563,7 @@ const Pages = () => {
             <Route exact path="/trainingScreen_6" element={<TrainingScreen_6 />} />
             <Route exact path="/trainingScreen_7" element={<TrainingScreen_7 />} />
             <Route exact path="/newUserLoginWithOTP" element={<NewUserLoginWithOTP />} />
+            <Route exact path="/mDTSummary" element={<MDTSummary />} />
 
             <Route exact path="/testData" element={<TestData />} />
             <Route exact path="/chat" element={<Chat />} />

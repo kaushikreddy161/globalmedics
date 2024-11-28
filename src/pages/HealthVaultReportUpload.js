@@ -19,188 +19,126 @@ import IconPatientImage from "../assets/icon-patient-photo.png";
 import FixedHeader from "../components/FixedHeader";
 import CarouselSlider from "./CarouselSlider";
 
+
+
 const HealthVaultReportUpload = () => {
-  const { user,pId, pName, adbuser } = useContext(UserContext);
+  const { user, pId, pName, adbuser } = useContext(UserContext);
   const navigate = useNavigate();
   const location = useLocation();
 
   // console.log('location:',location.state.id);
 
-  const [selectDate, setsDate] = useState("");
-  const [selectTest, setsTest] = useState("");
-  const [selectReport, setsReport] = useState("");
-  const [file, setFile] = useState(null);
-  const [fileName, setFileName] = useState(null);
-  const [status, setStatus] = useState("0");
-  const datex = new Date();
-  const [lovedones, setlovedOnes] = useState([]);
-  const [selLid, setSelLId] = useState("");
+  // const [selectDate, setsDate] = useState("");
+  // const [selectTest, setsTest] = useState("");
+  // const [selectReport, setsReport] = useState("");
+  // const [file, setFile] = useState(null);
+  // const [fileName, setFileName] = useState(null);
+  // const [status, setStatus] = useState("0");
+  // const datex = new Date();
+  // const [lovedones, setlovedOnes] = useState([]);
+  // const [selLid, setSelLId] = useState("");
   const [patientName, setpName] = useState("");
 
 
-  const reports = [{
-    type:'Pathology Reports',
-    stype:[
-    {name:"Blood"},
-    {name:"Urine"},
-    {name:"Stool"},
-    {name:"Sputum"},
-    {name:"Others"},
-    ]},
-    {
-    type:'Radiology Reports',
-    stype:[
-    {name:"X-ray"},
-    {name:"UltraSound"},
-    {name:"CT"},
-    {name:"MRI"},
-    {name:"PET"},
-    {name:"SPECT"},
-    {name:"Others"},
-    ]},
-    {
-    type:'Other Reports',
-    stype:[
-    {name:"ECG"},
-    {name:"Echo"},
-    {name:"TMT"},
-    {name:"Angiography"},
-    {name:"Audiometry"},
-    {name:"PFT"},
-    {name:"Others"},
-    ]}
-    ]
+  // New Code
 
-    const [report, setReport] = useState();
-    const [desease, setDesease] = useState([])
-  
-    function handleReport(event) {
-    setReport(event.target.value)
-    setDesease(reports.find(des => des.type === event.target.value).stype);
-    }
-  
+  const [reportsCategories, setReportsCategories] = useState("");
+  const [reportsSubCategories, setReportsSubCategories] = useState("");
+  const [reportsDate, setReportsDate] = useState("");
+  const [reportsFile, setReportsFile] = useState(null);
+  const [reportsType, setReportsType] = useState("");
+  const [reportsSubCategoriesOptions, setReportsSubCategoriesOptions] = useState([]);
 
+  const categories = {
+    "Pathology Reports": ["Blood", "Urine", "Stool", "Sputum", "Others"],
+    "Radiology Reports": ["X-ray", "UltraSound", "CT", "MRI", "PET", "SPECT", "Others"],
+    "Other Reports": ["ECG", "Echo", "TMT", "Angiography", "Audiometry", "PFT", "Others"],
+  };
 
   useEffect(() => {
-    loadUser(); // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pId]);
+    if (reportsCategories) {
+      setReportsSubCategoriesOptions(categories[reportsCategories]);
+      console.log("Reports Categories:", reportsCategories);
+      console.log("Reports Sub Categories Options:", categories[reportsCategories]);
+    } else {
+      setReportsSubCategoriesOptions([]);
+    }
+  }, [reportsCategories]);
 
-  const loadUser = async () => {
-    //   console.log('user:',user.id);
-    //   console.log('location:',location.state.lid);
-    if (user) {
-      //let ccid = BSON.ObjectID(user.id).toString();
-      let ccid ="";
-   if (pId === null || pId === "") {
-     ccid = adbuser;
-   } else {
-     ccid = pId;
-   } 
-    //  const lovd = user.functions.getLovedOneCP(ccid); // one loved one based on care manager idx
-      const lovd = user.functions.getLovedOneP(ccid);
-      // console.log('else direct:',ccid);
-      lovd.then((resp) => {
-        if (resp) {
-          setStatus("1");
-          setpName(resp[0].displayName);
-          setSelLId(resp[0]._id.toString());
-          setlovedOnes(resp);
-        } else {
-          alert("Loved Ones ID not loaded..");
-        }
-      });
+  const handleRptSubCatChange = (e) => {
+    setReportsSubCategories(e.target.value);
+    console.log("Sub Categories Report:", e.target.value);
+  };
+
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0]; // Get the selected file
+    if (file) {
+      // Convert file to Blob
+      const blob = new Blob([file], { type: file.type });
+      // Create a URL from the Blob
+      const url = URL.createObjectURL(blob);
+      // Store the URL in state to display or use later
+      const type = file.name.split('.').pop();
+      setReportsFile(url);
+      setReportsType(file.type);
+      console.log('File type:', file.type);
     }
   };
 
-  // const loadUser = async () => {
-  //   //   console.log('user:',user.id);
-  //       if (user) {
-  //        let cid = BSON.ObjectID(user.id).toString();
-  //        const carem = user.functions.getLovedOnes(cid);
-  //       // console.log('carem:',carem);
-  //        carem.then((resp) => {
-  //             setlovedOnes(resp);
-  //          });
-  //      }
-  //    };
+
+
+
+
 
   const onSubmit = async (event) => {
     event.preventDefault();
-
-    if (selectDate === "" || selLid === "") {
-      alert("Loved Ones and Report Test Date should not be empty");
+    if (user) {
+      let dt = new Date();
+      let id = new BSON.ObjectID();
+      let cid = adbuser;
+      const createx = user.functions.createHealthVaultReport(
+        id,
+        reportsCategories,
+        reportsSubCategories,
+        reportsDate,
+        reportsFile,
+        reportsType,
+        dt.toDateString(),
+        "GlobalMedics2021",
+      );
+      createx.then((resp) => {
+        alert("Health Vault Details Updated Successfully");
+        navigate(`/healthInsurance`);
+      });
     } else {
-      if (status === "1") {
-        try {
-          if (user) {
-            //  console.log('auth:',user.id);
-            let dt = new Date();
-            //   console.log("date:", dt.toDateString());
-            let id = new BSON.ObjectID();
-            let cid = BSON.ObjectID(adbuser).toString();
-          //  let pid = selLid;
-            let pid = pId;
-            // console.log('pid:', pid);
-
-            const createx = user.functions.uploadnewMedicalReport(
-              id,
-              pid,
-              selectDate,
-              selectTest,
-              cypherData(file),
-              dt.toDateString(),
-              "active",
-              cid,
-              "careManager",
-              "GlobalMedics2021"
-            );
-            createx.then((resp) => {
-              //  console.log("resp:", resp);
-              alert("Report Uploaded Successfully");
-              navigate(`/healthReports`);
-            });
-          }
-        } catch (error) {
-          //  alert(error);
-          console.log("error:", error);
-        }
-        // alert('Report Uploaded Successfully');
-      } else {
-        alert("Report Uploading Failed");
-        const path = `/healthReports`;
-        navigate(path);
-      }
+      navigate(`/healthInsurance`);
     }
   };
 
-  const onBack = () => {
-    const path = `/healthReports`;
-    navigate(path);
-  };
 
-  const fileToBase64 = (file, cb) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = function () {
-      cb(null, reader.result);
-    };
-    reader.onerror = function (error) {
-      cb(error, null);
-    };
-  };
+  // const fileToBase64 = (file, cb) => {
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(file);
+  //   reader.onload = function () {
+  //     cb(null, reader.result);
+  //   };
+  //   reader.onerror = function (error) {
+  //     cb(error, null);
+  //   };
+  // };
 
-  const onUploadFileChange = ({ target }) => {
-    if (target.files < 1 || !target.validity.valid) {
-      return;
-    }
-    fileToBase64(target.files[0], (err, result) => {
-      if (result) {
-        setFile(result);
-        setFileName(target.files[0]);
-        setStatus("1");
-      }
-    });
-  };
+  // const onUploadFileChange = ({ target }) => {
+  //   if (target.files < 1 || !target.validity.valid) {
+  //     return;
+  //   }
+  //   fileToBase64(target.files[0], (err, result) => {
+  //     if (result) {
+  //       setFile(result);
+  //       setFileName(target.files[0]);
+  //       setStatus("1");
+  //     }
+  //   });
+  // };
   return (
     <Container style={{ background: "#EBEBEB", maxWidth: "100%" }}>
       <Grid
@@ -218,7 +156,7 @@ const HealthVaultReportUpload = () => {
           limg="rl"
           rimg="hrr"
         />
-        <div style={{height:"1rem"}}></div>
+        <div style={{ height: "1rem" }}></div>
         <div className="car-ds">
           <CarouselSlider />
         </div>
@@ -258,21 +196,6 @@ const HealthVaultReportUpload = () => {
                             Select Your Loved Ones
                             <span style={{ color: "red" }}>*</span>
                           </label>
-                          {/* <select
-                              className="form-control"
-                              id="relationName"
-                              style={{ color: "#707070", borderRadius: "50px" }}
-                              name="relationName"
-                              onChange= {(e)=> setSelLId(e.target.value)}
-                              >
-                        <option value="">Select Your Loved Ones</option>       
-                        {lovedones.map((option, index) => (
-                            <option key={index} value={option._id} >
-                              {option.displayName}
-                            </option>
-                          ))}
-                        
-                        </select>      */}
                           <Form.Control
                             className="name-input"
                             type="text"
@@ -303,15 +226,13 @@ const HealthVaultReportUpload = () => {
                         <Card.Body>
                           <label>Select Report Type</label>
                           <>
-                          <select className="form-control" style={{
-                                  color: "#707070",
-                                  borderRadius: "5px",
-                                }}
-                                onChange={handleReport}>
-                              <option>-- Report Type --</option>
-                              {reports.map(des => (
-                                <option value={des.type}>{des.type}</option>
-                              ))}
+                            <select className="form-control"
+                              style={{ color: "#707070", borderRadius: "5px" }}
+                              value={reportsCategories} onChange={(e) => setReportsCategories(e.target.value)} required>
+                              <option value="">-- Report Type --</option>
+                              <option value="Pathology Reports">Pathology Reports</option>
+                              <option value="Radiology Reports">Radiology Reports</option>
+                              <option value="Other Reports">Other Reports</option>
                             </select>
                           </>
                         </Card.Body>
@@ -334,17 +255,20 @@ const HealthVaultReportUpload = () => {
                           </label>
                           <Form.Control
                             className="name-input"
-                            type="date"
                             // type="datetime-local"
                             placeholder="Select date of test as mentioned in the report"
-                            name="selectTime"
-                            onChange={(e) => setsDate(e.target.value)}
+                            // onChange={handleRptDateChange}
+                            type="date"
+                            name="reportsDate"
+                            value={reportsDate}
+                            onChange={(e) => setReportsDate(e.target.value)}
                             style={{
                               // marginBottom: "25pt",
                               color: "#707070",
                               // border: "0px solid white",
                               // marginLeft: "-0.7rem",
                             }}
+
                           ></Form.Control>
                         </Card.Body>
                       </Card>
@@ -362,13 +286,12 @@ const HealthVaultReportUpload = () => {
                         <Card.Body>
                           <label>Select type of test</label>
                           <>
-                            <select className="form-control" style={{
-                              color: "#707070",
-                              borderRadius: "5px",
-                            }}>
-                              <option>-- Report Name --</option>
-                              {desease.map(sdes => (
-                                <option value={sdes.name}>{sdes.name}</option>
+                            <select className="form-control"
+                              style={{ color: "#707070", borderRadius: "5px" }}
+                              value={reportsSubCategories} onChange={handleRptSubCatChange} required>
+                              <option value="">-- Report Name --</option>
+                              {reportsSubCategoriesOptions.map(option => (
+                                <option key={option} value={option}>{option}</option>
                               ))}
                             </select>
                           </>
@@ -388,11 +311,20 @@ const HealthVaultReportUpload = () => {
                         <Card.Body>
                           <label>Select report from your device</label>
                           <input
-                            type="file"
-                            name="filetobase64"
-                            onChange={onUploadFileChange}
                             class="form-control"
+                            type="file"
+                            name="reportsFile"
+                            // value={reportsFile}
+                            // onChange={(e) => setReportsFile(e.target.files[0])} required
+                            onChange={handleFileUpload}
                           />
+
+                          {/* <a href={reportsFile} target="_blank" rel="noopener noreferrer">
+                            {reportsFile}
+                          </a> */}
+
+                   
+
                         </Card.Body>
                       </Card>
                       <Divider style={{ margin: "4pt" }} />
@@ -416,8 +348,8 @@ const HealthVaultReportUpload = () => {
                   color: "#ffffff",
                   textTransform: "none",
                 }}
-                onClick={onSubmit}
                 type="submit"
+                onClick={onSubmit}
               >
                 Upload
               </Button>

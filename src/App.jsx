@@ -41,7 +41,6 @@ import PatientsList from "./pages/PatientsList";
 import PersonaliseECardCustomise from "./pages/PersonaliseECardCustomise";
 import PersonaliseECard from "./pages/PersonaliseECard";
 import LovedOnesECard from "./pages/LovedOnesECard";
-
 import ChronicConditions from "./pages/ChronicConditions";
 import RecordSymptoms from "./pages/RecordSymptoms";
 import RecordSymptomsMore from "./pages/RecordSymptomsMore";
@@ -245,9 +244,17 @@ import CarePlanGeneration from "./DoctorDashboard/pages/CarePlan/CarePlanGenerat
 import UserJourneySelf from "./DoctorDashboard/pages/CarePlan/UserJourneySelf";
 import CareConcierge from "./DoctorDashboard/pages/CarePlan/CareConcierge";
 
+import TransalateConsult from "./pages/TransalateConsult";
+import VoiceChat from "./pages/VoiceChat";
+import VoiceChatPatient from "./pages/VoiceChatPatient";
+
 import ChatDashboard from "./Chat/ChatDashboard.js";
 
 import Index from "./pages/DoctorDashboard/index.jsx";
+
+import PtOverview from "./pages/DoctorDashboard/PtOverview.jsx";
+
+
 
 const Pages = () => {
     /**
@@ -564,6 +571,9 @@ const Pages = () => {
             <Route exact path="/trainingScreen_7" element={<TrainingScreen_7 />} />
             <Route exact path="/newUserLoginWithOTP" element={<NewUserLoginWithOTP />} />
             <Route exact path="/mDTSummary" element={<MDTSummary />} />
+            <Route exact path="/transalateConsult" element={<TransalateConsult />} />
+            <Route exact path="/voiceChat" element={<VoiceChat />} />
+            <Route exact path="/voiceChatPatient" element={<VoiceChatPatient />} />
 
             <Route exact path="/testData" element={<TestData />} />
             <Route exact path="/chat" element={<Chat />} />
@@ -573,19 +583,22 @@ const Pages = () => {
             {/* <Route exact path="/careGiverForm" element={<CareGiverForm />} /> */}
 
             <Route exact path="/virtualround" element={<VirtualRound getPatientOverviewDetails={getPatientOverviewDetails} />} />
-            <Route exact path="/patients" element={<PatientOverview patientDetails={patientDetails} imgBorderColor={imgBorderColor} time={time} />} />
+            <Route exact path="/patientOverview" element={<PatientOverview patientDetails={patientDetails} imgBorderColor={imgBorderColor} time={time} />} />
             <Route exact path="/trends" element={<VitalSigns patientDetails={patientDetails} imgBorderColor={imgBorderColor} time={time} />} />
             <Route exact path="/patientReports" element={<PatientReports patientDetails={patientDetails} imgBorderColor={imgBorderColor} time={time} />} />
             <Route exact path="/carePlanGeneration" element={<CarePlanGeneration patientDetails={patientDetails} imgBorderColor={imgBorderColor} time={time} />} />
             <Route exact path="/userJourneySelf" element={<UserJourneySelf patientDetails={patientDetails} imgBorderColor={imgBorderColor} time={time} />} />
             <Route exact path="/careConcierge" element={<CareConcierge patientDetails={patientDetails} imgBorderColor={imgBorderColor} time={time} />} />
 
+
+
             <Route exact path="/chatDashboard" element={<ChatDashboard />} />
             {/* <Route exact path="/virtualround" render={(props) => <VirtualRound getPatientOverviewDetails={getPatientOverviewDetails} {...props} />} />
           <Route exact path="/patients" render={(props) => <PatientOverview patientDetails={patientDetails} imgBorderColor={imgBorderColor} time={time} {...props} />} /> 
           <Route exact path="/trends" render={(props) => <VitalSigns patientDetails={patientDetails} imgBorderColor={imgBorderColor} time={time} {...props} />} />*/}
 
-            <Route path="/consultation" element={<Index />} />
+            <Route path="/consultation" element={<Index patientDetails={patientDetails} imgBorderColor={imgBorderColor} time={time}/>} />
+            {/* <Route path="/ptOverview" element={<PtOverview patientDetails={patientDetails} imgBorderColor={imgBorderColor} time={time} />} /> */}
 
         </Routes>
 

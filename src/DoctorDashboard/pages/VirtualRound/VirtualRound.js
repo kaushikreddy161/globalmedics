@@ -56,7 +56,7 @@ function VirtualRound(props) {
   const sendPatientDetails = (patientDet, clr) => {
     props.getPatientOverviewDetails(patientDet, clr);
    // props.history.push("/patients");
-   navigate("/patients");
+   navigate("/consultation");
   };
 
   const filterData = (value) => {

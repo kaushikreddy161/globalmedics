@@ -992,11 +992,11 @@ export const SidebarData = [
   //   path: "/inviteReceived",
   //   icon: IconPPDel,
   // },
-  // {
-  //   title: "Care Concierge",
-  //   path: "/careConcierge",
-  //   icon: IconPPDel,
-  // },
+  {
+    title: "Care Concierge",
+    path: "/careConcierge",
+    icon: IconPPDel,
+  },
   //   {
   //   title: "Care Giver Form",
   //   path: "/careGiverForm",
@@ -1012,6 +1012,21 @@ export const SidebarData = [
   //   path: '/consultation',
   //   icon: IconPPDel,
   // }
+  {
+    title: 'Transalate Consult',
+    path: '/transalateConsult',
+    icon: IconPPDel,
+  },
+  {
+    title: 'Voice Chat Doctor',
+    path: '/voiceChat',
+    icon: IconPPDel,
+  },
+  {
+    title: 'Voice Chat Patient',
+    path: '/voiceChatPatient',
+    icon: IconPPDel,
+  }
 
 
 

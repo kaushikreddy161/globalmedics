@@ -117,7 +117,9 @@ function NavbarRight() {
           <div className={`nav-elements  ${showNavbar && "active"}`}>
             <ul style={{ marginTop: "6px" }}>
               <li>
-                <NavLink onClick={showSidebar}>  <img
+                {/* <NavLink onClick={showSidebar}> */}
+                <NavLink to="/voiceChat">
+                    <img
                   src={require("../assets/icon-nav-message.png")}
                   width="15"
                   height="auto"

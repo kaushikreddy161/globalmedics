@@ -1,23 +1,21 @@
-import React, { useState, useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 // import * as Realm from "realm-web";
 import { useMsal } from '@azure/msal-react';
-import "./patientoverview.css";
+import "./PtOverview.css";
 import moment from "moment";
 //import { MdModeEdit } from "react-icons/md";
 import { AiTwotoneFlag } from "react-icons/ai";
 import { Card } from "react-bootstrap";
-import Loading from "../../components/Loading";
-//import cypherData from "../../components/cypherData";
-import decryptData from "../../components/decryptData";
-import noimage from "../../assets/noimage.png";
-import { UserContext } from "../../../contexts/user.context";
+import Loading from "../../DoctorDashboard/components/Loading";
+// import cypherData from "../../DoctorDashboard/components/cypherData";
+import decryptData from "../../DoctorDashboard/components/decryptData";
+import { UserContext } from "../../contexts/user.context";
 
 import { useNavigate } from "react-router-dom";
 
-import User from "../../assets/user.png";
-import Device1 from "../../assets/device1.png";
-import Device2 from "../../assets/device2.png";
-
+import User from "../../DoctorDashboard/assets/user.png";
+import Device1 from "../../DoctorDashboard/assets/device1.png";
+import Device2 from "../../DoctorDashboard/assets/device2.png";
 
 import IconPulse from "../../assets/icon-pulse-report.png";
 import IconDiastolic from "../../assets/icon-vs-diastolic.png";
@@ -26,11 +24,9 @@ import IconTemperature from "../../assets/icon-vs-temp.png";
 import IconSPO2 from "../../assets/icon-vs-spo2.png";
 import IconBSugar from "../../assets/icon-vs-bsugar.png";
 import IconRespiratory from "../../assets/icon-vs-respiratory.png";
-
-
+import IconInfo from '../../assets/DoctorDashboard/icon-info.png';
 import Speedometer from "react-d3-speedometer";
-// import {Divider} from "@mui/material";
-
+import noimage from "../../DoctorDashboard/assets/noimage.png";
 import { experimentalStyled as styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -50,17 +46,15 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 
-function PatientOverView(props) {
+function PtOverview(props) {
   const { user } = useContext(UserContext);
   const [clinicMember, setClinicMember] = useState([]);
   const [doctorPatient, setDoctorPatient] = useState([]);
   const [loading, setLoading] = useState(true);
   const [patientChatBotData, setPatientChatBotData] = useState([]);
- 
 
   useEffect(() => {
     async function fetchData() {
-
       if (user) {
         //const REALM_APP_ID = "globalmedics-yxogc";
         //const app = new Realm.App({ id: REALM_APP_ID });
@@ -123,101 +117,84 @@ function PatientOverView(props) {
       return "green";
     }
   };
+
+
   return (
 
-    <div className="main-screen1">
-    <div className="main-screen1-sub">
-
-
-    <div className="row">
-        <div class="col-6">
-          <Card className="mainCard-pd">
-            <Card.Body className="mainCard1Body">
-              <div className="innerMainCard1Body1">
-                <div className="imageDiv">
-                  <span>
-
-                    {
-                      props.patientDetails.img !== "" ?
-                        <img
-                          className="patientImage"
-                          alt="Global Medics"
-                          src={props.patientDetails.img}
-                          style={{
-                            border: props.imgBorderColor,
-                          }}
-                        />
-                        :
-                        <img
-                          className="patients-image"
-                          style={{
-                            border: clr,
-                          }}
-                          alt="Global Medics" src={noimage}
-
-                        />
-                    }
-
-                  </span>
-                </div>
-
-                <div className="nameDiv-1">
-                  <p style={{ display: "inline-block", fontWeight: "500" }} className="margin-0">
-                    {props.patientDetails.patientName}
-                  </p>
-                  <p className="margin-0">
-                    Last Consult:{" "}
-                    <span style={{ color: "#209f85" }}>
-                      {props.patientDetails.lastConsult}days ago
-                    </span>
-                  </p>
-                </div>
-                <div className="nameDiv-2" >
-                  <p className="margin-0">
-                    Recovery Status:
-                    <span className="recoveryButton">
-                      {props.patientDetails.recoveryStatus}
-                    </span>
-                  </p>
-                  <p className="margin-0">
-                    Watch Closely{" "}
-                    <AiTwotoneFlag
-                      color="red"
-                      size="15px"
-                      style={{ marginLeft: "20px" }}
-                    />
-                  </p>
-                </div>
-              </div>
-            </Card.Body>
-          </Card>
-        </div>
-        <div class="col-6">
-          <Card className="mainCard-right-pd">
-            <div className="timeDiv">
-              <p style={{ color: "#209F85" }}>
-                {" "}
-                Your Time {moment(props.time).format("HH:mm A")} Today{" "}
-                {moment(props.time).format("MMM")},{" "}
-                {moment(props.time).format("YY")}{" "}
-              </p>
-              {/* <p style={{ marginTop: "-9px" }}>
-                {" "}
-                Your Time {moment(props.time).format("HH:mm A")} Today{" "}
-                {moment(props.time).format("MMM")},{" "}
-                {moment(props.time).format("YY")}{" "}
-              </p> */}
-            </div>
-          </Card>
-        </div>
-      </div>
+    <div className="container-fluid ms-3 pe-5">
+      <div className='pt-2 info'><img src={IconInfo} className='imgs' /></div>
       <div class="row">
         <div class="col-6">
-          <Card className="mainCard33a">
+          <Card className="mainCard-pt">
             <div className="mainCard3Body">
               <p className="patientdetails">Patient Particulars</p>
               <hr className="hr" />
-              <div className="mainCard3Body11">
+
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+
+                    <div class="mb-3">
+                      <p className="patientDetails">Gender: <span class="pt_dl">{props.patientDetails.gender}</span></p>
+                    </div>
+                    <div class="mb-3">
+                      <p className="patientDetails">Age: <span class="pt_dl">{props.patientDetails.age}</span></p>
+                    </div>
+                    <div class="mb-3">
+                      <p className="patientDetails">Phone&#8239;Number: <span class="pt_dl">{props.patientDetails.phoneNumber}</span></p>
+                    </div>
+                    <div class="mb-3">
+                      <p className="patientDetails">Email Address: <span class="pt_dl">{props.patientDetails.email}</span></p>
+                    </div>
+                    <div class="mb-3">
+                      <p className="patientDetails">Address: <span class="pt_dl">{props.patientDetails.address}</span></p>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <p className="patientDetails">Blood Group: <span class="pt_dl">{props.patientDetails.bloodGroup}</span></p>
+                    </div>
+                    <div class="mb-3">
+                      <p className="patientDetails">Height: <span class="pt_dl">{props.patientDetails.height} cm</span></p>
+                    </div>
+                    <div class="mb-3">
+                      <p className="patientDetails">Weight: <span class="pt_dl">{props.patientDetails.weight} kg</span></p>
+                    </div>
+                    <div class="mb-3">
+                      <p className="patientDetails">BMI: <span class="pt_dl">{props.patientDetails.bmi}</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              {/* <div className="mainCard3Body11">
                 <div style={{ display: "flex" }}>
                   <div className="genderAge1">
                     <div>
@@ -229,7 +206,6 @@ function PatientOverView(props) {
                       <p>{props.patientDetails.age}</p>
                     </div>
                   </div>
-                  {/* <MdModeEdit size='20px' style={{ marginLeft: '285px', marginTop: '5px' }} /> */}
                 </div>
                 <div style={{ display: "flex" }}>
                   <div className="hgtWgtBmi1">
@@ -258,14 +234,17 @@ function PatientOverView(props) {
                   </div>
                   <div className="PhoneNo1">
                     <p className="patientDetails">Phone&#8239;Number:</p>
-                    <p>{decryptData(props.patientDetails.phoneNumber)}</p>
+                    <p>{props.patientDetails.phoneNumber}</p>
                   </div>
                   <div className="emailId1">
                     <p className="patientDetails">Email Address:</p>
-                    {/* <p>{decryptData(props.patientDetails.email)}</p> */}
+                    <p>{props.patientDetails.email}</p>
                   </div>
                 </div>
-              </div>
+              </div> */}
+
+
+
               {/* <div>
                 <hr className="hr" />
                 <div className="mainCard3Body22">
@@ -292,7 +271,7 @@ function PatientOverView(props) {
           </Card>
         </div>
         <div class="col-6">
-          <Card className="mainCard-right">
+          <Card className="mainCard-right-pt">
             <div className="mainCard4Body">
               <p className="multiDiciplinaryText">
                 Symptoms
@@ -302,9 +281,10 @@ function PatientOverView(props) {
           </Card>
         </div>
       </div>
-      <div className="row" style={{marginTop:"0rem"}}>
+
+      <div className="row" style={{ marginTop: "0rem" }}>
         <div class="col">
-          <Card className="mainCard-vital">
+          <Card className="mainCard-vital-pt">
             <div className="mainCard4Body">
               <p className="multiDiciplinaryText">
                 Vitals
@@ -347,7 +327,7 @@ function PatientOverView(props) {
                 <div class="col guage-center">
                   <Grid item xs={4} sm={4} md={4}>
                     <>
-                    <Item className="gauge-card">
+                      <Item className="gauge-card">
                         <Speedometer
                           minValue={0}
                           maxValue={180}
@@ -376,7 +356,7 @@ function PatientOverView(props) {
                 <div class="col guage-center">
                   <Grid item xs={4} sm={4} md={4}>
                     <>
-                    <Item className="gauge-card">
+                      <Item className="gauge-card">
                         <Speedometer
                           minValue={0}
                           maxValue={180}
@@ -405,7 +385,7 @@ function PatientOverView(props) {
                 <div class="col guage-center">
                   <Grid item xs={4} sm={4} md={4}>
                     <>
-                    <Item className="gauge-card">
+                      <Item className="gauge-card">
                         <Speedometer
                           minValue={0}
                           maxValue={180}
@@ -435,7 +415,7 @@ function PatientOverView(props) {
                 <div class="col guage-center">
                   <Grid item xs={4} sm={4} md={4}>
                     <>
-                    <Item className="gauge-card">
+                      <Item className="gauge-card">
                         <Speedometer
                           minValue={0}
                           maxValue={180}
@@ -464,7 +444,7 @@ function PatientOverView(props) {
                 <div class="col guage-center">
                   <Grid item xs={4} sm={4} md={4}>
                     <>
-                    <Item className="gauge-card">
+                      <Item className="gauge-card">
                         <Speedometer
                           minValue={0}
                           maxValue={180}
@@ -491,13 +471,13 @@ function PatientOverView(props) {
                     </>
                   </Grid>
                 </div>
-                
+
               </div>
             </div>
           </Card>
         </div>
       </div>
-      <div className="row" style={{marginTop:"0rem"}}>
+      <div className="row" style={{ marginTop: "0rem" }}>
         <div class="col">
           <Card className="mainCard-mdt">
             <div className="mainCard4Body">
@@ -585,7 +565,7 @@ function PatientOverView(props) {
       </div>
       <div className="row">
         <div class="col">
-          <Card className="mainCard-dev">
+          <Card className="mainCard-dev-pt">
             <div className="mainCard4Body">
               <p className="multiDiciplinaryText">
                 Devices
@@ -628,7 +608,7 @@ function PatientOverView(props) {
 
       <div className="row">
         <div class="col">
-          <Card className="mainCard-dev">
+          <Card className="mainCard-dev-pt">
             <div className="mainCard4Body">
               <p className="multiDiciplinaryText">
                 Chat Bot Conversesion History
@@ -656,12 +636,12 @@ function PatientOverView(props) {
                     <td>Consult</td>
                   </tr>
                   <tr>
-                  <tr>
-                    <td></td>
-                    <td>Fiver</td>
-                    <td>No medical History</td>
-                    <td>Consultion Done</td>
-                  </tr>
+                    <tr>
+                      <td></td>
+                      <td>Fiver</td>
+                      <td>No medical History</td>
+                      <td>Consultion Done</td>
+                    </tr>
                   </tr>
                 </tbody>
               </table>
@@ -673,9 +653,9 @@ function PatientOverView(props) {
 
 
     </div>
-    </div>
+
 
   );
 }
 
-export default PatientOverView;
+export default PtOverview;

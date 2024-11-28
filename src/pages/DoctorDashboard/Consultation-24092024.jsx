@@ -10,7 +10,6 @@ import PreConsultation from './PreConsultation';
 import PtOverview from './PtOverview';
 import Reports from './Reports';
 import Claims from './Claims';
-import DocIntelligence from './DocIntelligence';
 import './Consultation.css';
 import './MediaStyles.css';
 import { useVoiceRecording } from '../../contexts/DoctorDashboard/voiceRecordingContext';
@@ -48,10 +47,6 @@ import UserIcon from "../../assets/icon-care-taker.png";
 import LinkIcon from "../../assets/link-icon.png";
 
 import { FiLink } from "react-icons/fi";
-
-import axios from 'axios';
-
-
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -97,8 +92,9 @@ const HomePage = (props) => {
   const [patientChatBotData, setPatientChatBotData] = useState([]);
 
 
-  const [inputValue, setInputValue] = useState('');
-  const [suggestions, setSuggestions] = useState([]);
+
+
+
 
 
 
@@ -252,63 +248,6 @@ const HomePage = (props) => {
     }
   };
 
-
-
-
-
-
-
-  // Patients Data fetching from the database
-
-
-  const [familyData, setFamilyData] = useState([]);
-
-  async function fetchData() {
-    try {
-      const allFMembers = await user.functions.getALLPatientsDetailData();
-      setFamilyData(() => allFMembers);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  // search user data
-  const [searchTerm, setSearchTerm] = useState("");
-  const [showSuggestions, setShowSuggestions] = useState(false);
-
-  // Function to handle search input change
-  const handleSearchChange = (event) => {
-    const input = event.target.value;
-    setSearchTerm(input);
-
-    // Show suggestions only when there is input
-    if (input.length > 0) {
-      setShowSuggestions(true);
-    } else {
-      setShowSuggestions(false); // Hide suggestions when input is cleared
-    }
-  };
-
-  // Filter familyData based on the search term
-  const filteredData = familyData.filter((item) =>
-    item.patientName.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  // Function to handle suggestion click
-  const handleSuggestionClick = (suggestion) => {
-    setSearchTerm(suggestion); // Set the clicked suggestion in the input field
-    setShowSuggestions(false); // Hide the dropdown after a suggestion is selected
-  };
-
-
-
-
-
-
   return (
     <>
       <div className="Main-Page">
@@ -401,34 +340,8 @@ const HomePage = (props) => {
                     {/* Second Main Div (Grid System) */}
                     <div className="col-10">
                       <div class="row">
-                        <div class="col-6">
-                          <div class="input-container">
-                            <input class="form-control me-2" type="text" placeholder="First Name" aria-label="Search"
-                              value={searchTerm}
-                              onChange={handleSearchChange} />
-                            <i class="fa fa-search search-icon"></i>
-                          </div>
-                          {showSuggestions && filteredData.length > 0 && (
-                            <ul className="user-list-dropdown">
-                              {filteredData.map((item) => (
-                                <li
-                                  key={item._id}
-                                  onClick={() => handleSuggestionClick(item.patientName)}
-                                  className="user-list-dropdown-item"
-                                >
-                                  {item.patientName}
-                                </li>
-                              ))}
-                            </ul>
-                          )}
-
-                        </div>
-                        <div class="col-6">
-                          <div class="input-container">
-                            <input class="form-control me-2" type="search" placeholder="Last name" aria-label="Search" />
-                            <i class="fa fa-search search-icon"></i>
-                          </div>
-                        </div>
+                        <div class="col-6"><input class="form-control me-2" type="search" placeholder="First Name" aria-label="Search" /></div>
+                        <div class="col-6"><input class="form-control me-2" type="search" placeholder="Last name" aria-label="Search" /></div>
                       </div>
                       <div class="row mt-2">
                         <div class="col-6">
@@ -437,7 +350,7 @@ const HomePage = (props) => {
                             <i class="fa fa-search search-icon"></i>
                           </div>
                         </div>
-
+                        
                         <div class="col-5">
                           <div class="input-container">
                             <input class="form-control me-2" placeholder="Session ID" />
@@ -449,10 +362,6 @@ const HomePage = (props) => {
                         </div>
                       </div>
                       <div class="row mt-2">
-                        <p class="text-end">Age/Sex</p>
-                      </div>
-
-                      {/* <div class="row mt-2">
                         <div class="col-7"></div>
                         <div class="col-2"><input class="form-control me-2" type="number" placeholder="Age" /></div>
                         <div class="col-3">
@@ -463,7 +372,7 @@ const HomePage = (props) => {
                             <option value="3">Others</option>
                           </select>
                         </div>
-                      </div> */}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -483,31 +392,6 @@ const HomePage = (props) => {
             </div>
           </div>
         </div>
-
-        <>
-
-
-          {/* Datalist providing suggestions for the input field */}
-          {/* <datalist id="patient-suggestions">
-            {filteredData.map((item) => (
-              <option key={item._id} value={item.patientName} />
-            ))}
-          </datalist> */}
-
-          {/* {filteredData.map((item) => (
-            <div key={item._id}>{item.patientName}</div>
-          ))} */}
-
-
-          {/* {familyData.map((item) => (
-            <div>{item.patientName}
-            </div>
-          ))} */}
-        </>
-
-
-
-
 
         {/* end */}
 
@@ -538,9 +422,6 @@ const HomePage = (props) => {
               </li> */}
               <li key="claims" class="nav-item" role="presentation">
                 <button class="nav-link" id="claims-tab" data-bs-toggle="tab" data-bs-target="#claims" type="button" role="tab" aria-controls="claims" aria-selected="true">Claims</button>
-              </li>
-              <li key="docIntelligence" class="nav-item" role="presentation">
-                <button class="nav-link" id="claims-tab" data-bs-toggle="tab" data-bs-target="#docIntelligence" type="button" role="tab" aria-controls="docIntelligence" aria-selected="true">Document Intelligence</button>
               </li>
               {/* <li class="nav-item" role="notes">
                 <button class="nav-link" id="notes-tab" data-bs-toggle="tab" data-bs-target="#notes" type="button" role="tab" aria-controls="notes" aria-selected="true">Note</button>
@@ -725,9 +606,6 @@ const HomePage = (props) => {
               </div>
               <div class="tab-pane fade" id="claims" role="tabpanel" aria-labelledby="claims-tab">
                 <Claims content={conversation} />
-              </div>
-              <div class="tab-pane fade" id="docIntelligence" role="tabpanel" aria-labelledby="docIntelligence-tab">
-                <DocIntelligence/>
               </div>
               {/* <div class="tab-pane fade" id="notes" role="tabpanel" aria-labelledby="notes-tab">
                 <Notes />

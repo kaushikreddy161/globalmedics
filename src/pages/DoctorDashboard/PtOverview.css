@@ -122,6 +122,7 @@ table tbody tr td {
     margin-left: -35px !important;
     align-items: center !important;
     height: 100px;
+
   }
 }
 
@@ -205,6 +206,7 @@ table tbody tr td {
 .margin-0{
   margin-top: 0rem;
   margin-bottom: 0.5rem;
+  font-size: 11pt;
 }
 
 .nameDiv-1 {
@@ -920,31 +922,31 @@ table tbody tr td {
   overflow-y: auto;
   overflow-x: hidden;
 }
-.mainCard33a {
-  width: 99% !important;
+.mainCard-pt {
+  width: 100% !important;
   height: 300px !important;
   border-radius: 15px !important;
   background: white;
   padding: 6px !important;
-  margin-top: 2% !important;
-  margin-left: 3% !important;
+  /* margin-top: 2% !important;
+  margin-left: 3% !important; */
   /* overflow-y: auto; */
 }
 
-.mainCard-right {
-  width: 97% !important;
+.mainCard-right-pt {
+  width: 100% !important;
   height: 300px !important;
   border-radius: 15px !important;
   background: white;
   padding: 6px !important;
-  margin-top: 2% !important;
+  /* margin-top: 2% !important; */
   margin-left: 0rem;
   overflow-y: auto;
   overflow-x: hidden;
 }
 
 .mainCard-vs {
-  width: 100% !important;
+  /* width: 100% !important; */
   height: 244px !important;
   border-radius: 15px !important;
   background: white;
@@ -971,28 +973,29 @@ table tbody tr td {
   overflow-y: auto;
 }
 
-.mainCard-dev {
-  width: 100% !important;
+.mainCard-dev-pt {
+  /* width: 97% !important; */
   height: 244px !important;
   border-radius: 15px !important;
   background: white;
   padding: 6px !important;
   margin-top: 10pt !important;
-  /* margin-left: 14pt !important; */
-  /* margin-right: 25pt !important; */
-  margin-bottom: 10pt !important;
+  /* margin-left: 14pt !important;
+  margin-right: 25pt !important; */
+  /* margin-bottom: 10pt !important; */
   overflow-y: auto;
 }
 
-.mainCard-vital {
-  width: 97% !important;
+.mainCard-vital-pt {
+  width: 100% !important;
   /* height: 244px !important; */
   border-radius: 15px !important;
   background: white;
   padding: 6px !important;
+  /* margin-top: 10pt !important;
+  margin-left: 14pt !important; */
+  /* margin-right: 25pt !important; */
   margin-top: 10pt !important;
-  margin-left: 14pt !important;
-  margin-right: 25pt !important;
   margin-bottom: 10pt !important;
   overflow-y: auto;
 }
@@ -1019,4 +1022,7 @@ table tbody tr td {
   width: 160px;
   height: 160px;
   margin: auto;
+}
+.pt_dl{
+  color: black;
 }

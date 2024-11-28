@@ -35,21 +35,20 @@ import MaleS from "../assets/img-male-sel.png";
 import FemaleS from "../assets/img-female-sel.png";
 import OthersS from "../assets/img-others-sel.png";
 
-import Mobile from "../assets/icon-mob.png";
-import eMail from "../assets/icon-adrs.png";
-import Calling from "../assets/icon-call.png";
-import LAdrs from "../assets/icon-ladrs.png";
-import Ethnicity from "../assets/icon-thin.png";
+// import Mobile from "../assets/icon-mob.png";
+// import eMail from "../assets/icon-adrs.png";
+// import Calling from "../assets/icon-call.png";
+// import LAdrs from "../assets/icon-ladrs.png";
+// import Ethnicity from "../assets/icon-thin.png";
 import Occupation from "../assets/icon-ocp.png";
-import Height from "../assets/icon-height.png";
-import Weight from "../assets/icon-weight.png";
-import BloodGroup from "../assets/icon-bloodg.png";
-import Sleep from "../assets/icon-sleep.png";
-import Walk from "../assets/icon-walk.png";
-import Cigarettes from "../assets/icon-cig.png";
-import Drinks from "../assets/icon-drink.png";
-
-import AddDevice from "../assets/icon-add-device.png";
+// import Height from "../assets/icon-height.png";
+// import Weight from "../assets/icon-weight.png";
+import BloodGroupIcon from "../assets/icon-bloodg.png";
+// import Sleep from "../assets/icon-sleep.png";
+// import Walk from "../assets/icon-walk.png";
+// import Cigarettes from "../assets/icon-cig.png";
+// import Drinks from "../assets/icon-drink.png";
+// import AddDevice from "../assets/icon-add-device.png";
 
 import FixedHeader from "../components/FixedHeader";
 import CarouselSlider from "./CarouselSlider";
@@ -62,7 +61,7 @@ import "./Main.css";
 //   { name: "Others", icon: Others, icon1: OthersS, value: "3" },
 // ];
 
-const PatientPersonalDetailsForm2 = () => {
+const PatientPersonalDetailsForm = () => {
   const [listOne, setListOne] = useState();
   // const [changeColor, setChangeColor] = useState(0);
   // const [female, setFemale] = useState(Female);
@@ -73,27 +72,27 @@ const PatientPersonalDetailsForm2 = () => {
     { name: "Female", icon: Female, value: "2" },
     { name: "Others", icon: Others, value: "3" },
   ]);
- const { user, pId, pName, adbuser } = useContext(UserContext);
-const { instance } = useMsal();
-const activeAccount = instance.getActiveAccount();
-// const pId = activeAccount.idTokenClaims.sub;
-// const user = "";
-// const pName = "";
-// const selectedPatient = ""; 
-  
-const location = useLocation();
+  const { user, pId, pName, adbuser } = useContext(UserContext);
+  const { instance } = useMsal();
+  const activeAccount = instance.getActiveAccount();
+  //  const pId = activeAccount.idTokenClaims.sub;
+  //  const user = "";
+  //  const pName = "";
+  //  const selectedPatient = ""; 
+
+  const location = useLocation();
 
   const navigate = useNavigate();
   // const [patientName, setpName] = useState("");
-  const [address, setpAddress] = useState("");
+  // const [address, setpAddress] = useState("");
   // const [phoneNumber, setpNumber] = useState("");
-  // const [gender, setGender] = useState("");
-  // const [age, setpAge] = useState("");
-  const [height, setpHeight] = useState("");
-  const [weight, setpWeight] = useState("");
-  // const [occupation, setpOccupation] = useState("");
+  const [gender, setGender] = useState("");
+  const [age, setpAge] = useState("");
+  // const [height, setpHeight] = useState("");
+  // const [weight, setpWeight] = useState("");
+  const [occupation, setpOccupation] = useState("");
   // const [noofpegs, setpNoofpegs] = useState("");
-  // const [bloodgroup, setpBloodgroup] = useState("");
+  const [bloodGroup, setpBloodGroup] = useState("");
   // const [noofcigarettes, setpCigarettes] = useState("");
   // const [minutes, setpMinutes] = useState("");
   // const [cigcount, setpCigcount] = useState("");
@@ -105,7 +104,7 @@ const location = useLocation();
   // const [status, setStatus] = useState("0");
   // const [relationName, setrName] = useState("");
   // const [drinking, setpDrinking] = useState("");
-  const [ethnicity, setpEthnicity] = useState("");
+  // const [ethnicity, setpEthnicity] = useState("");
   // const [calling, setpCalling] = useState("");
   // const [dailySleep, setpDailySleep] = useState("");
 
@@ -117,76 +116,17 @@ const location = useLocation();
   };
 
   const onSkipNow = () => {
-    const path = `/patientPersonalDetailsForm_3`;
+    const path = `/patientPersonalDetailsForm_2`;
     navigate(path);
   };
 
-  // useEffect(() => {
-  //   loadUser(); // eslint-disable-next-line react-hooks/exhaustive-deps
-  //   setXid(pId);
-  // }, [pId]);
 
-  const loadUser = async () => {
-    //   console.log('user:',user.id);
-    //   console.log('location:',location.state.lid);
-    if (user) {
-      let ccid = BSON.ObjectID(user.id).toString();
-      if (location.state) {
-        //  setXid(location.state.lid.toString());
-        //  console.log("xxxid:", location.state.lid.toString());
-        handleChange(location.state.lid.toString());
-      } else {
-        //  const lovd = user.functions.getLovedOneCP(ccid); // one loved one based on care manager id
-        const lovd = user.functions.getLovedOneP(pId);
-        //console.log('else direct patient:',ccid);
-        lovd.then((resp) => {
-          if (resp) {
-            const pfullnamee =
-              resp[0].firstName +
-              "" +
-              resp[0].middleName +
-              "" +
-              resp[0].familyName;
+  
 
-            // setStatus("1");
-            // setpNumber(resp[0].phone);
-            // setpEmail(decryptData(resp[0].email));
-            // setpName(resp[0].pfullnamee);
-            // setrName(resp[0].displayName);
-            // setSelLId(resp[0]._id.toString());
-            //  setLock("true");
-            handleChange(resp[0]._id.toString());
-          } else {
-            alert("Loved Ones Not Created..");
-            navigate(`/addLovedOnes`);
-          }
-        });
-      }
-    }
-  };
-
-  const emptyData = () => {
-    // setpNumber("");
-    // setpEmail("");
-    // setpName("");
-    // setrName("");
-    setpAddress("");
-    // setpAge("");
-    // setpBloodgroup("");
-    // setpDrinking("");
-    // setpCigarettes("");
-    setpHeight("");
-    // setpMinutes("");
-    // setpNoofpegs("");
-    // setpOccupation("");
-    setpWeight("");
-    // setGender("");
-    // setpCalling("");
-    // setpDailySleep("");
-  };
+  
 
   const changeImage = (val, id) => {
-    // console.log("val", val);
+    console.log("val", val);
     setListOne(val.value);
     if (val.value == 1) {
       list1[0].icon = MaleS;
@@ -209,123 +149,50 @@ const location = useLocation();
     // console.log("list1", list1);
   };
 
-  const handleChange = async (e) => {
-    emptyData();
-    const pato = user.functions.getOnePatientDetailData(e);
-    // console.log('carem:',carem);
-    pato.then((respy) => {
-      if (respy) {
-        // setStatus("1");
-        // setpNumber(decryptData(respy.phoneNumber));
-        // setpEmail(decryptData(respy.email));
-        // setpName(respy.patientName);
-        setpAddress(decryptData(respy.address));
-        // setpAge(respy.age);
-        // setpBloodgroup(respy.bloodGroup);
-        // setpDrinking(respy.hmdrinks);
-        // setpCigarettes(respy.smokingYear);
-        setpHeight(respy.height);
-        // setpMinutes(respy.hmhoursWRC);
-        // setpCigcount(respy.hmcigrattes);
-        // setpNoofpegs(respy.hmdrinks);
-        // setpOccupation(respy.occupation);
-        setpWeight(respy.weight);
-        // setGender(respy.gender);
-        // setpCalling(respy.nickName);
-        // setpDailySleep(respy.hrsSleepday);
-      } else {
-        // let ccid = BSON.ObjectID(user.id).toString();
-
-        //   const lovedp = user.functions.getLovedOneCP(ccid);
-        const lovedp = user.functions.getLovedOneP(e);
-
-        // console.log('carem:',carem);
-        lovedp.then((respz) => {
-          const pfullname =
-            respz[0].firstName +
-            "" +
-            respz[0].middleName +
-            "" +
-            respz[0].familyName;
-          //  console.log("abcabac:",respz);
-          // setStatus("0");
-          // setpNumber(respz[0].phone);
-          // setpEmail(decryptData(respz[0].email));
-          // setpName(pfullname);
-          // setrName(respz[0].displayName);
-          // setSelLId(respz[0]._id.toString());
-        });
-        setpEthnicity("");
-        setpAddress("");
-        // setpAge("");
-        // setpBloodgroup("");
-        // setpDrinking("");
-        // setpCigarettes("");
-        setpHeight("");
-        // setpMinutes("");
-        // setpCigcount("");
-        // setpNoofpegs("");
-        // setpOccupation("");
-        setpWeight("");
-        // setGender("");
-        // setpCalling("");
-        // setpDailySleep("");
-      }
-    });
-  };
+  
 
   const onConfirm = () => {
-  //  navigate(`/setupCareRing`);
-  navigate(`/chronicConditions`);
+    //  navigate(`/setupCareRing`);
+    navigate(`/chronicConditions`);
   };
 
   const onSubmit = async (event) => {
     event.preventDefault();
     // if (
-    //   email === "" ||
-    //   patientName === "" ||
-    //   selLid === "" ||
-    //   phoneNumber === ""
+    //   // email === "" ||
+    //   // patientName === "" ||
+    //   // selLid === "" ||
+    //   // phoneNumber === ""
     // ) {
     //   alert(
     //     "Please enter the data for Loved Ones, Email, Phone Number and Patient Name"
     //   );
-    // } else {
+    // } 
+    // else {
     //   // console.log("statius:", status);
-    //   try {
-        if (user) {
-          //  console.log('auth:',user.id);
-          let dt = new Date();
-          let id = new BSON.ObjectID();
-          let cid = adbuser;
-          // let pid = selLid;
-         //   console.log("gender:", list1);
-         // console.log("ethincity:", ethnicity);
-          const createx = user.functions.createPatientDetailData(
-            id,
-            address,
-            ethnicity,
-            weight,
-            height,
-          );
-          createx.then((resp) => {
-            //  console.log("resp:", resp);
-            alert("Patient Details Added Successfully");
-         //   navigate(`/setupCareRing`);
-         navigate(`/patientPersonalDetailsForm_3`);
-
-          });
-        } else {
-          navigate(`/setupCareRing`);
-        }
-      // } 
-      // catch (error) {
-      //   //  alert(error);
-      //   console.log("error:", error);
-      // }
-    // }
-  }
-  ;
+    // try {
+    if (user) {
+      let dt = new Date();
+      let id = new BSON.ObjectID();
+      let cid = adbuser;
+      const createx = user.functions.createPatientDetailData(
+        id,
+        age,
+        gender,
+        occupation,
+        bloodGroup,
+        // dt.toDateString(),
+        // "GlobalMedics2021",
+        
+      );
+      createx.then((resp) => {
+        alert("Patient Details Added Successfully");
+        navigate(`/patientPersonalDetailsForm_2`);
+      });
+    } else {
+      navigate(`/setupCareRing`);
+    }
+  };
 
   // const handleChange = (e) => {
   //   setOption(options[+e.target.value]);
@@ -401,8 +268,8 @@ const location = useLocation();
                           ></Form.Control>
                         </Card.Body>
                       </Card>
-                      <Divider style={{ margin: "4pt" }} />
-                      <Card
+                      <Divider style={{ margin: "4pt" }} /> */}
+                      {/* <Card
                         style={{
                           margin: "auto",
                           transition: "0.3s",
@@ -429,8 +296,8 @@ const location = useLocation();
                             }}
                           ></Form.Control>
                         </Card.Body>
-                      </Card>
-                      <Divider style={{ margin: "4pt" }} />
+                      </Card> */}
+                      {/* <Divider style={{ margin: "4pt" }} />
                       <Card
                         style={{
                           margin: "auto",
@@ -571,7 +438,8 @@ const location = useLocation();
                             </Form.Label>
                           </Form.Group>
                         </Card.Body>
-                      </Card>
+                      </Card> */}
+
                       <Divider style={{ margin: "4pt" }} />
                       <Card
                         style={{
@@ -601,6 +469,7 @@ const location = useLocation();
                           ></Form.Control>
                         </Card.Body>
                       </Card>
+
                       <Divider style={{ margin: "4pt" }} />
                       <Card
                         style={{
@@ -643,7 +512,11 @@ const location = useLocation();
                                         name={`lone-${idx}`}
                                         value={lone.value}
                                         checked={listOne === lone.value}
-                                        onChange={(e) => changeImage(lone, idx)}
+                                        onChange={(e) => {
+                                          changeImage(lone, idx);
+                                          setGender(lone.name);
+                                          console.log("Select gender", lone);
+                                        }}
                                         style={{
                                           borderTop: "6px solid #1D5A90",
                                           borderRadius: "10pt",
@@ -673,8 +546,8 @@ const location = useLocation();
                           </div>
                         </Card.Body>
                       </Card>
-                      <Divider style={{ margin: "4pt" }} /> */}
-                      <Card
+                      <Divider style={{ margin: "4pt" }} />
+                      {/* <Card
                         style={{
                           margin: "auto",
                           transition: "0.3s",
@@ -717,7 +590,7 @@ const location = useLocation();
                             </Form.Label>
                           </Form.Group>
                         </Card.Body>
-                      </Card>
+                      </Card> 
                       <Divider style={{ margin: "4pt" }} />
                       <Card
                         style={{
@@ -740,7 +613,7 @@ const location = useLocation();
                                     id="ethnicity"
                                     style={{
                                       color: "#707070",
-                                      borderRadius: "5px",
+                                      borderRadius: "10px",
                                       marginTop: "5pt",
                                     }}
                                     name="ethnicity"
@@ -789,8 +662,8 @@ const location = useLocation();
                           </>
                         </Card.Body>
                       </Card>
-                      <Divider style={{ margin: "4pt" }} />
-                      {/* <Card
+                      <Divider style={{ margin: "4pt" }} />*/}
+                      <Card
                         style={{
                           margin: "auto",
                           transition: "0.3s",
@@ -834,9 +707,9 @@ const location = useLocation();
                             </Form.Label>
                           </Form.Group>
                         </Card.Body>
-                      </Card> 
-                      <Divider style={{ margin: "4pt" }} />*/}
-                      <Card
+                      </Card>
+                      <Divider style={{ margin: "4pt" }} />
+                      {/*<Card
                         style={{
                           margin: "auto",
                           transition: "0.3s",
@@ -882,7 +755,7 @@ const location = useLocation();
                           </Form.Group>
                         </Card.Body>
                       </Card>
-                       <Divider style={{ margin: "4pt" }} />
+                      <Divider style={{ margin: "4pt" }} />
                       <Card
                         style={{
                           margin: "auto",
@@ -929,7 +802,7 @@ const location = useLocation();
                           </Form.Group>
                         </Card.Body>
                       </Card>
-                      {/*<Divider style={{ margin: "4pt" }} />
+                      <Divider style={{ margin: "4pt" }} /> */}
                       <Card
                         style={{
                           margin: "auto",
@@ -946,17 +819,17 @@ const location = useLocation();
                           <>
                             <Form.Group as={Row} className="mb-3">
                               <Col xs="10" md="11">
-                                {bloodgroup === "" ? (
+                                {bloodGroup === "" ? (
                                   <select
                                     className="form-control"
-                                    id="bloodgroup"
+                                    id="bloodGroup"
                                     style={{
                                       color: "#707070",
-                                      borderRadius: "10px",
+                                      borderRadius: "5px",
                                     }}
-                                    name="bloodgroup"
+                                    name="bloodGroup"
                                     onChange={(e) =>
-                                      setpBloodgroup(e.target.value)
+                                      setpBloodGroup(e.target.value)
                                     }
                                   >
                                     <option value="">Select any one</option>
@@ -975,10 +848,10 @@ const location = useLocation();
                                     className="name-input"
                                     type="text"
                                     placeholder=""
-                                    name="bloodgroup"
-                                    value={bloodgroup}
+                                    name="bloodGroup"
+                                    value={bloodGroup}
                                     onChange={(e) =>
-                                      setpBloodgroup(e.target.value)
+                                      setpBloodGroup(e.target.value)
                                     }
                                     style={{
                                       marginBottom: "0pt",
@@ -999,14 +872,14 @@ const location = useLocation();
                                   marginLeft: "-0.5rem",
                                 }}
                               >
-                                <img src={BloodGroup} />
+                                <img src={BloodGroupIcon} />
                               </Form.Label>
                             </Form.Group>
                           </>
                         </Card.Body>
                       </Card>
                       <Divider style={{ margin: "4pt" }} />
-                      <Card
+                      {/* <Card
                         style={{
                           margin: "auto",
                           transition: "0.3s",
@@ -1179,7 +1052,7 @@ const location = useLocation();
                           ></Form.Control>
                         </Card.Body>
                       </Card>
-                      <Divider style={{ margin: "4pt" }} />
+                      <Divider style={{ margin: "4pt" }} /> 
                       <Card
                         style={{
                           margin: "auto",
@@ -1263,14 +1136,62 @@ const location = useLocation();
                             </Form.Group>
                           </>
                         </Card.Body>
-                      </Card> */}
+                      </Card>
 
-                      <Divider style={{ margin: "4pt" }} />
+                      <Divider style={{ margin: "4pt" }} />*/}
                     </Form.Group>
                   </Form>
                 </div>
               </div>
             </Card.Body>
+            {/* <>
+              {status === "0" ? (
+                <div
+                  style={{
+                    textAlign: "center",
+                    marginTop: "10pt",
+                    marginBottom: "10pt",
+                  }}
+                >
+                  <Button
+                    style={{
+                      background: "#1D5A90",
+                      borderRadius: 50,
+                      width: "50%",
+                      color: "#ffffff",
+                      textTransform: "none",
+                    }}
+                    onClick={onSubmit}
+                    type="submit"
+                  >
+                    Save Details
+                  </Button>
+                </div>
+              ) : (
+                <div
+                  style={{
+                    textAlign: "center",
+                    marginTop: "10pt",
+                    marginBottom: "10pt",
+                  }}
+                >
+                  <Button
+                    style={{
+                      background: "#1D5A90",
+                      borderRadius: 50,
+                      width: "50%",
+                      color: "#ffffff",
+                      textTransform: "none",
+                    }}
+                    onClick={onConfirm}
+                    type="submit"
+                  >
+                    Confirm
+                  </Button>
+                </div>
+              )}
+            </> */}
+
             <div
               style={{
                 textAlign: "center",
@@ -1313,6 +1234,7 @@ const location = useLocation();
                 Skip for now
               </Button>
             </div>
+
             <div style={{ height: "5vh" }}></div>
           </Card>
         </div>
@@ -1321,4 +1243,4 @@ const location = useLocation();
   );
 };
 
-export default PatientPersonalDetailsForm2;
+export default PatientPersonalDetailsForm;

@@ -94,7 +94,8 @@ const { user, pId, pName, adbuser } = useContext(UserContext);
           let pid = pId;
           const createx = user.functions.createTemperature(
             id,
-            cypherData(tempe),
+            // cypherData(tempe),
+            tempe,
             datey,
             cid,
             "careManager",

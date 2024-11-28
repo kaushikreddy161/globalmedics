@@ -42,6 +42,11 @@ import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 // import Card from "@mui/material/Card";
 
+
+import FileViewer from 'react-file-viewer';
+
+
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -66,6 +71,10 @@ function PatientOverView(props) {
   const [searchText, setSearchText] = useState("");
   const excludeColumns = ["id", "timeLine", "remainder", "alerts", "img"];
 
+  const [fileUrl, setFileUrl] = useState(null);
+
+  // const fileType = item.reportsType; // Replace with the actual file type if known
+  // const filePath = item.reportsFile; // Ensure this is a valid URL
 
   const showTextHandle = () => {
     setShowTextInput(false);
@@ -189,14 +198,59 @@ function PatientOverView(props) {
   };
 
 
+
+
+  // Health Reports fetching from Mongodb
+
+  const [phvrpt, setPhvrpt] = useState([]);
+  const [fileObjects, setFileObjects] = useState({});
+
+  async function fetchHealthVaultData() {
+    try {
+      const PHealthReports = await user.functions.getHealthVaultReport();
+      setPhvrpt(() => PHealthReports);
+      convertBlobUrlsToFiles(PHealthReports);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchHealthVaultData();
+  }, []);
+
+  const getFileType = (filePath) => {
+    const mimeType = filePath.split('.').pop();
+    if (mimeType === 'application/pdf') return 'pdf';
+    // Add other MIME types and their corresponding extensions here if needed
+    return mimeType;
+  };
+
+
+  const convertBlobUrlsToFiles = async (reports) => {
+    const fileObj = {};
+    for (const report of reports) {
+      try {
+        const response = await fetch(report.reportsFile);
+        const blob = await response.blob();
+        const fileURL = URL.createObjectURL(blob);
+        fileObj[report._id] = fileURL;
+      } catch (error) {
+        console.error("Error converting blob URL to file:", error);
+      }
+    }
+    setFileObjects(fileObj);
+  };
+
+
   return (
 
     <div className="main-screen1">
       <div className="main-screen1-sub">
 
         <div className="row">
-          <div class="col">
-            <Card className="mainCard1">
+          <div class="col-6">
+            <Card className="mainCard-pd">
               <Card.Body className="mainCard1Body">
                 <div className="innerMainCard1Body1">
                   <div className="imageDiv">
@@ -257,8 +311,8 @@ function PatientOverView(props) {
               </Card.Body>
             </Card>
           </div>
-          <div class="col">
-            <Card className="mainCard2">
+          <div class="col-6">
+            <Card className="mainCard-right-pd">
               <div className="timeDiv">
                 <p style={{ color: "#209F85" }}>
                   {" "}
@@ -342,11 +396,12 @@ function PatientOverView(props) {
           </div>
         </div>
 
-        <div className="row">
+        {/* <div className="row">
           <div class="col-3">
             <Card className="mainCard-dev">
               <div className="mainCard4Body">Category of Reports
                 <div className="mainCard4Body">
+                  
                   Pathology Reports
                   <div className="mainCard4Body">
                     Blood<br /><br /><br />
@@ -355,6 +410,9 @@ function PatientOverView(props) {
                     Sputum<br /><br /><br />
                     Others
                   </div>
+
+
+                  
                 </div>
               </div>
             </Card>
@@ -365,7 +423,84 @@ function PatientOverView(props) {
               </div>
             </Card>
           </div>
+        </div> */}
+
+
+
+        <div className="row">
+          <div class="col-12">
+            <Card className="mainCard-dev">
+              {/* <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                <colgroup>
+                  <col style={{ width: '5%' }} />
+                  <col style={{ width: '5%' }} />
+                  <col style={{ width: '5%' }} />
+                  <col style={{ width: '85%' }} />
+                </colgroup>
+                <tr>
+                  <th>Reports Categories</th>
+                  <th>Reports Sub Categories</th>
+                  <th>Reports Date</th>
+                  <th>File</th>
+                </tr>
+                {phvrpt.map((item) => (
+                  <tr key={item._id}>
+                    <td>{item.reportsCategories}</td>
+                    <td>{item.reportsSubCategories}</td>
+                    <td>{item.reportsDate}</td>
+                    <td>
+                      {fileObjects[item._id] ? (
+                        <FileViewer
+                          fileType={getFileType(item.reportsType)} // Use reportsType for the file type
+                          filePath={fileObjects[item._id]} // Use the object URL for the file path
+                          errorComponent={<p>Unable to display file</p>} // Custom error component
+                        />
+                      ) : (
+                        <p>Loading...</p>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </table> */}
+              {/* <td><a href={item.reportsFile} target="_blank" rel="noopener noreferrer">Open File</a></td> */}
+
+              <div class="container">
+                <div class="row">
+                  <div class="col-2 clr-grn">Rpt Categories</div>
+                  <div class="col-1 clr-grn" style={{textAlign:"center"}}>Rpt Sub Categories</div>
+                  <div class="col-2 clr-grn" style={{textAlign:"center"}}>Rpt Date</div>
+                  <div class="col-7 clr-grn" style={{textAlign:"center"}}>File</div>
+                </div>
+                <hr/>
+                {phvrpt.map((item) => (
+                  <div class="row" key={item._id}>
+                    <div class="col-2">{item.reportsCategories}</div>
+                    <div class="col-1" style={{textAlign:"center"}}>{item.reportsSubCategories}</div>
+                    <div class="col-2" style={{textAlign:"center"}}>{item.reportsDate}</div>
+                    <div class="col-7 rpt-container">
+                      <a href={item.reportsFile} target="_blank" rel="noopener noreferrer">Open File</a>
+                      {fileObjects[item._id] ? (
+                        
+                        <FileViewer
+                          className="pdf-viewer"
+                          fileType={getFileType(item.reportsType)} // Use reportsType for the file type
+                          filePath={fileObjects[item._id]} // Use the object URL for the file path
+                          errorComponent={<p>Unable to display file</p>} // Custom error component
+                        />
+                      
+                      ) : (
+                        <p>Loading...</p>
+                      )}
+                    </div>
+                  </div>
+                  
+                ))}
+              </div>
+            </Card>
+          </div>
         </div>
+
+
 
 
 

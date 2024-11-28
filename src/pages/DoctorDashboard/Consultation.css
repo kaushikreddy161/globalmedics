@@ -454,3 +454,35 @@ img.call-img {
   background: white;
   /* margin-top: -3pt; */
 }
+.me-2 {
+  margin-right: 0.5rem !important;
+  font-size: 10pt !important;
+}
+
+
+.user-list-dropdown {
+  position: absolute;
+  background-color: #FFFFFF;
+  border: 1px solid #EBEBEB;
+  z-index: 1;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  max-height: 150px;
+  overflow-y: auto;
+  width: 265px;
+  transition: all 100ms;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+.user-list-dropdown-item {
+  padding: 8px;
+  cursor: pointer;
+  /* border-bottom: 1px solid #ddd; */
+}
+
+/* Optional hover effect for list items */
+.user-list-dropdown-item:hover {
+  background-color: #F2F8F1;
+}

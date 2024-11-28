@@ -482,7 +482,7 @@ const Documentation = (prop) => {
                   </div>
 
                   <div class="d-grid gap-4 d-md-flex justify-content-md-end mt-4">
-                    <button type="button" class="btn custom-btn-width" onClick={handleGenerateDocument}>
+                    <button type="button" class="btn-hs" onClick={handleGenerateDocument}>
                       Generate Document
                     </button>
                   </div>
@@ -549,7 +549,7 @@ const Documentation = (prop) => {
 
                 </div>
                 <div class="gap-4 d-md-flex justify-content-md-end">
-                  <button type="button" class="btn custom-btn-width btn-blue mt-2" style={{marginRight:"1.2rem"}}>Confirm</button>
+                  <button type="button" class="custom-btn-width btn-hs mt-2" style={{marginRight:"0rem"}}>Confirm</button>
                 </div>
               </div>
             </div>
@@ -576,7 +576,7 @@ const Documentation = (prop) => {
                     </div>
                   </div>
                   <div class="d-grid gap-4 d-md-flex justify-content-md-end" style={{ marginTop: "5.6rem" }}>
-                    <button type="button" class="btn custom-btn-width" disabled={isDisabled} onClick={handlePrintButtonClick}>Print</button>
+                    <button type="button" class="custom-btn-width btn-hs" disabled={isDisabled} onClick={handlePrintButtonClick}>Print</button>
                   </div>
                 </div>
               </div>
@@ -595,8 +595,8 @@ const Documentation = (prop) => {
                 <div className="col">
                   <RecordButton status={recorderConfig.status} setRecorderStatus={setRecorderConfig} />
                 </div>
-                <div className="col btn-div">
-                  <button className="btn custom-btn-width btn-blue">Confirm</button>
+                <div className="col btn-div justify-content-md-end">
+                  <button className="btn-hs custom-btn-width">Confirm</button>
                 </div>
               </div>
               

@@ -53,7 +53,7 @@ const PreConsultation = () => {
                 <h6 class="sub-title">Summary of Patient and Family History</h6>
 
                 <p className='summary-txt'>AI would scan all available history of the patient over the years and summarise it here. It can also provide a summary of Medical Research Literature relevant to the patient’s case</p>
-                <div class="form-control" id="exampleFormControlTextarea1" rows="2">
+                {/* <div class="form-control" id="exampleFormControlTextarea1" rows="2"> */}
 
                   {/* <strong className='summary-txt'>Patient History:</strong>
                   <ul className='summary-txt'>
@@ -85,7 +85,7 @@ const PreConsultation = () => {
                   ) : (
                     <p>No family history available</p>
                   )}*/}
-                </div>
+                {/* </div> */}
 
                 {patientHistoryData && (
                   <p className='summary-txt-api'>{patientHistoryData}</p>
